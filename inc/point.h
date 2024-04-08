@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:43:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 
 typedef struct s_point
 {
-	size_t	x;
-	size_t	y;
+	int	x;
+	int	y;
 }	t_point;
 
 typedef struct s_map
 {
 	char	**rawMap;
+	char	**mapCpy;
 	size_t	xSizeMax;
 	size_t	ySizeMax;
 	size_t	nbSpawnPoint;

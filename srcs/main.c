@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/06 14:56:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:06:17 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 /* if no env ? */
 int	main(int argc, char **argv, char **envp)
 {
+	(void)argc;
+	(void)argv;
+	(void)envp;
 	/* parse */
 	/* init */
 	/* hook */
