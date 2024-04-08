@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.h                                            :+:      :+:    :+:   */
+/*   ft_printf_fun.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Created: 2023/03/08 17:57:32 by mbruyant          #+#    #+#             */
+/*   Updated: 2023/12/26 11:54:43 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "libft.h"
 
-#include "cub3d.h"
-
-typedef struct s_point
+int	ft_printf_str(char *str, int fd)
 {
-	size_t	x;
-	size_t	y;
-}	t_point;
+	int	i;
 
-typedef struct s_map
+	i = 0;
+	if (!str)
+	{
+		ft_putstr_fd("(null)", fd);
+		return (6);
+	}
+	while (str[i] != '\0')
+	{
+		write(fd, &str[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_printf_char(int c, int fd)
 {
-	char	**rawMap;
-	size_t	xSizeMax;
-	size_t	ySizeMax;
-	size_t	nbSpawnPoint;
-}	t_map;
-
-#endif
+	write(fd, &c, 1);
+	return (1);
+}

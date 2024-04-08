@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.h                                            :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Created: 2024/01/22 15:31:20 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/01/22 15:31:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "libft.h"
 
-#include "cub3d.h"
-
-typedef struct s_point
+void	ft_set_char_to_null(char **str1, char **str2, char **str3)
 {
-	size_t	x;
-	size_t	y;
-}	t_point;
+	if (str1)
+		*str1 = NULL;
+	if (str2)
+		*str2 = NULL;
+	if (str3)
+		*str3 = NULL;
+}
 
-typedef struct s_map
+void	ft_multiple_free(char **str1, char **str2, char **str3)
 {
-	char	**rawMap;
-	size_t	xSizeMax;
-	size_t	ySizeMax;
-	size_t	nbSpawnPoint;
-}	t_map;
-
-#endif
+	if (str1)
+		free(*str1);
+	if (str2)
+		free(*str2);
+	if (str3)
+		free(*str3);
+	ft_set_char_to_null(str1, str2, str3);
+}

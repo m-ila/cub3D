@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/06 14:48:34 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:10:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <math.h>
 #include "point.h"
 #include "def_mlx.h"
+#include "../libft/libft.h"
 
 /* minilibx */
 #include "../minilibx-linux/mlx.h"

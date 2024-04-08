@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.h                                            :+:      :+:    :+:   */
+/*   ft_char_mod.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Created: 2022/10/29 22:22:34 by mbruyant          #+#    #+#             */
+/*   Updated: 2023/10/11 17:12:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "libft.h"
 
-#include "cub3d.h"
-
-typedef struct s_point
+int	ft_tolower(int c)
 {
-	size_t	x;
-	size_t	y;
-}	t_point;
+	if (c >= 65 && c <= 90)
+		c = c + 32;
+	return (c);
+}
 
-typedef struct s_map
+int	ft_toupper(int c)
 {
-	char	**rawMap;
-	size_t	xSizeMax;
-	size_t	ySizeMax;
-	size_t	nbSpawnPoint;
-}	t_map;
-
-#endif
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
+}

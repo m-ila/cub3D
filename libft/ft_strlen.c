@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Created: 2022/10/29 22:20:53 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/02/01 20:45:17 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "libft.h"
 
-#include "cub3d.h"
-
-typedef struct s_point
+size_t	ft_strlen(const char *s)
 {
-	size_t	x;
-	size_t	y;
-}	t_point;
+	size_t	len;
 
-typedef struct s_map
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
+}
+
+int	ft_ustrlen(unsigned char *str)
 {
-	char	**rawMap;
-	size_t	xSizeMax;
-	size_t	ySizeMax;
-	size_t	nbSpawnPoint;
-}	t_map;
+	int	len;
 
-#endif
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}

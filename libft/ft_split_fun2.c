@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.h                                            :+:      :+:    :+:   */
+/*   ft_split_fun2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Created: 2024/01/12 18:32:40 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/01/12 18:35:55 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "libft.h"
 
-#include "cub3d.h"
-
-typedef struct s_point
+void	ft_split_do(char *s, int *i, bool (*fun)(char*, int), int which)
 {
-	size_t	x;
-	size_t	y;
-}	t_point;
-
-typedef struct s_map
-{
-	char	**rawMap;
-	size_t	xSizeMax;
-	size_t	ySizeMax;
-	size_t	nbSpawnPoint;
-}	t_map;
-
-#endif
+	if (which == 1)
+	{
+		while (s[*i] != '\0' && fun(s, *i))
+			(*i)++;
+	}
+	if (which == 2)
+	{
+		while (s[*i] != '\0' && !fun(s, *i))
+			(*i)++;
+	}
+}

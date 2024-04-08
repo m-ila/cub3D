@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point.h                                            :+:      :+:    :+:   */
+/*   ft_char_is_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 13:13:16 by mbruyant         ###   ########.fr       */
+/*   Created: 2023/11/10 17:24:03 by mbruyant          #+#    #+#             */
+/*   Updated: 2023/12/25 21:39:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef POINT_H
-#define POINT_H
+#include "libft.h"
 
-#include "cub3d.h"
-
-typedef struct s_point
+int	ft_iswhitespace(char c)
 {
-	size_t	x;
-	size_t	y;
-}	t_point;
+	return (c == ' ' || c == '\t' || c == '\b' || c == '\v' || c == '\f');
+}
 
-typedef struct s_map
+/* COMMENT : retourne faux si base vide */
+int	ft_char_in_base(char c, const char *base)
 {
-	char	**rawMap;
-	size_t	xSizeMax;
-	size_t	ySizeMax;
-	size_t	nbSpawnPoint;
-}	t_map;
+	int	i;
 
-#endif
+	if (!base || !*base)
+		return (0);
+	i = 0;
+	while (base[i])
+	{
+		if (base[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
