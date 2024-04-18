@@ -6,13 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 11:40:38 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:02:52 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-
 
 void	ft_flood_fill(t_point *position, t_map *map)
 {

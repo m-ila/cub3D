@@ -6,7 +6,7 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/04/08 16:08:30 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/04/18 14:14:37 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O2 -g
 MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext
-SOURCES = srcs/p_map.c srcs/main.c
+SOURCES = srcs/p_map.c srcs/main.c srcs/errors.c srcs/i_data.c srcs/i_null.c
 OBJS = ${SOURCES:.c=.o}
 INC = inc/
 LIBFT = libft/

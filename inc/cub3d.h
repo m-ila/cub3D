@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 13:57:46 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 14:10:52 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,17 @@ typedef struct s_data
 	t_map	*map;
 	t_point	*position;
 	char	*path_texture[5];
-	char	floor_c;
-	char	ceiling_c;
+	char	*floor_c;
+	char	*ceiling_c;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_data;
+
+/* srcs/errors.c */
+int		ft_err_ret(char *msg, char *name, int ret);
+
+/* srcs/i_data.c */
+/*check if str is NO/SO/WE/EA/C/F */
+bool	ft_is_valid_file_component(char *str);
 
 #endif
