@@ -6,15 +6,24 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 17:10:20 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 13:57:46 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+/* read, write */
 # include <unistd.h>
+/* exit, malloc, free */
 # include <stdlib.h>
+/* open, close */
+# include <fcntl.h>
+/* strerror */
+# include <string.h>
+/* printf, perror */
+# include <stdio.h>
+/* math.h */
 # include <math.h>
 # include "point.h"
 # include "def_mlx.h"
@@ -35,13 +44,13 @@ typedef enum path_txt
 	SO,
 	WE,
 	EA
-};
+} path_txt;
 
 typedef struct s_data
 {
 	t_map	*map;
 	t_point	*position;
-	char	path_texture[4];
+	char	*path_texture[5];
 	char	floor_c;
 	char	ceiling_c;
 	void	*mlx_ptr;
