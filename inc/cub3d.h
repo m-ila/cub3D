@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 15:44:16 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:55:56 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,11 @@ int		ft_err_ret(char *msg, char *name, int ret);
 /* srcs/i_data.c */
 /*check if str is NO/SO/WE/EA/C/F */
 bool	ft_is_valid_file_component(char *str);
+bool	ft_open_file(t_data *cub, char *path_file);
+void	ft_close_fd(int *fd);
+bool	ft_init_struct(t_data *cub, char *path_file);
+/* srcs/i_null.c */
+void	ft_init_null(t_data *cub);
+void	ft_array_set_null(char **arr, size_t len);
 
 #endif

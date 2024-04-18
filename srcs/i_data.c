@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 15:47:31 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:06:54 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,24 @@ bool	ft_open_file(t_data *cub, char *path_file)
 	return (true);
 }
 
+void	ft_close_fd(int *fd)
+{
+	if (*fd > -1)
+	{
+		close(*fd);
+		*fd = -1;
+	}
+}
+
 bool	ft_init_struct(t_data *cub, char *path_file)
 {
-	if (cub && path_file)
-		return (true);
-	return (false);
+	if (!cub || !path_file)
+		return (false);
+	if (ft_strlen(path_file) == 0)
+		return (ft_err_ret("enter valid path", NULL, false));
+	if (!ft_open_file(cub, path_file))
+		return (false);
+	printf("opened\nfd = %d\n", cub->tmp_fd);
+	ft_close_fd(&(cub->tmp_fd));
+	return (true);
 }
