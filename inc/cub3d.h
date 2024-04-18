@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 14:10:52 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:37:08 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum path_txt
 	SO,
 	WE,
 	EA
-} path_txt;
+}	t_path_txt;
 
 typedef struct s_data
 {
