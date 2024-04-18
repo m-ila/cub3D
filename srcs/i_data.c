@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 14:10:57 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:47:31 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ bool	ft_is_valid_file_component(char *str)
 	return (false);
 }
 
-/*
-fonction access non autorisée
-on a le droit à open
-*/
-bool	ft_check_file_rights(char *path_file)
+bool	ft_open_file(t_data *cub, char *path_file)
 {
-	if (access(path_file, O_RDONLY))
-		return (ft_err_ret("rights to read not allowed", path_file, false));
+	cub->tmp_fd = open(path_file, O_RDONLY);
+	if (cub->tmp_fd == -1)
+		return (ft_err_ret("failed to open", path_file, false));
 	return (true);
 }
 

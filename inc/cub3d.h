@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 15:37:08 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:44:16 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data
 	char	*ceiling_c;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		tmp_fd;
 }	t_data;
 
 /* srcs/errors.c */

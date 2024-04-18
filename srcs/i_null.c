@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 13:23:18 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:44:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	ft_init_null(t_data *cub)
 	cub->floor_c = NULL;
 	cub->mlx_ptr = NULL;
 	cub->win_ptr = NULL;
+	cub->tmp_fd = -1;
 }
