@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 15:55:56 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:14:23 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,20 @@ typedef enum path_txt
 	EA
 }	t_path_txt;
 
+typedef struct s_rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_rgb;
+
 typedef struct s_data
 {
 	t_map	*map;
 	t_point	*position;
 	char	*path_texture[5];
-	char	*floor_c;
-	char	*ceiling_c;
+	t_rgb	floor_c;
+	t_rgb	ceiling_c;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	int		tmp_fd;

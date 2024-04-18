@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 15:54:27 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:16:25 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	ft_init_null(t_data *cub)
 	cub->map = NULL;
 	cub->position = NULL;
 	ft_array_set_null(cub->path_texture, 5);
-	cub->ceiling_c = NULL;
-	cub->floor_c = NULL;
 	cub->mlx_ptr = NULL;
 	cub->win_ptr = NULL;
 	cub->tmp_fd = -1;
