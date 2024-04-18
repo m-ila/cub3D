@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 19:26:39 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:37:08 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,27 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	}
 }
 
-void	ft_process_file(t_data *cub)
+/* changé en bool */
+bool	ft_process_file(t_data *cub)
 {
 	char	*line;
 	char	**arr;
 	bool	temoin;
+	int		phase;
 
 	line = "start";
 	temoin = true;
+	phase = 1;
 	while (line)
 	{
 		line = get_next_line(cub->tmp_fd);
 		if (!line)
-			return ;
-		temoin = ft_process_phase(cub, 1, &line);
+			return (true);
+		temoin = ft_process_phase(cub, phase, &line);
 		printf("line = %s", line);
 		free(line);
 		if (!temoin)
-			break ;
+			return (false);
 	}
 }
 
@@ -147,7 +150,8 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	if (!ft_open_file(cub, path_file))
 		return (false);
 	printf("opened\nfd = %d\n", cub->tmp_fd);
-	ft_process_file(cub);
+	if (!ft_process_file(cub))
+		return (false);
 	ft_close_fd(&(cub->tmp_fd));
 	return (true);
 }
