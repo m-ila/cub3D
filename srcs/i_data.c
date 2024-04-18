@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 16:25:15 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:27:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ bool	ft_is_valid_file_component(char *str)
 	return (false);
 }
 
-/* ouvre aussi les dossiers ?? */
 bool	ft_open_file(t_data *cub, char *path_file)
 {
 	if (!ft_strendswith(path_file, ".cub"))
