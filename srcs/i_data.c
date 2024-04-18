@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 19:37:08 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:41:54 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,14 @@ t_path_txt	ft_which_text(char *str)
 		return (WE);
 	if (!ft_strncmp("EA", str, ft_strlen(str) + 1))
 		return (EA);
+	return (ERR);
 }
 
 bool	ft_process_color(t_data *cub, char **arr)
 {
-	
+	if (cub && arr)
+		return (true);
+	return (false);
 }
 
 /* split & strdup to protect */
@@ -113,15 +116,15 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	}
 	if (phase == 2)
 	{
-		
+		return (true);
 	}
+	return (true);
 }
 
 /* changé en bool */
 bool	ft_process_file(t_data *cub)
 {
 	char	*line;
-	char	**arr;
 	bool	temoin;
 	int		phase;
 
@@ -139,6 +142,7 @@ bool	ft_process_file(t_data *cub)
 		if (!temoin)
 			return (false);
 	}
+	return (true);
 }
 
 bool	ft_init_struct(t_data *cub, char *path_file)

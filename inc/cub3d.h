@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 17:14:23 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/18 19:41:44 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef enum path_txt
 	NO,
 	SO,
 	WE,
-	EA
+	EA,
+	ERR
 }	t_path_txt;
 
 typedef struct s_rgb
