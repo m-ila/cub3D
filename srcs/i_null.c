@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 17:16:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:16:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ void	ft_array_set_null(char **arr, size_t len)
 	}
 }
 
+void	ft_color_set_null(t_rgb color)
+{
+	color.r = -1;
+	color.g = -1;
+	color.b = -1;
+}
+
 void	ft_init_null(t_data *cub)
 {
 	cub->map = NULL;
@@ -32,4 +39,6 @@ void	ft_init_null(t_data *cub)
 	cub->mlx_ptr = NULL;
 	cub->win_ptr = NULL;
 	cub->tmp_fd = -1;
+	ft_color_set_null(cub->ceiling_c);
+	ft_color_set_null(cub->floor_c);
 }

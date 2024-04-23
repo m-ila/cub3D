@@ -6,11 +6,13 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 14:02:52 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:14:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+/* if char only has whitespace after has to be a 1 */
 
 void	ft_flood_fill(t_point *position, t_map *map)
 {
