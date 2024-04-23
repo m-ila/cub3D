@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 19:41:44 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:52:09 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include "../minilibx-linux/mlx_int.h"
 
 # define ALLOWED_BASE "01NSEW"
+# define B_DIGIT "0123456789"
 
 typedef enum path_txt
 {
