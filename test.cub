@@ -3,8 +3,8 @@ SO ./path_file_2
 WE ./path_file_3
 EA ./path_file_4
 
-F abc
-C abc
+F 255,255,255
+C 5,255,255
 
 11111111111111111111
 10000000000000000001

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 14:17:55 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:07:16 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ bool	ft_process_color(t_data *cub, char **arr)
 	char	**parse;
 	t_rgb	color;
 
-	if (ft_strlen(arr[1]) < 5 || ft_strlen(arr[1]) > 11)
+	if ((ft_strlen(arr[1]) < 5) || (ft_strlen(arr[1]) > 11))
 		return (false);
 	parse = ft_split(arr[1], ',');
 	if (!parse)
@@ -135,7 +135,7 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	{
 		char	**arr;
 
-		arr = ft_split(*line, ' ');
+		arr = ft_split_base(*line, " \n");
 		if (!arr)
 		{
 			free(*line);
@@ -144,7 +144,8 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		}
 		ft_display_2d(arr);
 		if (ft_is_text(arr[0]))
-			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+			printf("texture path will be : (d)%s(f)\n", arr[1]);
+			//cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
 		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
 			return (ft_free_2d_array(arr), ft_err_ret("color in file not valid", NULL, false));
 		ft_free_2d_array(arr);
@@ -168,6 +169,7 @@ bool	ft_process_file(t_data *cub)
 	phase = 1;
 	while (line)
 	{
+		printf("\nNEWLINE\n");
 		line = get_next_line(cub->tmp_fd);
 		if (!line)
 			return (true);
