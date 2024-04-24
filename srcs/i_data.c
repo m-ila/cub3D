@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 15:59:20 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 16:20:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,11 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	return (true);
 }
 
+bool	ft_start_map_condition(char *str)
+{
+	return ((ft_only_sep_base(str, B_FIRSTLINE)) && (ft_strlen(str) > 1));
+}
+
 /*
 LEAK : gnl lorsque temoin == false (????)
 laissé message de debug en attendant
@@ -186,10 +191,12 @@ bool	ft_process_file(t_data *cub)
 		line = get_next_line(cub->tmp_fd);
 		if (!line)
 			return (ft_safe_free(&line), printf("1\n"), true);
+		if (ft_start_map_condition(line))
+			phase = 2;
 		temoin = ft_process_phase(cub, phase, &line);
 		printf("line = %s", line);
 		ft_safe_free(&line);
-		printf("line freed\ntemoin = %d\n", temoin);
+		printf("line freed\ntemoin = %d\nphase = %d\n", temoin, phase);
 		if (!temoin)
 			return (ft_safe_free(&line), printf("2\n"), false);
 	}
