@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 15:21:58 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:54:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,16 @@ bool	ft_process_color(t_data *cub, char **arr)
 	return (true);
 }
 
+void	ft_safe_free(char **str)
+{
+	if (*str)
+	{
+		printf("about to free : (d)%s(f)\n", *str);
+		free(*str);
+		*str = NULL;
+	}
+}
+
 /* split & strdup to protect */
 bool	ft_process_phase(t_data *cub, int phase, char **line)
 {
@@ -164,22 +174,23 @@ bool	ft_process_file(t_data *cub)
 	bool	temoin;
 	int		phase;
 
-	line = "start";
+	line = NULL;
 	temoin = true;
 	phase = 1;
-	while (line)
+	while (temoin)
 	{
 		printf("\nNEWLINE\n");
 		line = get_next_line(cub->tmp_fd);
 		if (!line)
-			return (true);
+			return (ft_safe_free(&line), printf("1\n") ,true);
 		temoin = ft_process_phase(cub, phase, &line);
 		printf("line = %s", line);
-		free(line);
+		ft_safe_free(&line);
+		printf("line freed\ntemoin = %d\n", temoin);
 		if (!temoin)
-			return (false);
+			return (ft_safe_free(&line), printf("2\n"), false);
 	}
-	return (true);
+	return (ft_safe_free(&line), true);
 }
 
 bool	ft_init_struct(t_data *cub, char *path_file)
