@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 23:00:47 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:06:05 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,48 +49,6 @@ t_path_txt	ft_which_text(char *str)
 	if (!ft_strncmp("EA", str, ft_strlen(str) + 1))
 		return (EA);
 	return (ERR);
-}
-
-/* check if everything is between 0 and 255 and is only digits */
-bool	ft_color_range(char **arr)
-{
-	int	i;
-	int	curr;
-
-	if (!arr || !(*arr))
-		return (false);
-	i = 0;
-	while (i < 3)
-	{
-		curr = ft_atoi(arr[i]);
-		if (curr < 0 || curr > 255 || !ft_only_sep_base(arr[i], B_DIGIT))
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-bool	ft_process_color(t_data *cub, char **arr)
-{
-	char	**parse;
-	t_rgb	color;
-
-	if ((ft_strlen(arr[1]) < 5) || (ft_strlen(arr[1]) > 11))
-		return (false);
-	parse = ft_split(arr[1], ',');
-	if (!parse)
-		return (false);
-	if (ft_2d_lines(parse) != 3 || !ft_color_range(parse))
-		return (ft_free_2d_array(parse), false);
-	if (!ft_strncmp(arr[0], "F", 2))
-		cub->floor_c = color;
-	if (!ft_strncmp(arr[0], "C", 2))
-		cub->ceiling_c = color;
-	color.r = ft_atoi(parse[0]);
-	color.g = ft_atoi(parse[1]);
-	color.b = ft_atoi(parse[2]);
-	ft_free_2d_array(parse);
-	return (true);
 }
 
 /* needs to add malloc strdup prot */
@@ -148,11 +106,6 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	return (true);
 }
 
-bool	ft_start_map_condition(char *str)
-{
-	return ((ft_only_sep_base(str, B_FIRSTLINE)) && (ft_strlen(str) > 1));
-}
-
 /*
 LEAK : gnl lorsque temoin == false (????)
 laissé message de debug en attendant
@@ -180,33 +133,6 @@ bool	ft_process_file(t_data *cub)
 			return (ft_safe_free(&cub->tmp_line), printf("2\n"), false);
 	}
 	return (ft_safe_free(&cub->tmp_line), true);
-}
-
-/* faire en sorte que x_size_max prenne en compte les lignes où il n'y a que wspace */
-bool	ft_get_data_map(t_map *m)
-{
-	size_t	i;
-
-	m->y_size_max = (size_t) ft_2d_lines(m->raw_map);
-	if (m->y_size_max < 3)
-		return (false);
-	i = 0;
-	while (i < m->y_size_max)
-	{
-		if (ft_strlen(m->raw_map[i]) > m->x_size_max)
-			m->x_size_max = ft_strlen(m->raw_map[i]);
-		m->spawn_nb += ft_strocc_base(m->raw_map[i], B_SPAWN);
-		if (m->spawn_nb == 1 && (m->spawn.y == -1))
-		{
-			m->spawn.y = i;
-			m->spawn.x = ft_strindex_base(m->raw_map[i], B_SPAWN);
-		}
-		i++;
-	}
-	printf("spawn x : %d\nspawn y : %d\n", m->spawn.x, m->spawn.y);
-	if (m->spawn_nb != 1)
-		return (false);
-	return (true);
 }
 
 /*

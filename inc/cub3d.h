@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:06:06 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:05:38 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,18 @@ int		ft_err_ret(char *msg, char *name, int ret);
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
 void	ft_free_map(t_map *m);
+/* srcs/i_color.c */
+bool	ft_color_range(char **arr);
+bool	ft_process_color(t_data *cub, char **arr);
 /* srcs/i_data.c */
 /*check if str is NO/SO/WE/EA/C/F */
 bool	ft_is_valid_file_component(char *str);
 bool	ft_open_file(t_data *cub, char *path_file);
 void	ft_close_fd(int *fd);
 bool	ft_init_struct(t_data *cub, char *path_file);
+/* srcs/i_map.c */
+bool	ft_start_map_condition(char *str);
+bool	ft_get_data_map(t_map *m);
 /* srcs/i_null.c */
 void	ft_init_null(t_data *cub);
 void	ft_array_set_null(char **arr, size_t len);
