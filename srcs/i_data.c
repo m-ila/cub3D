@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 15:15:29 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:16:37 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ bool	ft_process_color(t_data *cub, char **arr)
 	return (true);
 }
 
+/*alias test*/
 /* split & strdup to protect */
 bool	ft_process_phase(t_data *cub, int phase, char **line)
 {
