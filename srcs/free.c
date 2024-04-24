@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:51:56 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:59:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_free_textures(t_data *cub)
 
 void	ft_free_map(t_map *m)
 {
+	if (!m)
+		return ;
 	if (m->raw_map)
 		ft_free_2d_array(m->raw_map);
 	if (m->map_cpy)

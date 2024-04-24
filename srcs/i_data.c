@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:56:09 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:02:05 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	}
 	if (phase == 2)
 	{
-		if (!cub->map->raw_map)
+		if (cub->map->raw_map)
 			return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
 	}
 	return (true);
@@ -180,7 +180,6 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	ft_close_fd(&(cub->tmp_fd));
 	ft_free_textures(cub);
 	ft_free_map(cub->map);
-	free(cub->map);
 	ft_safe_free(&cub->tmp_line);
 	return (true);
 }

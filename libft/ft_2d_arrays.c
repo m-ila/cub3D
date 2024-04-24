@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:49:06 by mbruyant          #+#    #+#             */
-/*   Updated: 2023/12/29 20:44:53 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 20:00:57 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void	ft_free_2d_array(char **array)
 	while (array[i] != NULL)
 	{
 		free(array[i]);
+		array[i] = NULL;
 		i++;
 	}
 	free(array);
+	array = NULL;
 }
 
 char	**ft_copy_2d_array(char **arr, int from, int len)
