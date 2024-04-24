@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:35:17 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:00:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		{
 			cub->map->raw_map = ft_calloc(1, sizeof(char *));
 			if (!cub->map->raw_map)
-				return (ft_err_ret("malloc error", NULL, false));
+				return (ft_err_ret("malloc error raw_map", NULL, false));
 		}
 		if (cub->map->raw_map)
 		{
