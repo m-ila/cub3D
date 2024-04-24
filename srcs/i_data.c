@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 20:02:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:42:51 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,27 @@ bool	ft_process_color(t_data *cub, char **arr)
 	return (true);
 }
 
+/* needs to add malloc strdup prot */
+void	ft_add_line_to_arr(char ***arr, char **line)
+{
+	char	**cpy;
+	int		i;
+	int		len;
+
+	len = ft_2d_lines(*arr);
+	cpy = ft_calloc(len + 2, sizeof(char *));
+	i = 0;
+	while (i < len)
+	{
+		cpy[i] = ft_strdup((*arr)[i]);
+		ft_safe_free(&(*arr)[i]);
+		i++;
+	}
+	cpy[i] = ft_strdup(*line);
+	free(*arr);
+	*arr = cpy;
+}
+
 /* split & strdup to protect */
 bool	ft_process_phase(t_data *cub, int phase, char **line)
 {
@@ -121,8 +142,16 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	}
 	if (phase == 2)
 	{
+		if (!cub->map->raw_map)
+		{
+			cub->map->raw_map = ft_calloc(2, sizeof(char *));
+			cub->map->raw_map[0] = ft_strdup(*line);
+		}
 		if (cub->map->raw_map)
-			return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
+		{
+			ft_add_line_to_arr(&cub->map->raw_map, line);
+			//return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
+		}
 	}
 	return (true);
 }
