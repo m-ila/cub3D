@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 15:07:16 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:10:11 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		}
 		ft_display_2d(arr);
 		if (ft_is_text(arr[0]))
-			printf("texture path will be : (d)%s(f)\n", arr[1]);
+			printf("texture path will be : (d)%s(f)\nindex will be : (d)%d(f)\n", arr[1], ft_which_text(arr[0]));
 			//cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
 		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
 			return (ft_free_2d_array(arr), ft_err_ret("color in file not valid", NULL, false));
