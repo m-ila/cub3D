@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:25:16 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/02/01 21:55:03 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:31:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void	ft_arr_epur(char **arr, char to_remove);
 int		ft_strlen_from(char *str, int from);
 int		ft_strlen_base(char *str, char *base, int from);
 int		ft_strlen_unbase(char *str, char *base, int from);
-int		ft_strocc_base(char *str, char *base);
+int		ft_strocc_base(char *str, const char *base);
 int		ft_strocc_unbase(char *str, char *base);
 char	**ft_split_fun(char *s, bool (*fun)(char*, int));
 void	ft_split_do(char *s, int *i, bool (*fun)(char*, int), int which);
@@ -154,6 +154,8 @@ size_t	ft_russian_index(char *hay, char *needle);
 bool	ft_str_add(char **str1, char **to_add);
 void	ft_set_char_to_null(char **str1, char **str2, char **str3);
 void	ft_multiple_free(char **str1, char **str2, char **str3);
+void	ft_close_fd(int *fd);
+int		ft_strindex_base(char *str, const char *base);
 //void	ft_split_do_ms(char *s, char *m, int *i, int w);
 
 #endif

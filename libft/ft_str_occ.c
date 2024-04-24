@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 14:13:58 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/01/12 18:25:26 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:30:53 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_strocc(char *str, char c)
 }
 
 /* returns the number of occurence that fits in a base */
-int	ft_strocc_base(char *str, char *base)
+int	ft_strocc_base(char *str, const char *base)
 {
 	int	i;
 	int	occ;

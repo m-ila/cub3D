@@ -40,7 +40,9 @@ ft_strlen_misc.c \
 ft_str_occ.c \
 ft_has_only.c \
 ft_split_epured.c \
-ft_free.c
+ft_free.c \
+ft_fd.c \
+ft_str_misc_2.c
 
 OBJS = ${SRCS:.c=.o}
 
