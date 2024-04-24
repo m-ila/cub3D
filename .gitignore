@@ -1,3 +1,6 @@
+.vscode/
+cub3d
+
 # Prerequisites
 *.d
 
