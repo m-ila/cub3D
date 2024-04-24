@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:46:50 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:06:06 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # include "../minilibx-linux/mlx_int.h"
 
 # define ALLOWED_BASE "01NSEW"
+# define B_SPAWN "NSEW"
 # define B_FIRSTLINE " 1\n"
 # define B_DIGIT "0123456789"
 

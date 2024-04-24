@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 21:57:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:05:19 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		if (!cub->map->raw_map)
 		{
 			cub->map->raw_map = ft_calloc(1, sizeof(char *));
+			if (!cub->map->raw_map)
+				return (ft_err_ret("malloc error", NULL, false));
 		}
 		if (cub->map->raw_map)
 		{
@@ -182,11 +184,18 @@ bool	ft_process_file(t_data *cub)
 		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
 		//printf("line = %s", cub->tmp_line);
 		ft_safe_free(&cub->tmp_line);
-		printf("temoin = %d\nphase = %d\n", temoin, phase);
+		//printf("temoin = %d\nphase = %d\n", temoin, phase);
 		if (!temoin)
 			return (ft_safe_free(&cub->tmp_line), printf("2\n"), false);
 	}
 	return (ft_safe_free(&cub->tmp_line), true);
+}
+
+bool	ft_get_data_map(t_map *m)
+{
+	if (m)
+		return (true);
+	return (true);
 }
 
 /*
@@ -209,6 +218,8 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		return (free(cub->map), ft_safe_free(&cub->tmp_line), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), false);
 	printf("\nDisplay raw map\n");
 	ft_display_2d(cub->map->raw_map);
+	if (!ft_get_data_map(cub->map))
+		return (ft_err_ret("[TO FREE] wrong data map", NULL, false));
 	ft_close_fd(&(cub->tmp_fd));
 	ft_free_textures(cub);
 	ft_free_map(cub->map);

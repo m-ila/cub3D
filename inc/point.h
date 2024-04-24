@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/08 16:36:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:05:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct s_map
 	char	**map_cpy;
 	size_t	x_size_max;
 	size_t	y_size_max;
+	size_t	x_size_playable;
+	size_t	y_size_playable;
+	size_t	x_from;
+	size_t	x_until;
+	size_t	y_from;
+	size_t	y_until;
+	t_point	spawn;
 }	t_map;
 
 #endif
