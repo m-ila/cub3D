@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 21:42:51 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 21:57:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,7 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	{
 		if (!cub->map->raw_map)
 		{
-			cub->map->raw_map = ft_calloc(2, sizeof(char *));
-			cub->map->raw_map[0] = ft_strdup(*line);
+			cub->map->raw_map = ft_calloc(1, sizeof(char *));
 		}
 		if (cub->map->raw_map)
 		{
@@ -183,7 +182,7 @@ bool	ft_process_file(t_data *cub)
 		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
 		//printf("line = %s", cub->tmp_line);
 		ft_safe_free(&cub->tmp_line);
-		//printf("temoin = %d\nphase = %d\n", temoin, phase);
+		printf("temoin = %d\nphase = %d\n", temoin, phase);
 		if (!temoin)
 			return (ft_safe_free(&cub->tmp_line), printf("2\n"), false);
 	}
@@ -193,6 +192,8 @@ bool	ft_process_file(t_data *cub)
 /*
 mit le free texture
 ici en attendant puisque c'est la première partie
+
+si free(cub->map) dans !ft_process_file, va causer pb, faire free map char** d'abord
 */
 bool	ft_init_struct(t_data *cub, char *path_file)
 {
@@ -206,6 +207,8 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	printf("opened\nfd = %d\n", cub->tmp_fd);
 	if (!ft_process_file(cub))
 		return (free(cub->map), ft_safe_free(&cub->tmp_line), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), false);
+	printf("\nDisplay raw map\n");
+	ft_display_2d(cub->map->raw_map);
 	ft_close_fd(&(cub->tmp_fd));
 	ft_free_textures(cub);
 	ft_free_map(cub->map);
