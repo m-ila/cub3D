@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:15:14 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:56:09 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,6 @@ bool	ft_process_color(t_data *cub, char **arr)
 	return (true);
 }
 
-void	ft_safe_free(char **str)
-{
-	if (*str)
-	{
-		printf("about to free : (d)%s(f)\n", *str);
-		free(*str);
-		*str = NULL;
-	}
-}
-
 /* split & strdup to protect */
 bool	ft_process_phase(t_data *cub, int phase, char **line)
 {
@@ -121,17 +111,18 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 
 		arr = ft_split_base(*line, " \n");
 		if (!arr)
-			return (ft_safe_free(line), ft_err_ret("split error", NULL, false));
+			return (ft_safe_free(&cub->tmp_line), ft_err_ret("split error", NULL, false));
 		ft_display_2d(arr);
 		if (ft_is_text(arr[0]))
 			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
 		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
-			return (ft_free_2d_array(arr), ft_err_ret("color in file not valid", NULL, false));
+			return (ft_free_2d_array(arr), ft_safe_free(&cub->tmp_line), ft_err_ret("color in file not valid", NULL, false));
 		ft_free_2d_array(arr);
 	}
 	if (phase == 2)
 	{
-		return (true);
+		if (!cub->map->raw_map)
+			return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
 	}
 	return (true);
 }
@@ -147,33 +138,31 @@ laissé message de debug en attendant
 */
 bool	ft_process_file(t_data *cub)
 {
-	char	*line;
 	bool	temoin;
 	int		phase;
 
-	line = NULL;
 	temoin = true;
 	phase = 1;
 	while (temoin)
 	{
 		printf("\nNEWLINE\n");
-		line = get_next_line(cub->tmp_fd);
-		if (!line)
-			return (ft_safe_free(&line), printf("1\n"), true);
-		if (ft_start_map_condition(line))
+		cub->tmp_line = get_next_line(cub->tmp_fd);
+		if (!cub->tmp_line)
+			return (ft_safe_free(&cub->tmp_line), printf("1\n"), true);
+		if (ft_start_map_condition(cub->tmp_line))
 			phase = 2;
-		temoin = ft_process_phase(cub, phase, &line);
-		printf("line = %s", line);
-		ft_safe_free(&line);
-		printf("line freed\ntemoin = %d\nphase = %d\n", temoin, phase);
+		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
+		//printf("line = %s", cub->tmp_line);
+		ft_safe_free(&cub->tmp_line);
+		//printf("temoin = %d\nphase = %d\n", temoin, phase);
 		if (!temoin)
-			return (ft_safe_free(&line), printf("2\n"), false);
+			return (ft_safe_free(&cub->tmp_line), printf("2\n"), false);
 	}
-	return (ft_safe_free(&line), true);
+	return (ft_safe_free(&cub->tmp_line), true);
 }
 
 /*
-mit le free texture avec un for 
+mit le free texture
 ici en attendant puisque c'est la première partie
 */
 bool	ft_init_struct(t_data *cub, char *path_file)
@@ -187,9 +176,11 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		return (false);
 	printf("opened\nfd = %d\n", cub->tmp_fd);
 	if (!ft_process_file(cub))
-		return (ft_close_fd(&(cub->tmp_fd)), false);
+		return (free(cub->map), ft_safe_free(&cub->tmp_line), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), false);
 	ft_close_fd(&(cub->tmp_fd));
-	for (int i = 0; i < 5; i++)
-		ft_safe_free(&cub->path_texture[i]);
+	ft_free_textures(cub);
+	ft_free_map(cub->map);
+	free(cub->map);
+	ft_safe_free(&cub->tmp_line);
 	return (true);
 }
