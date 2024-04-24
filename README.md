@@ -7,3 +7,6 @@
 * [42 docs - cub3d](https://harm-smits.github.io/42docs/projects/cub3d)
 * [cub3d tutorial](https://hackmd.io/@nszl/H1LXByIE2)
 * [cub3d tutorial medium](https://medium.com/@afatir.ahmedfatir/cub3d-tutorial-af5dd31d2fcf)
+
+### Perso
+* Alias git : ```git config --add alias.wip '!f() { git add -A && git commit -m "$@" && git push; }; f'```
