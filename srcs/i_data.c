@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 15:54:39 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:59:20 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,10 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	return (true);
 }
 
-/* changé en bool */
+/*
+LEAK : gnl lorsque temoin == false (????)
+laissé message de debug en attendant
+*/
 bool	ft_process_file(t_data *cub)
 {
 	char	*line;
@@ -182,7 +185,7 @@ bool	ft_process_file(t_data *cub)
 		printf("\nNEWLINE\n");
 		line = get_next_line(cub->tmp_fd);
 		if (!line)
-			return (ft_safe_free(&line), printf("1\n") ,true);
+			return (ft_safe_free(&line), printf("1\n"), true);
 		temoin = ft_process_phase(cub, phase, &line);
 		printf("line = %s", line);
 		ft_safe_free(&line);
