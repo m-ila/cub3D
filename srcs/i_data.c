@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:11:08 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:12:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,10 @@ bool	ft_process_file(t_data *cub)
 	return (ft_safe_free(&line), true);
 }
 
-/* mit le free texture ici en attendant puisque c'est la première partie */
+/*
+mit le free texture avec un for 
+ici en attendant puisque c'est la première partie
+*/
 bool	ft_init_struct(t_data *cub, char *path_file)
 {
 	if (!cub || !path_file)
