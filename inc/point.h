@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:05:36 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:11:44 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_map
 	size_t	x_until;
 	size_t	y_from;
 	size_t	y_until;
+	int		spawn_nb;
+	char	spawn_angle;
 	t_point	spawn;
 }	t_map;
 

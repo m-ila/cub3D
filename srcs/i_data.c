@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:05:19 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 22:20:15 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,10 +191,24 @@ bool	ft_process_file(t_data *cub)
 	return (ft_safe_free(&cub->tmp_line), true);
 }
 
+/* faire en sorte que x_size_max prenne en compte les lignes où il n'y a que wspace */
 bool	ft_get_data_map(t_map *m)
 {
-	if (m)
-		return (true);
+	int	i;
+
+	m->y_size_max = ft_2d_lines(m->raw_map);
+	if (m->y_size_max < 3)
+		return (false);
+	i = 0;
+	while (i < m->y_size_max)
+	{
+		if (ft_strlen(m->raw_map[i]) > m->x_size_max)
+			m->x_size_max = ft_strlen(m->raw_map[i]);
+		m->spawn_nb += ft_strocc_base(m->raw_map[i], B_SPAWN);
+		i++;
+	}
+	if (m->spawn_nb != 1)
+		return (false);
 	return (true);
 }
 
