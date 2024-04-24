@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 16:20:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:22:43 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,15 +147,10 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 
 		arr = ft_split_base(*line, " \n");
 		if (!arr)
-		{
-			free(*line);
-			*line = NULL;
-			return (ft_err_ret("split error", NULL, false));
-		}
+			return (ft_safe_free(line), ft_err_ret("split error", NULL, false));
 		ft_display_2d(arr);
 		if (ft_is_text(arr[0]))
-			printf("texture path will be : (d)%s(f)\nindex will be : (d)%d(f)\n", arr[1], ft_which_text(arr[0]));
-			//cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
 		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
 			return (ft_free_2d_array(arr), ft_err_ret("color in file not valid", NULL, false));
 		ft_free_2d_array(arr);
@@ -209,11 +204,14 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		return (false);
 	if (ft_strlen(path_file) == 0)
 		return (ft_err_ret("enter valid path", NULL, false));
+	ft_init_null(cub);
 	if (!ft_open_file(cub, path_file))
 		return (false);
 	printf("opened\nfd = %d\n", cub->tmp_fd);
 	if (!ft_process_file(cub))
 		return (ft_close_fd(&(cub->tmp_fd)), false);
 	ft_close_fd(&(cub->tmp_fd));
+	for (int i = 0; i < 5; i++)
+		ft_safe_free(&cub->path_texture[i]);
 	return (true);
 }
