@@ -10,4 +10,4 @@
 
 ### Perso
 * Alias git : ```git config --add alias.wip '!f() { git add -A && git commit -m "$@" && git push; }; f'```
-* ```alias cub='valgrind -s --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all./cub3d'```
+* ```alias cub='valgrind -s --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./cub3d'```
