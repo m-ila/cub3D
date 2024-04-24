@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 16:13:38 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/24 19:15:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ typedef struct s_data
 	int		tmp_fd;
 }	t_data;
 
+/* srcs/bool_is.c */
+bool	ft_is_valid_file_component(char *str);
+bool	ft_is_text(char *str);
+bool	ft_is_color(char *str);
 /* srcs/errors.c */
 int		ft_err_ret(char *msg, char *name, int ret);
 
