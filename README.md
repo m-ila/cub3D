@@ -1,7 +1,8 @@
 # cub3D
 
 # to do
-* [] `   1  00001` renvoie faux map
+- [ ] `   1  00001` renvoie faux map
+- [ ] strocc delimiters
 
 ## Ressources
 * [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)

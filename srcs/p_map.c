@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 21:26:50 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:33:00 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ bool	ft_parse_line_p_line(t_map *map)
 	return (true);
 }
 
-/* je sais plus pourquoi j'ai mis map->y_until == (size_t) ft_2d_lines(map->map_cpy) */
+/* to add : strocc_delimiters */
 bool	ft_parse_flood_fill(t_map *map)
 {
 	int	j;
 
-	if (!map || !map->raw_map || !map->map_cpy)
+	if (!map || !map->raw_map || !map->map_cpy || \
+	ft_strocc(map->map_cpy[ft_2d_lines(map->map_cpy) - 1], 'V') || \
+	ft_strocc(map->map_cpy[0], 'V'))
 		return (false);
 	j = 0;
 	while (map->map_cpy[j] && !ft_strocc(map->map_cpy[j], 'V'))
@@ -73,8 +75,7 @@ bool	ft_parse_flood_fill(t_map *map)
 	while (map->map_cpy[j + 1] && ft_strocc(map->map_cpy[j + 1], 'V'))
 		j++;
 	map->y_until = j;
-	if (map->y_from == 0 || map->y_until == (size_t) ft_2d_lines(map->map_cpy) || \
-	ft_strocc(map->map_cpy[map->y_until], 'V'))
+	if (map->y_from == 0 || map->y_until == (size_t) ft_2d_lines(map->map_cpy))
 		return (false);
 	if (!ft_parse_line_p_line(map))
 		return (false);
