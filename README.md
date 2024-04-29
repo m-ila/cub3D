@@ -3,6 +3,8 @@
 # to do
 - [ ] `   1  00001` renvoie faux map
 - [ ] strocc delimiters
+- [ ] ??? leak GNL quand color est faux ???
+
 
 ## Ressources
 * [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
