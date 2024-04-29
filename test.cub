@@ -1,4 +1,4 @@
-NO ./path_file test
+NO ./path_file
 SO ./path_file_2
 WE ./path_file_3
 EA ./path_file_4

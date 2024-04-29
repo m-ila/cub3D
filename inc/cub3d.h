@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 12:45:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:29:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ bool	ft_get_data_map(t_map *m);
 /* srcs/i_null.c */
 void	ft_init_null(t_data *cub);
 void	ft_array_set_null(char **arr, size_t len);
+/* srcs/p_map.c */
+void	ft_flood_fill(t_point *position, t_map *map);
 
 #endif
