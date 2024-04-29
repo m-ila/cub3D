@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 21:33:00 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:50:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,12 @@ bool	ft_parse_line_p_line(t_map *map)
 		if ((size_t) until > map->x_until)
 			map->x_until = until;
 		if (j >= 1 && map->map_cpy[j - 1] && \
-		ft_find_end_line(map->map_cpy[j - 1]) > until && ft_strocc_from(map->map_cpy[j - 1], 'V', until))
+		ft_find_end_line(map->map_cpy[j - 1]) > until && \
+		ft_strocc_from(map->map_cpy[j - 1], 'V', until))
+			return (false);
+		if (j >= 1 && map->map_cpy[j - 1] && \
+		ft_find_end_line(map->map_cpy[j - 1]) < until && \
+		ft_strocc_from(map->map_cpy[j], 'V', until))
 			return (false);
 		j++;
 	}

@@ -3,6 +3,7 @@
 # to do
 - [ ] `   1  00001` renvoie faux map
 - [ ] strocc delimiters
+- [ ] strocc base from
 - [ ] ??? leak GNL quand color est faux ???
 
 

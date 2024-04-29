@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 14:41:29 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:59:42 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,8 @@ bool	ft_process_file(t_data *cub)
 			return (ft_safe_free(&(cub->tmp_line)), printf("1 : !cub->tmp_line\n"), true);
 		if (ft_start_map_condition(cub->tmp_line))
 			phase = 2;
+		if (phase == 2 && ft_has_only_after(cub->tmp_line, 0, ft_bool_endline))
+			return (ft_safe_free(&(cub->tmp_line)), printf("3 : end map\n\n"), true);
 		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
 		printf("line = %s", cub->tmp_line);
 		ft_safe_free(&(cub->tmp_line));
