@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 17:25:46 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 18:10:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		ft_find_end_line(char *str)
 	return (from);
 }
 
+/* see readme for more instructions */
 bool	ft_parse_line_p_line(t_map *map)
 {
 	size_t	j;
@@ -70,7 +71,8 @@ bool	ft_parse_flood_fill(t_map *map)
 	map->y_until = j;
 	if (map->y_from == 0 || map->y_until == (size_t) ft_2d_lines(map->map_cpy))
 		return (false);
-	ft_parse_line_p_line(map);
+	if (!ft_parse_line_p_line(map))
+		return (false);
 	return (true);
 }
 
