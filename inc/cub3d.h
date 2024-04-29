@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 23:05:38 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:45:25 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define B_SPAWN "NSEW"
 # define B_FIRSTLINE " 1\n"
 # define B_DIGIT "0123456789"
+# define E_PATH "usage for paths : (DIR) (PATH) and nothing else"
 
 typedef enum path_txt
 {

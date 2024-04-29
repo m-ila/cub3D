@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 23:06:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 12:45:45 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		if (!arr)
 			return (ft_safe_free(&cub->tmp_line), ft_err_ret("split error", NULL, false));
 		ft_display_2d(arr);
-		if (ft_is_text(arr[0]))
+		if (ft_is_text(arr[0]) && ft_2d_lines(arr) == 2)
 			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+		if (ft_is_text(arr[0]) && ft_2d_lines(arr) != 2)
+			return (ft_free_2d_array(arr), ft_safe_free(&cub->tmp_line), ft_err_ret(E_PATH, NULL, false));
 		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
 			return (ft_free_2d_array(arr), ft_safe_free(&cub->tmp_line), ft_err_ret("color in file not valid", NULL, false));
 		ft_free_2d_array(arr);
@@ -156,7 +158,7 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	printf("\nDisplay raw map\n");
 	ft_display_2d(cub->map->raw_map);
 	if (!ft_get_data_map(cub->map))
-		return (ft_err_ret("[TO FREE] wrong data map", NULL, false));
+		return (ft_free_2d_array(cub->map->raw_map), free(cub->map), ft_safe_free(&cub->tmp_line), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_err_ret("[TO FREE] wrong data map", NULL, false));
 	ft_close_fd(&(cub->tmp_fd));
 	ft_free_textures(cub);
 	ft_free_map(cub->map);
