@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 18:10:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:26:50 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,22 @@ bool	ft_parse_line_p_line(t_map *map)
 		from = ft_strlen_unbase(map->map_cpy[j], B_WHITESPACE, 0);
 		until = ft_find_end_line(map->map_cpy[j]);
 		if (from == ft_strlen(map->map_cpy[j]) || \
-		map->map_cpy[j][from] != '1' || until == -1 || \
-		(size_t) until == from)
+		map->map_cpy[j][from] == 'V' || until == -1 || \
+		(size_t) until == from || map->map_cpy[j][until] == 'V')
 			return (false);
 		if (from < map->x_from)
 			map->x_from = from;
 		if ((size_t) until > map->x_until)
 			map->x_until = until;
+		if (j >= 1 && map->map_cpy[j - 1] && \
+		ft_find_end_line(map->map_cpy[j - 1]) > until && ft_strocc_from(map->map_cpy[j - 1], 'V', until))
+			return (false);
 		j++;
 	}
 	return (true);
 }
 
+/* je sais plus pourquoi j'ai mis map->y_until == (size_t) ft_2d_lines(map->map_cpy) */
 bool	ft_parse_flood_fill(t_map *map)
 {
 	int	j;
@@ -69,7 +73,8 @@ bool	ft_parse_flood_fill(t_map *map)
 	while (map->map_cpy[j + 1] && ft_strocc(map->map_cpy[j + 1], 'V'))
 		j++;
 	map->y_until = j;
-	if (map->y_from == 0 || map->y_until == (size_t) ft_2d_lines(map->map_cpy))
+	if (map->y_from == 0 || map->y_until == (size_t) ft_2d_lines(map->map_cpy) || \
+	ft_strocc(map->map_cpy[map->y_until], 'V'))
 		return (false);
 	if (!ft_parse_line_p_line(map))
 		return (false);
