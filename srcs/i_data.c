@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 13:44:09 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 14:41:29 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,10 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		ft_flood_fill(&cub->map->spawn, cub->map);
 		printf("\nDisplay map flood fill\n");
 		ft_display_2d(cub->map->map_cpy);
+		if (!ft_parse_flood_fill(cub->map))
+			return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_err_ret("wrong data map 2", NULL, false));
+		printf("\nx from : %ld\nx until : %ld\n", cub->map->x_from, cub->map->x_until);
+		printf("\ny from : %ld\ny until : %ld\n", cub->map->y_from, cub->map->y_until);
 	}
 	ft_close_fd(&(cub->tmp_fd));
 	ft_free_textures(cub);

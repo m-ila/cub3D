@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 13:29:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:24:43 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define B_SPAWN "NSEW"
 # define B_FIRSTLINE " 1\n"
 # define B_DIGIT "0123456789"
+# define B_WHITESPACE "\t\b\v\f "
 # define E_PATH "usage for paths : (DIR) (PATH) and nothing else"
 
 typedef enum path_txt
@@ -75,6 +76,7 @@ typedef struct s_data
 bool	ft_is_valid_file_component(char *str);
 bool	ft_is_text(char *str);
 bool	ft_is_color(char *str);
+int		ft_bool_endline(char c);
 /* srcs/errors.c */
 int		ft_err_ret(char *msg, char *name, int ret);
 /* srcs/free.c */
@@ -98,5 +100,6 @@ void	ft_init_null(t_data *cub);
 void	ft_array_set_null(char **arr, size_t len);
 /* srcs/p_map.c */
 void	ft_flood_fill(t_point *position, t_map *map);
+bool	ft_parse_flood_fill(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:13:55 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:15:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:24:46 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,7 @@ bool	ft_is_color(char *str)
 	!ft_strncmp("F", str, ft_strlen(str) + 1));
 }
 
+int	ft_bool_endline(char c)
+{
+	return (ft_iswhitespace(c) || c == '\n' || c == '\0');
+}
