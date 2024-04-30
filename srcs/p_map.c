@@ -6,32 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/30 17:00:19 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:51:45 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-int		ft_find_end_line(char *str)
-{
-	size_t	from;
-	size_t	len;
-
-	if (!str)
-		return (-1);
-	len = (int) ft_strlen(str);
-	from = len / 2;
-	if (ft_has_only_after(str, from, ft_bool_endline))
-		from = 0;
-	while (from < len && !ft_has_only_after(str, from, ft_bool_endline))
-		from++;
-	return (from);
-}
-
-int		ft_find_start_line(char *str)
-{
-	return (ft_strlen_unbase(str, B_WHITESPACE, 0));
-}
 
 bool	ft_space_conditions(char *str)
 {
@@ -58,6 +37,29 @@ bool	ft_space_conditions(char *str)
 	return (true);
 }
 
+bool	ft_check_adjacent(t_map *map, size_t j, size_t from, int until)
+{
+	if (j >= 1 && map->map_cpy[j - 1] && \
+	ft_find_end_line(map->map_cpy[j - 1]) > until && \
+	ft_strocc_delimiters(map->map_cpy[j - 1], "V", until, \
+	ft_find_end_line(map->map_cpy[j - 1])))
+		return (false);
+	if (j >= 1 && map->map_cpy[j - 1] && \
+	ft_find_end_line(map->map_cpy[j - 1]) < until && \
+	ft_strocc_delimiters(map->map_cpy[j], "V", \
+	ft_find_end_line(map->map_cpy[j - 1]), until))
+		return (false);
+	if (j >= 1 && map->map_cpy[j - 1] && \
+	ft_find_start_line(map->map_cpy[j - 1]) > (int) from && \
+	ft_strocc_delimiters(map->map_cpy[j], "V", 0, from))
+		return (false);
+	if (j >= 1 && map->map_cpy[j - 1] && \
+	ft_find_start_line(map->map_cpy[j - 1]) < (int) from && \
+	ft_strocc_delimiters(map->map_cpy[j - 1], "V", 0, from))
+		return (false);
+	return (true);
+}
+
 /* see readme for more instructions */
 bool	ft_parse_line_p_line(t_map *map)
 {
@@ -73,29 +75,19 @@ bool	ft_parse_line_p_line(t_map *map)
 	{
 		from = ft_find_start_line(map->map_cpy[j]);
 		until = ft_find_end_line(map->map_cpy[j]);
-		if (from == ft_strlen(map->map_cpy[j]) || \
-		map->map_cpy[j][from] == 'V' || until == -1 || \
-		(size_t) until == from || map->map_cpy[j][until] == 'V' || \
-		!ft_space_conditions(map->map_cpy[j]))
+		printf("from %ld\nuntil %d\n", from, until);
+		if (from == ft_strlen(map->map_cpy[j]) || map->map_cpy[j][from] == 'V' \
+		|| until == -1 || (size_t) until == from || \
+		map->map_cpy[j][until] == 'V' || !ft_space_conditions(map->map_cpy[j]))
 			return (false);
 		if (from < map->x_from)
+		{
 			map->x_from = from;
+			printf("x_from changé to %ld\n", map->x_from);
+		}
 		if ((size_t) until > map->x_until)
 			map->x_until = until;
-		if (j >= 1 && map->map_cpy[j - 1] && ft_find_end_line(map->map_cpy[j - 1]) > until && \
-		ft_strocc_delimiters(map->map_cpy[j - 1], "V", until, ft_find_end_line(map->map_cpy[j - 1])))
-			return (false);
-		if (j >= 1 && map->map_cpy[j - 1] && \
-		ft_find_end_line(map->map_cpy[j - 1]) < until && \
-		ft_strocc_delimiters(map->map_cpy[j], "V", ft_find_end_line(map->map_cpy[j - 1]), until))
-			return (false);
-		if (j >= 1 && map->map_cpy[j - 1] && \
-		ft_find_start_line(map->map_cpy[j - 1]) > (int) from && \
-		ft_strocc_delimiters(map->map_cpy[j], "V", 0, from))
-			return (false);
-		if (j >= 1 && map->map_cpy[j - 1] && \
-		ft_find_start_line(map->map_cpy[j - 1]) < (int) from && \
-		ft_strocc_delimiters(map->map_cpy[j - 1], "V", 0, from))
+		if (!ft_check_adjacent(map, j, from, until))
 			return (false);
 		j++;
 	}
@@ -134,7 +126,7 @@ void	ft_flood_fill(t_point *position, t_map *map)
 	position->x >= (int) ft_strlen(map->raw_map[position->y]) || \
 	map->raw_map[position->y][position->x] == '1' || \
 	ft_iswhitespace(map->raw_map[position->y][position->x]) || \
-	ft_char_in_base(map->map_cpy[position->y][position->x], "V\n\0")) 
+	ft_char_in_base(map->map_cpy[position->y][position->x], "V\n\0"))
 		return ;
 	map->map_cpy[position->y][position->x] = 'V';
 	ft_flood_fill(&(t_point){(position->x - 1), position->y}, map);
