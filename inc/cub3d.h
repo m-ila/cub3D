@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 17:24:43 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:59:21 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 
-# define ALLOWED_BASE "01NSEW"
+# define ALLOWED_BASE "01NSEW\t\b\v\f "
 # define B_SPAWN "NSEW"
 # define B_FIRSTLINE " 1\n"
 # define B_DIGIT "0123456789"
 # define B_WHITESPACE "\t\b\v\f "
+# define B_WHTZEUN "\t\b\v\f 01"
 # define E_PATH "usage for paths : (DIR) (PATH) and nothing else"
 
 typedef enum path_txt

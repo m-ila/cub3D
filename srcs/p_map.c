@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 21:50:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:00:19 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,36 @@ int		ft_find_end_line(char *str)
 	return (from);
 }
 
+int		ft_find_start_line(char *str)
+{
+	return (ft_strlen_unbase(str, B_WHITESPACE, 0));
+}
+
+bool	ft_space_conditions(char *str)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(str);
+	if (!str || len == 0)
+		return (false);
+	if (ft_strendswith(str, "\n"))
+		len -= 1;
+	while (i < len)
+	{
+		if (ft_iswhitespace(str[i]))
+		{
+			if (i > 1 && !ft_char_in_base(str[i - 1], B_WHTZEUN))
+				return (false);
+			if (i + 1 < len && !ft_char_in_base(str[i + 1], B_WHTZEUN))
+				return (false);
+		}
+		i++;
+	}
+	return (true);
+}
+
 /* see readme for more instructions */
 bool	ft_parse_line_p_line(t_map *map)
 {
@@ -41,23 +71,31 @@ bool	ft_parse_line_p_line(t_map *map)
 	until = 0;
 	while (j <= map->y_until)
 	{
-		from = ft_strlen_unbase(map->map_cpy[j], B_WHITESPACE, 0);
+		from = ft_find_start_line(map->map_cpy[j]);
 		until = ft_find_end_line(map->map_cpy[j]);
 		if (from == ft_strlen(map->map_cpy[j]) || \
 		map->map_cpy[j][from] == 'V' || until == -1 || \
-		(size_t) until == from || map->map_cpy[j][until] == 'V')
+		(size_t) until == from || map->map_cpy[j][until] == 'V' || \
+		!ft_space_conditions(map->map_cpy[j]))
 			return (false);
 		if (from < map->x_from)
 			map->x_from = from;
 		if ((size_t) until > map->x_until)
 			map->x_until = until;
-		if (j >= 1 && map->map_cpy[j - 1] && \
-		ft_find_end_line(map->map_cpy[j - 1]) > until && \
-		ft_strocc_from(map->map_cpy[j - 1], 'V', until))
+		if (j >= 1 && map->map_cpy[j - 1] && ft_find_end_line(map->map_cpy[j - 1]) > until && \
+		ft_strocc_delimiters(map->map_cpy[j - 1], "V", until, ft_find_end_line(map->map_cpy[j - 1])))
 			return (false);
 		if (j >= 1 && map->map_cpy[j - 1] && \
 		ft_find_end_line(map->map_cpy[j - 1]) < until && \
-		ft_strocc_from(map->map_cpy[j], 'V', until))
+		ft_strocc_delimiters(map->map_cpy[j], "V", ft_find_end_line(map->map_cpy[j - 1]), until))
+			return (false);
+		if (j >= 1 && map->map_cpy[j - 1] && \
+		ft_find_start_line(map->map_cpy[j - 1]) > (int) from && \
+		ft_strocc_delimiters(map->map_cpy[j], "V", 0, from))
+			return (false);
+		if (j >= 1 && map->map_cpy[j - 1] && \
+		ft_find_start_line(map->map_cpy[j - 1]) < (int) from && \
+		ft_strocc_delimiters(map->map_cpy[j - 1], "V", 0, from))
 			return (false);
 		j++;
 	}
@@ -74,13 +112,13 @@ bool	ft_parse_flood_fill(t_map *map)
 	ft_strocc(map->map_cpy[0], 'V'))
 		return (false);
 	j = 0;
-	while (map->map_cpy[j] && !ft_strocc(map->map_cpy[j], 'V'))
+	while (map->map_cpy[j + 1] && !ft_strocc(map->map_cpy[j + 1], 'V'))
 		j++;
 	map->y_from = j;
-	while (map->map_cpy[j + 1] && ft_strocc(map->map_cpy[j + 1], 'V'))
+	while (map->map_cpy[j] && ft_strocc(map->map_cpy[j], 'V'))
 		j++;
 	map->y_until = j;
-	if (map->y_from == 0 || map->y_until == (size_t) ft_2d_lines(map->map_cpy))
+	if (map->y_until == (size_t) ft_2d_lines(map->map_cpy))
 		return (false);
 	if (!ft_parse_line_p_line(map))
 		return (false);

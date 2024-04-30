@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/29 21:59:42 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/30 18:01:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,8 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		}
 		if (cub->map->raw_map)
 		{
+			if (ft_strocc_unbase(*line, ALLOWED_BASE))
+				return (ft_free_2d_array(cub->map->raw_map), ft_safe_free(&(cub->tmp_line)), ft_err_ret("map with unhautorized char", NULL, false));
 			ft_add_line_to_arr(&cub->map->raw_map, line);
 			//return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
 		}
@@ -117,15 +119,24 @@ bool	ft_process_file(t_data *cub)
 {
 	bool	temoin;
 	int		phase;
+	char	*cpy;
 
 	temoin = true;
 	phase = 1;
+	cpy = NULL;
 	while (temoin)
 	{
 		printf("\nNEWLINE\n");
 		ft_safe_free(&(cub->tmp_line));
 		cub->tmp_line = get_next_line(cub->tmp_fd);
-		printf("line = (d1)%s(f1)", cub->tmp_line);
+		if (cub->tmp_line && ft_strendswith(cub->tmp_line, "\n") && ft_strlen(cub->tmp_line) > 1)
+		{
+			cpy = ft_strdup(cub->tmp_line);
+			free(cub->tmp_line);
+			cub->tmp_line = ft_str_epur(cpy, '\n');
+			free(cpy);
+		}
+		printf("line = (d1)%s(f1)\n", cub->tmp_line);
 		if (!cub->tmp_line)
 			return (ft_safe_free(&(cub->tmp_line)), printf("1 : !cub->tmp_line\n"), true);
 		if (ft_start_map_condition(cub->tmp_line))
@@ -133,10 +144,10 @@ bool	ft_process_file(t_data *cub)
 		if (phase == 2 && ft_has_only_after(cub->tmp_line, 0, ft_bool_endline))
 			return (ft_safe_free(&(cub->tmp_line)), printf("3 : end map\n\n"), true);
 		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
-		printf("line = %s", cub->tmp_line);
+		printf("\nline = (d)%s(f)\n", cub->tmp_line);
 		ft_safe_free(&(cub->tmp_line));
 		//printf("temoin = %d\nphase = %d\n", temoin, phase);
-		if (!temoin)
+		if (temoin == false)
 			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
 	}
 	return (ft_safe_free(&(cub->tmp_line)), true);
