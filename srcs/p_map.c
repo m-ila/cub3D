@@ -6,13 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:25:46 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:30:43 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-//printf("j = %d\nj - 1 = %d\nstr[j - 1] = %s\nstr[j] = %s\nj - 1 end : %"),
 
 bool	ft_space_conditions(char *str)
 {
