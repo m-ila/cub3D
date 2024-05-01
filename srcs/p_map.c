@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 16:48:58 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:10:35 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ bool	ft_check_adjacent(t_map *map, size_t j, size_t from, int until)
 	ft_strocc_delimiters(map->map_cpy[j - 1], "V", until, \
 	ft_find_end_line(map->map_cpy[j - 1])))
 		return (false);
-	if (j >= 1 && map->map_cpy[j - 1] && ft_find_end_line(map->map_cpy[j - 1]) < until && \
+	if (j >= 1 && map->map_cpy[j - 1] && \
+	ft_find_end_line(map->map_cpy[j - 1]) < until && \
 	ft_strocc_delimiters(map->map_cpy[j], "V", \
 	ft_find_end_line(map->map_cpy[j - 1]), until))
 		return (false);
