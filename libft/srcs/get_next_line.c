@@ -6,11 +6,11 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 12:17:36 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/01 13:58:47 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 14:27:23 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 char	*ft_end(char *line, char *stash)
 {
