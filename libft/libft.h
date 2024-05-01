@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:25:16 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:31:28 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 10:53:54 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ void	ft_multiple_free(char **str1, char **str2, char **str3);
 void	ft_close_fd(int *fd);
 int		ft_strindex_base(char *str, const char *base);
 //void	ft_split_do_ms(char *s, char *m, int *i, int w);
+int		ft_strocc_delimiters(char *str, const char *base, int from, int until);
 
 #endif

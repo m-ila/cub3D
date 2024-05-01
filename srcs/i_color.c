@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:01:27 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/25 22:08:20 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 12:47:31 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ bool	ft_process_color(t_data *cub, char **arr)
 		return (false);
 	if (ft_2d_lines(parse) != 3 || !ft_color_range(parse))
 		return (ft_free_2d_array(parse), false);
+	color.r = ft_atoi(parse[0]);
+	color.g = ft_atoi(parse[1]);
+	color.b = ft_atoi(parse[2]);
 	if (!ft_strncmp(arr[0], "F", 2))
 		cub->floor_c = color;
 	if (!ft_strncmp(arr[0], "C", 2))
 		cub->ceiling_c = color;
-	color.r = ft_atoi(parse[0]);
-	color.g = ft_atoi(parse[1]);
-	color.b = ft_atoi(parse[2]);
 	ft_free_2d_array(parse);
 	return (true);
 }

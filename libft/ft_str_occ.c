@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 14:13:58 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:30:53 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/04/30 15:48:37 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,28 @@ int	ft_strocc_unbase(char *str, char *base)
 		if (!ft_char_in_base(str[i], base))
 			occ++;
 		i++;
+	}
+	return (occ);
+}
+
+/*
+returns the number of occurence that fits in a base
+between two delimiters
+*/
+int	ft_strocc_delimiters(char *str, const char *base, int from, int until)
+{
+	int	occ;
+	int	len;
+
+	occ = 0;
+	len = (int) ft_strlen(str);
+	if (!str || !base || from < 0 || until >= len)
+		return (-1);
+	while (from < until && from < len)
+	{
+		if (ft_char_in_base(str[from], base))
+			occ++;
+		from++;
 	}
 	return (occ);
 }

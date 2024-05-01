@@ -6,23 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 23:06:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 10:58:08 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-void	ft_display_2d(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-	{
-		ft_printf_fd(1, "arr[%d] : %s\n", i, arr[i]);
-		i++;
-	}
-}
 
 bool	ft_open_file(t_data *cub, char *path_file)
 {
@@ -51,44 +39,31 @@ t_path_txt	ft_which_text(char *str)
 	return (ERR);
 }
 
-/* needs to add malloc strdup prot */
-void	ft_add_line_to_arr(char ***arr, char **line)
+bool	ft_phase_one(t_data *cub, char **line, bool *temoin)
 {
-	char	**cpy;
-	int		i;
-	int		len;
+	char	**arr;
 
-	len = ft_2d_lines(*arr);
-	cpy = ft_calloc(len + 2, sizeof(char *));
-	i = 0;
-	while (i < len)
-	{
-		cpy[i] = ft_strdup((*arr)[i]);
-		ft_safe_free(&(*arr)[i]);
-		i++;
-	}
-	cpy[i] = ft_strdup(*line);
-	free(*arr);
-	*arr = cpy;
+	arr = ft_split_base(*line, " \n");
+	if (!arr)
+		return (ft_safe_free(&(cub->tmp_line)), ft_err_ret("split error", NULL, false));
+	//ft_display_2d(arr);
+	if (ft_is_text(arr[0]) && ft_2d_lines(arr) == 2)
+		cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+	if (ft_is_text(arr[0]) && ft_2d_lines(arr) != 2)
+		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret(E_PATH, NULL, false));
+	if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
+		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret("color in file not valid", NULL, false));
+	ft_free_2d_array(arr);
+	//ft_safe_free(&(cub->tmp_line));
+	*temoin = true;
+	return (true);
 }
 
 /* split & strdup to protect */
-bool	ft_process_phase(t_data *cub, int phase, char **line)
+bool	ft_process_phase(t_data *cub, int phase, char **line, bool *temoin)
 {
 	if (phase == 1)
-	{
-		char	**arr;
-
-		arr = ft_split_base(*line, " \n");
-		if (!arr)
-			return (ft_safe_free(&cub->tmp_line), ft_err_ret("split error", NULL, false));
-		ft_display_2d(arr);
-		if (ft_is_text(arr[0]))
-			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
-		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
-			return (ft_free_2d_array(arr), ft_safe_free(&cub->tmp_line), ft_err_ret("color in file not valid", NULL, false));
-		ft_free_2d_array(arr);
-	}
+		return (ft_phase_one(cub, line, temoin));
 	if (phase == 2)
 	{
 		if (!cub->map->raw_map)
@@ -99,10 +74,13 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		}
 		if (cub->map->raw_map)
 		{
+			if (ft_strocc_unbase(*line, ALLOWED_BASE))
+				return (ft_free_2d_array(cub->map->raw_map), ft_safe_free(&(cub->tmp_line)), ft_err_ret("map with unhautorized char", NULL, false));
 			ft_add_line_to_arr(&cub->map->raw_map, line);
 			//return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
 		}
 	}
+	*temoin = true;
 	return (true);
 }
 
@@ -114,31 +92,38 @@ bool	ft_process_file(t_data *cub)
 {
 	bool	temoin;
 	int		phase;
+	char	*cpy;
 
 	temoin = true;
 	phase = 1;
+	cpy = NULL;
 	while (temoin)
 	{
 		printf("\nNEWLINE\n");
+		temoin = false;
 		cub->tmp_line = get_next_line(cub->tmp_fd);
+		if (cub->tmp_line && ft_strendswith(cub->tmp_line, "\n") && ft_strlen(cub->tmp_line) > 1)
+		{
+			cpy = ft_strdup(cub->tmp_line);
+			free(cub->tmp_line);
+			cub->tmp_line = ft_str_epur(cpy, '\n');
+			free(cpy);
+		}
+		printf("line = (d1)%s(f1)\n", cub->tmp_line);
 		if (!cub->tmp_line)
-			return (ft_safe_free(&cub->tmp_line), printf("1\n"), true);
+			return (ft_safe_free(&(cub->tmp_line)), printf("1 : !cub->tmp_line\n"), true);
 		if (ft_start_map_condition(cub->tmp_line))
 			phase = 2;
-		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
-		//printf("line = %s", cub->tmp_line);
-		ft_safe_free(&cub->tmp_line);
-		//printf("temoin = %d\nphase = %d\n", temoin, phase);
-		if (!temoin)
-			return (ft_safe_free(&cub->tmp_line), printf("2\n"), false);
+		if (phase == 2 && ft_has_only_after(cub->tmp_line, 0, ft_bool_endline))
+			return (ft_safe_free(&(cub->tmp_line)), printf("3 : end map\n\n"), true);
+		ft_process_phase(cub, phase, &cub->tmp_line, &temoin);
+		if (temoin == false)
+			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
 	}
-	return (ft_safe_free(&cub->tmp_line), true);
+	return (ft_safe_free(&(cub->tmp_line)), true);
 }
 
 /*
-mit le free texture
-ici en attendant puisque c'est la première partie
-
 si free(cub->map) dans !ft_process_file, va causer pb, faire free map char** d'abord
 */
 bool	ft_init_struct(t_data *cub, char *path_file)
@@ -152,14 +137,21 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		return (false);
 	printf("opened\nfd = %d\n", cub->tmp_fd);
 	if (!ft_process_file(cub))
-		return (free(cub->map), ft_safe_free(&cub->tmp_line), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), false);
+		return (free(cub->map), ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), false);
 	printf("\nDisplay raw map\n");
 	ft_display_2d(cub->map->raw_map);
 	if (!ft_get_data_map(cub->map))
-		return (ft_err_ret("[TO FREE] wrong data map", NULL, false));
-	ft_close_fd(&(cub->tmp_fd));
-	ft_free_textures(cub);
-	ft_free_map(cub->map);
-	ft_safe_free(&cub->tmp_line);
+		return (ft_free_2d_array(cub->map->raw_map), free(cub->map), ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_err_ret("wrong data map", NULL, false));
+	cub->map->map_cpy = ft_copy_2d_array(cub->map->raw_map, 0, ft_2d_lines(cub->map->raw_map));
+	if (cub->map && cub->map->map_cpy)
+	{
+		ft_flood_fill(&cub->map->spawn, cub->map);
+		printf("\nDisplay map flood fill\n");
+		ft_display_2d(cub->map->map_cpy);
+		if (!ft_parse_flood_fill(cub->map))
+			return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_err_ret("wrong data map 2", NULL, false));
+		printf("\nx from : %ld\nx until : %ld\n", cub->map->x_from, cub->map->x_until);
+		printf("\ny from : %ld\ny until : %ld\n", cub->map->y_from, cub->map->y_until);
+	}
 	return (true);
 }

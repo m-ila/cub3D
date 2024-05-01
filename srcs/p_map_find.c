@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   p_map_find.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 10:24:36 by mbruyant         ###   ########.fr       */
+/*   Created: 2024/04/30 18:05:37 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/04/30 18:06:20 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-/* if no env ? */
-int	main(int argc, char **argv, char **envp)
+int		ft_find_end_line(char *str)
 {
-	(void)argc;
-	(void)envp;
-	if (argc == 2)
-	{
-		t_data	cub;
+	size_t	from;
+	size_t	len;
 
-		if (!ft_init_struct(&cub, argv[1]))
-			return (ft_safe_free(&cub.tmp_line), 1);
-		ft_close_fd(&(cub.tmp_fd));
-		ft_free_textures(&cub);
-		ft_free_map(cub.map);
-		ft_safe_free(&cub.tmp_line);
-	}
-	else
-		return (ft_err_ret("proper use : ./cub3d *file_path*", NULL, 1));
-	return (0);
+	if (!str)
+		return (-1);
+	len = (int) ft_strlen(str);
+	from = len / 2;
+	if (ft_has_only_after(str, from, ft_bool_endline))
+		from = 0;
+	while (from < len && !ft_has_only_after(str, from, ft_bool_endline))
+		from++;
+	return (from);
+}
+
+int		ft_find_start_line(char *str)
+{
+	return (ft_strlen_unbase(str, B_WHITESPACE, 0));
 }

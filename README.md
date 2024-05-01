@@ -1,5 +1,13 @@
 # cub3D
 
+# to do
+- [ ] `   1  00001` renvoie faux map
+- [x] strocc delimitersS
+- [x] strocc base from
+- [ ] ??? leak GNL quand color est faux ???
+- [ ] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
+
+
 ## Ressources
 * [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
 * [Scratch a pixel](https://www.scratchapixel.com/)
