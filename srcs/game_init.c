@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/01 18:42:07 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 19:27:44 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,23 +86,27 @@ void put_map_cell_to_window(t_data *cub, int x, int y, int color) {
     }
 }
 
-void render_map(t_data *cub) {
-    int x, y, color;
+void render_map(t_data *cub)
+{
+    int x;
+    int y;
+    int color;
 
-    for (y = 0; y < (int)cub->map->y_size_max; y++) {
-        for (x = 0; x < (int)ft_strlen(cub->map->raw_map[y]); x++) {
+    for (y = 0; y < (int)cub->map->y_size_max; y++) 
+    {
+        for (x = 0; x < (int)ft_strlen(cub->map->raw_map[y]); x++)
+        {
             // Determine color based on map content
-            if (cub->map->raw_map[y][x] == '1') {
+            if (cub->map->raw_map[y][x] == '1')
                 color = 0xAAAAAA; // Grey for walls
-            } else {
+            else
                 color = 0xF5F5F5; // Off-white for open space
-            }
-
             // Render the basic cell
             put_map_cell_to_window(cub, x, y, color);
 
             // Check if we need to highlight the spawn point
-            if (x == cub->map->spawn.x && y == cub->map->spawn.y) {
+            if (x == cub->map->spawn.x && y == cub->map->spawn.y)
+            {
                 int pixel_x = x * 65;
                 int pixel_y = y * 65;
                 // Highlight the spawn point with a 5x5 red square
@@ -123,33 +127,57 @@ void render_map(t_data *cub) {
 // # define ESC 65307
 // # define CLIC 1
 
+void    ft_up(t_data *cub)
+{
+    if (cub->position->y - 1 <= 0 || !cub->map->raw_map[cub->position->y - 1] || \
+    ft_char_in_base(cub->map->raw_map[cub->position->y - 1][cub->position->x], B_WALL))
+        return ;
+    cub->position->y -= 1;
+}
+
+void    ft_down(t_data *cub)
+{
+    if (cub->position->y + 1 >= cub->map->y_size_max || !cub->map->raw_map[cub->position->y + 1] || \
+    ft_char_in_base(cub->map->raw_map[cub->position->y + 1][cub->position->x], B_WALL))
+        return ;
+    cub->position->y += 1;
+}
+
+/*
+cub->position->x - 1 < ft_find_start_line(cub->map->raw_map[cub->position->y])
+ou
+cub->position->x - 1 <= ft_find_start_line(cub->map->raw_map[cub->position->y])
+???
+ */
+void    ft_left(t_data *cub)
+{
+    if (cub->position->x - 1 <= 0 || \
+    cub->position->x - 1 < (size_t) ft_find_start_line(cub->map->raw_map[cub->position->y]) || \
+    ft_char_in_base(cub->map->raw_map[cub->position->y][cub->position->x - 1], B_WALL))
+        return ;
+    cub->position->x -= 1;
+}
+
+void    ft_right(t_data *cub)
+{
+    if (cub->position->x + 1 >= ft_strlen(cub->map->raw_map[cub->position->y]) || \
+    cub->position->x + 1 > (size_t) ft_find_end_line(cub->map->raw_map[cub->position->y]) || \
+    ft_char_in_base(cub->map->raw_map[cub->position->y][cub->position->x + 1], B_WALL))
+        return ;
+    cub->position->x += 1;
+}
+
 void move_player(t_data *cub, int keycode)
 {
-    switch (keycode)
-    {
-        case UP:
-            new.y -= 1; // Move up in the map
-            break;
-        case DOWN:
-            new.y += 1; // Move down in the map
-            break;
-        case LEFT:
-            new.x -= 1; // Move left in the map
-            break;
-        case RIGHT:
-            new.x += 1; // Move right in the map
-            break;
-    }
-
-    // Check boundaries and obstacles here (assuming '1' represents an obstacle or wall)
-    if (new.x >= 0 && new.x < (int)cub->map->x_size_max &&
-        new.y >= 0 && new.y < (int)cub->map->y_size_max &&
-        cub->map->raw_map[new.y][new.x] != '1') {
-        // Update spawn point position if new position is valid
-        cub->map->spawn.x = new.x;
-        cub->map->spawn.y = new.y;
-        render_map(cub);  // Redraw the map with the new player position
-    }
+    if (keycode == UP)
+        ft_up(cub);
+    if (keycode == DOWN)
+        ft_down(cub);
+    if (keycode == LEFT)
+        ft_left(cub);
+    if (keycode == RIGHT)
+        ft_right(cub);
+    render_map(cub);  // Redraw the map with the new player position
 }
 
 
@@ -159,8 +187,8 @@ int key_hook(int keycode, void *param)
 
     if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
         move_player(cub, keycode);
-    else if (keycode == ESC) {
-        // Assuming cleanup functions are correctly defined
+    else if (keycode == ESC)
+    {
         ft_free_map(cub->map);
         ft_safe_free(&(cub->tmp_line));
         ft_free_textures(cub);

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 18:52:58 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 19:27:50 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define B_DIGIT "0123456789"
 # define B_WHITESPACE "\t\b\v\f "
 # define B_WHTZEUN "\t\b\v\f 01"
+# define B_WALL "\t\b\v\f 1"
 # define E_PATH "usage : (ID) (VALUE) and nothing else"
 
 typedef enum path_txt
