@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 19:59:36 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:41:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,18 @@ void	ft_free_map(t_map *m)
 	if (!m)
 		return ;
 	if (m->raw_map)
+	{
 		ft_free_2d_array(m->raw_map);
+		m->raw_map = NULL;
+	}
 	if (m->map_cpy)
+	{
 		ft_free_2d_array(m->map_cpy);
+		m->map_cpy = NULL;
+	}
 	if (m)
+	{
 		free(m);
+		m = NULL;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:17:15 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 10:18:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:27:45 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	ft_display_2d(char **arr)
 	int	i;
 
 	i = 0;
-	while (arr[i])
+	if (arr && *arr)
 	{
-		ft_printf_fd(1, "arr[%d] : %s\n", i, arr[i]);
-		i++;
+		while (arr[i])
+		{
+			ft_printf_fd(1, "arr[%d] : %s\n", i, arr[i]);
+			i++;
+		}
 	}
 }

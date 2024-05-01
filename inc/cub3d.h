@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 10:26:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:24:38 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ int		ft_find_start_line(char *str);
 void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
-void	ft_add_line_to_arr(char ***arr, char **line);
+bool	ft_add_line_to_arr(char ***arr, char **line);
 
 #endif
