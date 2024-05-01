@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 16:13:50 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 20:13:14 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	ft_init_null(t_data *cub)
 	ma->map_cpy = NULL;
 	ma->raw_map = NULL;
 	cub->map = ma;
-	cub->position = NULL;
+	cub->position.x = -1;
+	cub->position.y = -1;
 	ft_array_set_null(cub->path_texture, 5);
 	cub->tmp_line = NULL;
 	cub->mlx_ptr = NULL;

@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 18:02:51 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 20:11:25 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_rgb
 typedef struct s_data
 {
 	t_map	*map;
-	t_point	*position;
+	t_point	position;
 	char	*path_texture[5];
 	t_rgb	floor_c;
 	t_rgb	ceiling_c;
