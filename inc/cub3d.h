@@ -115,14 +115,11 @@ int		ft_find_start_line(char *str);
 void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
-<<<<<<< HEAD
-=======
 void	ft_add_line_to_arr(char ***arr, char **line);
 /* ft_game.c */
 void ft_game(t_data *cub);
 
 
 
->>>>>>> yuewang
 
 #endif
