@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 15:52:09 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:00:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 		t_data	cub;
 
 		if (!ft_init_struct(&cub, argv[1]))
-			return (ft_safe_free(&cub.tmp_line), free(cub.map), 1);
+			return (ft_safe_free(&cub.tmp_line), ft_close_fd(&(cub.tmp_fd)), ft_free_textures(&cub), ft_free_map(cub.map), 1);
 		ft_close_fd(&(cub.tmp_fd));
 		ft_free_textures(&cub);
 		if (cub.map->raw_map)

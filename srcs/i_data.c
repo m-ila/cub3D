@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 16:23:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:03:11 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 		if (cub->map->raw_map)
 		{
 			if (ft_strocc_unbase(*line, ALLOWED_BASE))
-				return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), ft_err_ret("map with unhautorized char", NULL, false));
+				return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), \
+				ft_err_ret("map with unhautorized char", NULL, false));
 			if (!ft_add_line_to_arr(&cub->map->raw_map, line))
-				return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), ft_err_ret("map malloc", NULL, false));
+				return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), \
+				ft_err_ret("map malloc", NULL, false));
 		}
 	}
 	return (true);
@@ -116,11 +118,33 @@ bool	ft_process_file(t_data *cub)
 		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
 		printf("\nline = (d)%s(f)\n", cub->tmp_line);
 		ft_safe_free(&(cub->tmp_line));
-		//printf("temoin = %d\nphase = %d\n", temoin, phase);
 		if (temoin == false)
 			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
 	}
 	return (ft_safe_free(&(cub->tmp_line)), true);
+}
+
+bool	ft_final_check(t_data *cub)
+{
+	int	i;
+	int	tmp_op;
+
+ 	i = 0;
+	tmp_op = -1;
+	while (i < 4)
+	{
+		if (cub->path_texture[i] == NULL)
+			return (false);
+		tmp_op = open(cub->path_texture[i], O_RDONLY);
+		if (tmp_op == -1)
+			return (false);
+		ft_close_fd(&tmp_op);
+		i++;
+	}
+	if (cub->floor_c.r == -1 || cub->floor_c.g == -1 || cub->floor_c.b == -1 || \
+	cub->ceiling_c.r == -1 || cub->ceiling_c.g == -1 || cub->ceiling_c.b == -1)
+		return (false);
+	return (true);
 }
 
 /*
@@ -155,5 +179,5 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		printf("\nx from : %ld\nx until : %ld\n", cub->map->x_from, cub->map->x_until);
 		printf("\ny from : %ld\ny until : %ld\n", cub->map->y_from, cub->map->y_until);
 	}
-	return (true);
+	return (ft_final_check(cub));
 }
