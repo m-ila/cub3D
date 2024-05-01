@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 10:58:08 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:42:25 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_path_txt	ft_which_text(char *str)
 		return (EA);
 	return (ERR);
 }
-
+/*
 bool	ft_phase_one(t_data *cub, char **line, bool *temoin)
 {
 	char	**arr;
@@ -58,12 +58,28 @@ bool	ft_phase_one(t_data *cub, char **line, bool *temoin)
 	*temoin = true;
 	return (true);
 }
+*/
 
 /* split & strdup to protect */
-bool	ft_process_phase(t_data *cub, int phase, char **line, bool *temoin)
+bool	ft_process_phase(t_data *cub, int phase, char **line)
 {
 	if (phase == 1)
-		return (ft_phase_one(cub, line, temoin));
+	{
+		char	**arr;
+
+		arr = ft_split_base(*line, " \n");
+		if (!arr)
+			return (ft_safe_free(&(cub->tmp_line)), ft_err_ret("split error", NULL, false));
+		//ft_display_2d(arr);
+		if (ft_is_text(arr[0]) && ft_2d_lines(arr) == 2)
+			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+		if (ft_is_text(arr[0]) && ft_2d_lines(arr) != 2)
+			return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret(E_PATH, NULL, false));
+		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
+			return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret("color in file not valid", NULL, false));
+		ft_free_2d_array(arr);
+		//ft_safe_free(&(cub->tmp_line));
+	}
 	if (phase == 2)
 	{
 		if (!cub->map->raw_map)
@@ -80,7 +96,6 @@ bool	ft_process_phase(t_data *cub, int phase, char **line, bool *temoin)
 			//return (ft_free_2d_array(cub->map->raw_map), ft_err_ret("map get", NULL, false));
 		}
 	}
-	*temoin = true;
 	return (true);
 }
 
@@ -100,7 +115,7 @@ bool	ft_process_file(t_data *cub)
 	while (temoin)
 	{
 		printf("\nNEWLINE\n");
-		temoin = false;
+		ft_safe_free(&(cub->tmp_line));
 		cub->tmp_line = get_next_line(cub->tmp_fd);
 		if (cub->tmp_line && ft_strendswith(cub->tmp_line, "\n") && ft_strlen(cub->tmp_line) > 1)
 		{
@@ -116,7 +131,10 @@ bool	ft_process_file(t_data *cub)
 			phase = 2;
 		if (phase == 2 && ft_has_only_after(cub->tmp_line, 0, ft_bool_endline))
 			return (ft_safe_free(&(cub->tmp_line)), printf("3 : end map\n\n"), true);
-		ft_process_phase(cub, phase, &cub->tmp_line, &temoin);
+		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
+		printf("\nline = (d)%s(f)\n", cub->tmp_line);
+		ft_safe_free(&(cub->tmp_line));
+		//printf("temoin = %d\nphase = %d\n", temoin, phase);
 		if (temoin == false)
 			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
 	}

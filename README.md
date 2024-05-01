@@ -6,6 +6,7 @@
 - [x] strocc base from
 - [ ] ??? leak GNL quand color est faux ???
 - [ ] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
+- [ ] if player outside the walls ?
 
 
 ## Ressources
@@ -15,6 +16,7 @@
 * [42 docs - cub3d](https://harm-smits.github.io/42docs/projects/cub3d)
 * [cub3d tutorial](https://hackmd.io/@nszl/H1LXByIE2)
 * [cub3d tutorial medium](https://medium.com/@afatir.ahmedfatir/cub3d-tutorial-af5dd31d2fcf)
+* [map tester : error map ressources](https://github.com/DevJ2K/cub3d_map_tester.git)
 
 ### Perso
 * Alias git : ```git config --add alias.wip '!f() { git add -A && git commit -m "$@" && git push; }; f'```
