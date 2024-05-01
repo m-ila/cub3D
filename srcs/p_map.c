@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/30 18:51:45 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:45:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ bool	ft_check_adjacent(t_map *map, size_t j, size_t from, int until)
 	ft_strocc_delimiters(map->map_cpy[j - 1], "V", until, \
 	ft_find_end_line(map->map_cpy[j - 1])))
 		return (false);
-	if (j >= 1 && map->map_cpy[j - 1] && \
-	ft_find_end_line(map->map_cpy[j - 1]) < until && \
+	if (j >= 1 && map->map_cpy[j - 1] && ft_find_end_line(map->map_cpy[j - 1]) < until && \
 	ft_strocc_delimiters(map->map_cpy[j], "V", \
 	ft_find_end_line(map->map_cpy[j - 1]), until))
 		return (false);
@@ -75,7 +74,6 @@ bool	ft_parse_line_p_line(t_map *map)
 	{
 		from = ft_find_start_line(map->map_cpy[j]);
 		until = ft_find_end_line(map->map_cpy[j]);
-		printf("from %ld\nuntil %d\n", from, until);
 		if (from == ft_strlen(map->map_cpy[j]) || map->map_cpy[j][from] == 'V' \
 		|| until == -1 || (size_t) until == from || \
 		map->map_cpy[j][until] == 'V' || !ft_space_conditions(map->map_cpy[j]))
@@ -83,7 +81,6 @@ bool	ft_parse_line_p_line(t_map *map)
 		if (from < map->x_from)
 		{
 			map->x_from = from;
-			printf("x_from changé to %ld\n", map->x_from);
 		}
 		if ((size_t) until > map->x_until)
 			map->x_until = until;
@@ -104,7 +101,7 @@ bool	ft_parse_flood_fill(t_map *map)
 	ft_strocc(map->map_cpy[0], 'V'))
 		return (false);
 	j = 0;
-	while (map->map_cpy[j + 1] && !ft_strocc(map->map_cpy[j + 1], 'V'))
+	while (map->map_cpy[j] && !ft_strocc(map->map_cpy[j], 'V'))
 		j++;
 	map->y_from = j;
 	while (map->map_cpy[j] && ft_strocc(map->map_cpy[j], 'V'))

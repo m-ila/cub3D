@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 14:13:58 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 15:04:45 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:40:14 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	ft_strocc_delimiters(char *str, const char *base, int from, int until)
 
 	occ = 0;
 	len = (int) ft_strlen(str);
-	if (!str || !base || from < 0 || until >= len)
+	if (!str || !base || from < 0 || until > len)
 		return (-1);
 	while (from < until && from < len)
 	{
