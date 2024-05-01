@@ -1,5 +1,5 @@
 NO ./path_file
-SO ./path_file_2
+SO ./path_file_2 test
 WE ./path_file_3
 EA ./path_file_4
 

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/30 18:07:15 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 10:26:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define B_DIGIT "0123456789"
 # define B_WHITESPACE "\t\b\v\f "
 # define B_WHTZEUN "\t\b\v\f 01"
-# define E_PATH "usage for paths : (DIR) (PATH) and nothing else"
+# define E_PATH "usage : (ID) (VALUE) and nothing else"
 
 typedef enum path_txt
 {
@@ -78,6 +78,8 @@ bool	ft_is_valid_file_component(char *str);
 bool	ft_is_text(char *str);
 bool	ft_is_color(char *str);
 int		ft_bool_endline(char c);
+/* srcs/debug_utils.c */
+void	ft_display_2d(char **arr);
 /* srcs/errors.c */
 int		ft_err_ret(char *msg, char *name, int ret);
 /* srcs/free.c */
@@ -105,5 +107,7 @@ int		ft_find_start_line(char *str);
 /* srcs/p_map.c */
 void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
+/* srcs/str_manip.c */
+void	ft_add_line_to_arr(char ***arr, char **line);
 
 #endif

@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   str_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 10:24:36 by mbruyant         ###   ########.fr       */
+/*   Created: 2024/05/01 10:19:30 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/05/01 10:19:41 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-/* if no env ? */
-int	main(int argc, char **argv, char **envp)
+/* needs to add malloc strdup prot */
+void	ft_add_line_to_arr(char ***arr, char **line)
 {
-	(void)argc;
-	(void)envp;
-	if (argc == 2)
-	{
-		t_data	cub;
+	char	**cpy;
+	int		i;
+	int		len;
 
-		if (!ft_init_struct(&cub, argv[1]))
-			return (ft_safe_free(&cub.tmp_line), 1);
-		ft_close_fd(&(cub.tmp_fd));
-		ft_free_textures(&cub);
-		ft_free_map(cub.map);
-		ft_safe_free(&cub.tmp_line);
+	len = ft_2d_lines(*arr);
+	cpy = ft_calloc(len + 2, sizeof(char *));
+	i = 0;
+	while (i < len)
+	{
+		cpy[i] = ft_strdup((*arr)[i]);
+		ft_safe_free(&(*arr)[i]);
+		i++;
 	}
-	else
-		return (ft_err_ret("proper use : ./cub3d *file_path*", NULL, 1));
-	return (0);
+	cpy[i] = ft_strdup(*line);
+	free(*arr);
+	*arr = cpy;
 }

@@ -2,9 +2,10 @@
 
 # to do
 - [ ] `   1  00001` renvoie faux map
-- [ ] strocc delimiters
-- [ ] strocc base from
+- [x] strocc delimitersS
+- [x] strocc base from
 - [ ] ??? leak GNL quand color est faux ???
+- [ ] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
 
 
 ## Ressources
