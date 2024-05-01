@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 15:24:38 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:27:34 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 
 # define ALLOWED_BASE "01NSEW\t\b\v\f "
 # define B_SPAWN "NSEW"
-# define B_FIRSTLINE " 1\n"
+# define B_FIRSTLINE " 01\n\t\b\v\f"
 # define B_DIGIT "0123456789"
 # define B_WHITESPACE "\t\b\v\f "
 # define B_WHTZEUN "\t\b\v\f 01"

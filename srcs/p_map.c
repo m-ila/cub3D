@@ -6,11 +6,13 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:10:35 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:25:46 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
+
+//printf("j = %d\nj - 1 = %d\nstr[j - 1] = %s\nstr[j] = %s\nj - 1 end : %"),
 
 bool	ft_space_conditions(char *str)
 {
@@ -39,21 +41,21 @@ bool	ft_space_conditions(char *str)
 
 bool	ft_check_adjacent(t_map *map, size_t j, size_t from, int until)
 {
-	if (j >= 1 && map->map_cpy[j - 1] && \
+	if (map->map_cpy[j - 1] && \
 	ft_find_end_line(map->map_cpy[j - 1]) > until && \
 	ft_strocc_delimiters(map->map_cpy[j - 1], "V", until, \
 	ft_find_end_line(map->map_cpy[j - 1])))
 		return (false);
-	if (j >= 1 && map->map_cpy[j - 1] && \
+	if (map->map_cpy[j - 1] && \
 	ft_find_end_line(map->map_cpy[j - 1]) < until && \
 	ft_strocc_delimiters(map->map_cpy[j], "V", \
 	ft_find_end_line(map->map_cpy[j - 1]), until))
 		return (false);
-	if (j >= 1 && map->map_cpy[j - 1] && \
+	if (map->map_cpy[j - 1] && \
 	ft_find_start_line(map->map_cpy[j - 1]) > (int) from && \
 	ft_strocc_delimiters(map->map_cpy[j], "V", 0, from))
 		return (false);
-	if (j >= 1 && map->map_cpy[j - 1] && \
+	if (map->map_cpy[j - 1] && \
 	ft_find_start_line(map->map_cpy[j - 1]) < (int) from && \
 	ft_strocc_delimiters(map->map_cpy[j - 1], "V", 0, from))
 		return (false);
