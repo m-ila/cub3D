@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:25:16 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 15:10:23 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:41:04 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		ft_2d_lines(char **array);
 int		ft_2d_has_doubles(char **arr);
 int		ft_len_2d_array(char **arr);
 char	**ft_copy_2d_array(char **arr, int from, int len);
-void	ft_free_2d_array(char **array);
+void	*ft_free_2d_array(char **array);
 int		ft_strocc(char *str, char c);
 int		ft_ustrlen(unsigned char *str);
 int		ft_strindex(char *str, char c);
@@ -158,6 +158,9 @@ void	ft_close_fd(int *fd);
 int		ft_strindex_base(char *str, const char *base);
 //void	ft_split_do_ms(char *s, char *m, int *i, int w);
 int		ft_strocc_delimiters(char *str, const char *base, int from, int until);
+char	*ft_strcpy(char *dest, const char *src);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_strncpy(char *dest, const char *src, int n);
 
 char	*ft_strncpy(char *dest, const char *src, int n);
 char	*ft_strcpy(char *dest, const char *src);

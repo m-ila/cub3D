@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_data.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:18:37 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:41:49 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ bool	ft_process_file(t_data *cub)
 		ft_safe_free(&(cub->tmp_line));
 		if (temoin == false)
 			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
+		free(cub->tmp_line);
 	}
 	return (ft_safe_free(&(cub->tmp_line)), true);
 }

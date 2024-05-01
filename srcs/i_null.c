@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_null.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 22:16:27 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:13:50 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_init_null(t_data *cub)
 	cub->mlx_ptr = NULL;
 	cub->win_ptr = NULL;
 	cub->tmp_fd = -1;
+	cub->end = false;
 	ft_color_set_null(&cub->ceiling_c);
 	ft_color_set_null(&cub->floor_c);
 }

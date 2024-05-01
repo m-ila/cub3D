@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 04:08:26 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 15:04:45 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 17:38:07 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/01 17:27:34 by mbruyant         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/01 16:13:22 by yuewang          ###   ########.fr       */
+>>>>>>> yuewang
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +75,10 @@ typedef struct s_data
 	void	*win_ptr;
 	int		tmp_fd;
 	char	*tmp_line;
+	bool	end;
 }	t_data;
+
+
 
 /* srcs/bool_is.c */
 bool	ft_is_valid_file_component(char *str);
@@ -108,6 +115,14 @@ int		ft_find_start_line(char *str);
 void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
-bool	ft_add_line_to_arr(char ***arr, char **line);
+<<<<<<< HEAD
+=======
+void	ft_add_line_to_arr(char ***arr, char **line);
+/* ft_game.c */
+void ft_game(t_data *cub);
+
+
+
+>>>>>>> yuewang
 
 #endif
