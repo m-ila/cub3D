@@ -1,12 +1,12 @@
 # cub3D
 
 # to do
-- [ ] `   1  00001` renvoie faux map
+- [x] `   1  00001` renvoie faux map
 - [x] strocc delimitersS
 - [x] strocc base from
 - [ ] ??? leak GNL quand color est faux ???
 - [ ] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
-- [ ] if player outside the walls ?
+- [x] if player outside the walls ?
 
 
 ## Ressources
