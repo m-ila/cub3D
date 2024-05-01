@@ -6,11 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/01 17:27:34 by mbruyant         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/01 16:13:22 by yuewang          ###   ########.fr       */
->>>>>>> yuewang
+/*   Updated: 2024/05/01 18:02:51 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +111,8 @@ int		ft_find_start_line(char *str);
 void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
-void	ft_add_line_to_arr(char ***arr, char **line);
+bool	ft_add_line_to_arr(char ***arr, char **line);
 /* ft_game.c */
 void ft_game(t_data *cub);
-
-
-
 
 #endif

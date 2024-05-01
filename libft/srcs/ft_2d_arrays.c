@@ -6,10 +6,11 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:49:06 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:38:29 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 17:59:36 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft.h"
 
 int	ft_2d_lines(char **array)
 {
@@ -23,39 +24,39 @@ int	ft_2d_lines(char **array)
 	return (i);
 }
 
-// void	ft_free_2d_array(char **array)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (array == NULL)
-// 		return ;
-// 	while (array[i] != NULL)
-// 	{
-// 		free(array[i]);
-// 		array[i] = NULL;
-// 		i++;
-// 	}
-// 	free(array);
-// 	array = NULL;
-// }
-
-void	*ft_free_2d_array(char **array)
+void	ft_free_2d_array(char **array)
 {
-	char	**tmp;
+	int	i;
 
-	if (array)
+	i = 0;
+	if (array == NULL)
+		return ;
+	while (array[i] != NULL)
 	{
-		tmp = array;
-		while (*array)
-		{
-			free(*array);
-			array++;
-		}
-		free(tmp);
+		free(array[i]);
+		array[i] = NULL;
+		i++;
 	}
-	return (0);
+	free(array);
+	array = NULL;
 }
+
+// void	*ft_free_2d_array(char **array)
+// {
+// 	char	**tmp;
+
+// 	if (array)
+// 	{
+// 		tmp = array;
+// 		while (*array)
+// 		{
+// 			free(*array);
+// 			array++;
+// 		}
+// 		free(tmp);
+// 	}
+// 	return (0);
+// }
 
 char	**ft_copy_2d_array(char **arr, int from, int len)
 {

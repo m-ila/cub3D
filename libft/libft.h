@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 00:25:16 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:41:04 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 17:57:31 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		ft_2d_lines(char **array);
 int		ft_2d_has_doubles(char **arr);
 int		ft_len_2d_array(char **arr);
 char	**ft_copy_2d_array(char **arr, int from, int len);
-void	*ft_free_2d_array(char **array);
+void	ft_free_2d_array(char **array);
 int		ft_strocc(char *str, char c);
 int		ft_ustrlen(unsigned char *str);
 int		ft_strindex(char *str, char c);

@@ -6,10 +6,11 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 04:08:26 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:38:07 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 17:59:44 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

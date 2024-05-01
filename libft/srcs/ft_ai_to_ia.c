@@ -6,10 +6,11 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 22:18:19 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:38:30 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 17:59:40 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft.h"
 
 int	ft_atoi(const char *nptr)
 {
