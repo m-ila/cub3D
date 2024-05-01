@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/30 18:51:45 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:22:17 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ bool	ft_parse_flood_fill(t_map *map)
 	ft_strocc(map->map_cpy[0], 'V'))
 		return (false);
 	j = 0;
-	while (map->map_cpy[j + 1] && !ft_strocc(map->map_cpy[j + 1], 'V'))
+	while (map->map_cpy[j] && !ft_strocc(map->map_cpy[j], 'V'))
 		j++;
 	map->y_from = j;
 	while (map->map_cpy[j] && ft_strocc(map->map_cpy[j], 'V'))

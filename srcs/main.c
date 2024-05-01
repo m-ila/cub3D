@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 10:24:36 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 16:05:16 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv, char **envp)
 
 		if (!ft_init_struct(&cub, argv[1]))
 			return (ft_safe_free(&cub.tmp_line), 1);
+		ft_game(&cub);
 		ft_close_fd(&(cub.tmp_fd));
 		ft_free_textures(&cub);
 		ft_free_map(cub.map);

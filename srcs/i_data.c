@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 13:57:46 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 16:13:34 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ bool	ft_process_file(t_data *cub)
 		ft_process_phase(cub, phase, &cub->tmp_line, &temoin);
 		if (temoin == false)
 			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
+		free(cub->tmp_line);
 	}
 	return (ft_safe_free(&(cub->tmp_line)), true);
 }
