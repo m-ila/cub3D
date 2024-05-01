@@ -6,7 +6,7 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/01 10:20:00 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/05/01 15:09:07 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,22 +14,28 @@ NAME = cub3d
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O2 -g
+INCFLAGS  = -I inc/ -I src/libft/ -I/usr/include/readline
 MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext
-SOURCES = srcs/p_map.c srcs/bool_is.c srcs/main.c srcs/errors.c srcs/i_data.c \
-srcs/i_null.c srcs/free.c srcs/i_color.c srcs/i_map.c srcs/p_map_find.c \
-srcs/debug_utils.c srcs/str_manip.c
-OBJS = ${SOURCES:.c=.o}
+SRC_DIR    = srcs/
+#wildcard to be changed to sources filenames
+SRC_FILES = $(wildcard $(SRC_DIR)*.c)
 INC = inc/
 LIBFT = libft/
 LIBFTHD = libft/libft.h
 MLX = minilibx-linux
+OBJ_DIR    = objs/
+OBJS 	   = $(SRC_FILES:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${INC} ${SOURCES} ${LIBFT} ${MLX}
+${NAME}: ${OBJS} ${INC} ${SRC_FILES} ${LIBFT} ${MLX}
 	${MAKE} -C minilibx-linux
 	${MAKE} -C libft/
-	${CC} ${CFLAGS} ${SOURCES} -o ${NAME} -I ${INC} -include ${LIBFTHD} ${MLXFLAGS} libft/libft.a
+	${CC} ${CFLAGS} ${SRC_FILES} -o ${NAME} -I ${INC} -include ${LIBFTHD} ${MLXFLAGS} libft/libft.a
+
+$(OBJ_DIR)%.o : $(SRC_DIR)%.c
+	@mkdir -p $(@D)
+	$(CC) $(INCFLAGS) -c $< -o $@
 
 clean :
 	${MAKE} -C minilibx-linux clean
@@ -40,6 +46,7 @@ clean :
 fclean : clean
 	${MAKE} -C libft/ fclean
 	${RM} ${NAME}
+	$(RM) -r $(OBJ_DIR)
 	@echo "\033[0;31;1mfclean OK\033[0m"
 
 re : fclean all
