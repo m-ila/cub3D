@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/01 18:05:47 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 18:42:07 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void render_map(t_data *cub) {
     int x, y, color;
 
     for (y = 0; y < (int)cub->map->y_size_max; y++) {
-        for (x = 0; x < (int)cub->map->x_size_max; x++) {
+        for (x = 0; x < (int)ft_strlen(cub->map->raw_map[y]); x++) {
             // Determine color based on map content
             if (cub->map->raw_map[y][x] == '1') {
                 color = 0xAAAAAA; // Grey for walls
@@ -123,15 +123,8 @@ void render_map(t_data *cub) {
 // # define ESC 65307
 // # define CLIC 1
 
-void move_player(t_data *cub, int keycode) {
-    t_point old;
-    t_point new;
-
-    old.x = cub->map->spawn.x;
-    old.y = cub->map->spawn.y;
-    new.x = old.x;
-    new.y = old.y;
-
+void move_player(t_data *cub, int keycode)
+{
     switch (keycode)
     {
         case UP:
@@ -181,6 +174,8 @@ void	ft_game(t_data *cub)
 {
 	init_mlx(cub);
 	init_window(cub);
+    cub->position->x = cub->map->spawn.x;
+    cub->position->y = cub->map->spawn.y;
 	render_map(cub);
     mlx_key_hook(cub->win_ptr, key_hook, &cub);
 
