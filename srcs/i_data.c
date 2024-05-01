@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 17:41:49 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 18:12:34 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,16 +138,16 @@ bool	ft_final_check(t_data *cub)
 	while (i < 4)
 	{
 		if (cub->path_texture[i] == NULL)
-			return (false);
+			return (ft_err_ret("missing path texture", NULL, false));
 		tmp_op = open(cub->path_texture[i], O_RDONLY);
 		if (tmp_op == -1)
-			return (false);
+			return (ft_err_ret("cannot open", cub->path_texture[i], false));
 		ft_close_fd(&tmp_op);
 		i++;
 	}
 	if (cub->floor_c.r == -1 || cub->floor_c.g == -1 || cub->floor_c.b == -1 || \
 	cub->ceiling_c.r == -1 || cub->ceiling_c.g == -1 || cub->ceiling_c.b == -1)
-		return (false);
+		return (ft_err_ret("color not initialized", cub->path_texture[i], false));
 	return (true);
 }
 

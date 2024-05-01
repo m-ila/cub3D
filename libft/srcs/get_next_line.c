@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 12:17:36 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/01 17:40:17 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/01 18:00:18 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,4 @@ char	*get_next_line(int fd)
 	line = ft_line(stash);
 	stash = ft_end(line, stash);
 	return (line);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> yuewang
