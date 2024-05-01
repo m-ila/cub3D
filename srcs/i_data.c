@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 14:42:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/01 15:13:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ t_path_txt	ft_which_text(char *str)
 		return (EA);
 	return (ERR);
 }
-/*
-bool	ft_phase_one(t_data *cub, char **line, bool *temoin)
+
+bool	ft_phase_one(t_data *cub, char **line)
 {
 	char	**arr;
 
@@ -55,30 +55,15 @@ bool	ft_phase_one(t_data *cub, char **line, bool *temoin)
 		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret("color in file not valid", NULL, false));
 	ft_free_2d_array(arr);
 	//ft_safe_free(&(cub->tmp_line));
-	*temoin = true;
 	return (true);
 }
-*/
 
 /* split & strdup to protect */
 bool	ft_process_phase(t_data *cub, int phase, char **line)
 {
 	if (phase == 1)
 	{
-		char	**arr;
-
-		arr = ft_split_base(*line, " \n");
-		if (!arr)
-			return (ft_safe_free(&(cub->tmp_line)), ft_err_ret("split error", NULL, false));
-		//ft_display_2d(arr);
-		if (ft_is_text(arr[0]) && ft_2d_lines(arr) == 2)
-			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
-		if (ft_is_text(arr[0]) && ft_2d_lines(arr) != 2)
-			return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret(E_PATH, NULL, false));
-		if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
-			return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), ft_err_ret("color in file not valid", NULL, false));
-		ft_free_2d_array(arr);
-		//ft_safe_free(&(cub->tmp_line));
+		return (ft_phase_one(cub, line));
 	}
 	if (phase == 2)
 	{
