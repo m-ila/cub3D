@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 09:40:14 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:38:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_init_null(t_data *cub)
 	cub->win_ptr = NULL;
 	cub->tmp_fd = -1;
 	cub->end = false;
+	cub->angle = 0;
 	ft_color_set_null(&cub->ceiling_c);
 	ft_color_set_null(&cub->floor_c);
 }

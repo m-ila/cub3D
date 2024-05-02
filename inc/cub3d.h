@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 09:39:46 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:37:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define B_WHTZEUN "\t\b\v\f 01"
 # define B_WALL "\t\b\v\f 1"
 # define E_PATH "usage : (ID) (VALUE) and nothing else"
+# define PI 3.141592653
 
 typedef enum path_txt
 {
@@ -65,6 +66,7 @@ typedef struct s_data
 {
 	t_map	*map;
 	t_point	position;
+	float	angle;
 	char	*path_texture[5];
 	t_rgb	floor_c;
 	t_rgb	ceiling_c;

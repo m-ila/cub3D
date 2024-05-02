@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 10:09:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:38:37 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,17 @@ void render_map(t_data *cub)
 	}
 }
 
+void	ft_get_starting_angle(t_data *cub)
+{
+	if (cub->map->spawn_angle == 'N')
+		cub->angle = PI / 2;
+	if (cub->map->spawn_angle == 'S')
+		cub->angle = (3 * PI) / 2;
+	if (cub->map->spawn_angle == 'E')
+		cub->angle = 0;
+	if (cub->map->spawn_angle == 'W')
+		cub->angle = PI;
+}
 
 void update_player_position(t_data *cub, t_point old, t_point new)
 {
@@ -183,6 +194,7 @@ void ft_game(t_data *cub)
 	init_window(cub);
 	cub->position.x = cub->map->spawn.x * 65 + 32;
 	cub->position.y = cub->map->spawn.y * 65 + 32;
+	ft_get_starting_angle(cub);
 	render_map(cub);
 	mlx_key_hook(cub->win_ptr, key_hook, cub);
 	mlx_loop(cub->mlx_ptr);
