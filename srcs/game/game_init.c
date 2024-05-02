@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 16:53:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:53:52 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	ft_right(t_data *cub, t_point *new)
 
 /*
 For easier future debug (wall collision and angles)
-I allowed myself to put a define here
+I allowed myself to put a define here (INCR_STEP)
 */
 void move_player(t_data *cub, int keycode)
 {
