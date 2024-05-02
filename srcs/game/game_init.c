@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 13:37:34 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:37:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,28 @@ void update_player_position(t_data *cub, t_point old, t_point new)
 	ft_draw_angle(cub, &new, cub->angle, C_RED);
 }
 
+void	ft_up(t_data *cub, t_point *new)
+{
+	double	dx;
+	double	dy;
+
+	dx = INCR_STEP * cos(ft_deg_to_rad(cub->angle));
+	dy = INCR_STEP * sin(ft_deg_to_rad(cub->angle));
+	new->x = cub->position.x + round(dx);
+	new->y = cub->position.y + round(dy);
+}
+
+void	ft_down(t_data *cub, t_point *new)
+{
+	double	dx;
+	double	dy;
+
+	dx = INCR_STEP * cos(ft_deg_to_rad(cub->angle));
+	dy = INCR_STEP * sin(ft_deg_to_rad(cub->angle));
+	new->x = cub->position.x - round(dx);
+	new->y = cub->position.y - round(dy);
+}
+
 /*
 For easier future debug (wall collision and angles)
 I allowed myself to put a define here
@@ -149,9 +171,9 @@ void move_player(t_data *cub, int keycode)
 	old = cub->position;
 	new = old;
 	if (keycode == UP)
-		new.y -= INCR_STEP;
+		ft_up(cub, &new);
 	else if (keycode == DOWN)
-		new.y += INCR_STEP;
+		ft_down(cub, &new);
 	else if (keycode == LEFT)
 		new.x -= INCR_STEP;
 	else if (keycode == RIGHT)
