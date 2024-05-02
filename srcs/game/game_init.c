@@ -6,13 +6,15 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 10:05:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:09:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-/* must exit if fails */
+/*
+must exit if fails
+*/
 void	init_mlx(t_data *cub)
 {
 	cub->mlx_ptr = mlx_init();
@@ -23,10 +25,14 @@ void	init_mlx(t_data *cub)
 		ft_free_textures(cub);
 		ft_close_fd(&(cub->tmp_fd));
 		ft_printf_fd(2, "Error : MLX init failded\n");
+		exit(EXIT_FAILURE);
 	}
 }
 
-/* must exit if fails */
+/*
+must exit if fails
+should mlx_destroy_display should be there, or the free would be enough ?
+*/
 void	init_window(t_data *cub)
 {
 	printf("x_size:%zu\n", cub->map->x_size_max);
@@ -36,11 +42,14 @@ void	init_window(t_data *cub)
 	cub->map->x_size_max * 65, cub->map->y_size_max * 65, "minicarte");
 	if (!cub->win_ptr)
 	{
+		mlx_destroy_display(cub->mlx_ptr);
+		free(cub->mlx_ptr);
 		ft_free_map(cub->map);
 		ft_safe_free(&(cub->tmp_line));
 		ft_free_textures(cub);
 		ft_close_fd(&(cub->tmp_fd));
 		ft_printf_fd(2, "Error : Window creation failded\n");
+		exit(EXIT_FAILURE);
 	}
 }
 
