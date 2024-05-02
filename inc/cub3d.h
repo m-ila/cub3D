@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 17:45:23 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:14:37 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,9 @@ void	ft_up(t_data *cub, t_point *new);
 void	ft_down(t_data *cub, t_point *new);
 void	ft_left(t_data *cub, t_point *new);
 void	ft_right(t_data *cub, t_point *new);
+/* srcs/games/game_ray_math.c */
+void	ft_find_point_end_ray(t_data *cub);
+void	ft_find_end_point(t_data *cub, t_point *end);
+double	ft_len_ray(t_data *cub, t_point *end);
 
 #endif

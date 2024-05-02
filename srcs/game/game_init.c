@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 17:48:01 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:15:08 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void move_player(t_data *cub, int keycode)
 	{
 		update_player_position(cub, old, new);
 		cub->position = new;
+		ft_find_point_end_ray(cub);
 	}
 }
 
@@ -177,6 +178,7 @@ int key_hook(int keycode, void *param)
 		ft_handle_angle(cub, keycode);
 		ft_draw_angle(cub, &cub->position, old_angle, C_WHITE);
 		ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
+		ft_find_point_end_ray(cub);
 	}
 	else if (keycode == ESC)
 	{

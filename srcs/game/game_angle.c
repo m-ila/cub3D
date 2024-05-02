@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 17:02:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 20:10:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 	dx = cos(ft_deg_to_rad(angle));
 	dy = sin(ft_deg_to_rad(angle));
 	i = 4;
-	while (i < 15)
+	while (i < 14)
 	{
 		x = pos->x + round(i * dx);
 		y = pos->y + round(i * dy);
