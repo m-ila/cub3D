@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 13:17:51 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:22:07 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	ft_get_starting_angle(t_data *cub)
 		cub->angle = 180;
 }
 
+/*
+i starts at 4 so the angle ray doesn't go over the player
+*/
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 {
 	double	dx;
@@ -32,7 +35,6 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 	int		y;
 	int		i;
 
-	printf("angle : %f\n", angle);
 	dx = cos(ft_deg_to_rad(angle));
 	dy = sin(ft_deg_to_rad(angle));
 	i = 4;
