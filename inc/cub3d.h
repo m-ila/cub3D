@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 13:17:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:56:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,10 @@ void	ft_get_starting_angle(t_data *cub);
 /* srcs/game/game_init.c */
 void	ft_game(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
+/* srcs/games/game_moves.c */
+void	ft_up(t_data *cub, t_point *new);
+void	ft_down(t_data *cub, t_point *new);
+void	ft_left(t_data *cub, t_point *new);
+void	ft_right(t_data *cub, t_point *new);
 
 #endif
