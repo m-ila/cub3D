@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 16:43:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:53:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,11 +165,26 @@ void	ft_left(t_data *cub, t_point *new)
 	double	dy;
 	double	tmp_angle;
 
-	tmp_angle = cub->angle + 5;
-	if (tmp_angle > 360)
-		tmp_angle -=360;
+	tmp_angle = cub->angle - 90;
+	if (tmp_angle < 0)
+		tmp_angle += 360;
 	dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle));
-	dy = INCR_STEP * -sin(ft_deg_to_rad(tmp_angle));
+	dy = INCR_STEP * sin(ft_deg_to_rad(tmp_angle));
+	new->x = cub->position.x + round(dx);
+	new->y = cub->position.y + round(dy);
+}
+
+void	ft_right(t_data *cub, t_point *new)
+{
+	double	dx;
+	double	dy;
+	double	tmp_angle;
+
+	tmp_angle = cub->angle + 90;
+	if (tmp_angle > 360)
+		tmp_angle -= 360;
+	dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle));
+	dy = INCR_STEP * sin(ft_deg_to_rad(tmp_angle));
 	new->x = cub->position.x + round(dx);
 	new->y = cub->position.y + round(dy);
 }
@@ -192,7 +207,7 @@ void move_player(t_data *cub, int keycode)
 	else if (keycode == LEFT)
 		ft_left(cub, &new);
 	else if (keycode == RIGHT)
-		new.x += INCR_STEP;
+		ft_right(cub, &new);
 	if (cub->map->raw_map[new.y / 65][new.x / 65] != '1') 
 	{
 		update_player_position(cub, old, new);
