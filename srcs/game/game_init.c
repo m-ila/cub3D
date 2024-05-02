@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 10:38:37 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 10:42:16 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,11 @@ void	ft_get_starting_angle(t_data *cub)
 		cub->angle = 0;
 	if (cub->map->spawn_angle == 'W')
 		cub->angle = PI;
+}
+
+void	ft_draw_angle(t_data *cub)
+{
+	
 }
 
 void update_player_position(t_data *cub, t_point old, t_point new)
