@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 16:54:50 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:13:45 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int key_hook(int keycode, void *param)
 	cub = (t_data *)param;
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 		move_player(cub, keycode);
-	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
+	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
 	{
 		old_angle = cub->angle;
 		ft_handle_angle(cub, keycode);
@@ -203,6 +203,16 @@ int	ft_button_input(t_data *cub)
 	ft_close_fd(&(cub->tmp_fd));
 	exit(EXIT_SUCCESS);
 }
+/*
+int	ft_handle_clic(int button, int x, int y, void *param)
+{
+	t_data	*cub;
+
+	cub = param;
+	if (button == CLIC)
+	
+}
+*/
 
 void ft_game(t_data *cub)
 {
@@ -214,5 +224,7 @@ void ft_game(t_data *cub)
 	render_map(cub);
 	mlx_key_hook(cub->win_ptr, key_hook, cub);
 	mlx_hook(cub->win_ptr, 17, 0, ft_button_input, cub);
+	mlx_hook(cub->win_ptr, 4, 0, key_hook, cub);
+	mlx_hook(cub->win_ptr, 5, 0, key_hook, cub);
 	mlx_loop(cub->mlx_ptr);
 }

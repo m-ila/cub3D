@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:37:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 12:31:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:03:40 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define RIGHT 100
 # define ESC 65307
 # define CLIC 1
+# define R_CLIC 2
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 
