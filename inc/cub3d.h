@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 10:37:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:38:03 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,13 @@
 # define B_WHTZEUN "\t\b\v\f 01"
 # define B_WALL "\t\b\v\f 1"
 # define E_PATH "usage : (ID) (VALUE) and nothing else"
-# define PI 3.141592653
+# define PI 3.14159265359
+# define C_BLACK 0x000000
+# define C_RED 0xFF0000
+# define C_YELLOW 0xFFD500
+# define C_WHITE 0xF5F5F5
+# define C_GREY 0xAAAAAA
+# define INCR_DEG 10.0
 
 typedef enum path_txt
 {
@@ -66,7 +72,7 @@ typedef struct s_data
 {
 	t_map	*map;
 	t_point	position;
-	float	angle;
+	double	angle;
 	char	*path_texture[5];
 	t_rgb	floor_c;
 	t_rgb	ceiling_c;
@@ -117,5 +123,6 @@ bool	ft_parse_flood_fill(t_map *map);
 bool	ft_add_line_to_arr(char ***arr, char **line);
 /* ft_game.c */
 void ft_game(t_data *cub);
+void	ft_draw_angle(t_data *cub);
 
 #endif

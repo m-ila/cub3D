@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+         #
+#    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/01 18:04:26 by yuewang          ###   ########.fr        #
+#    Updated: 2024/05/02 12:10:28 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = cub3d
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O2 -g
 INCFLAGS  = -I inc/ -I src/libft/ -I/usr/include/readline
-MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext
+MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
 SRC_DIR    = srcs/
 #wildcard to be changed to sources filenames
 SRC_FILES = $(wildcard $(SRC_DIR)*.c) $(wildcard $(SRC_DIR)game/*.c)

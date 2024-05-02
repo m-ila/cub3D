@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:04:28 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/24 23:05:43 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:13:07 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ bool	ft_get_data_map(t_map *m)
 		{
 			m->spawn.y = i;
 			m->spawn.x = ft_strindex_base(m->raw_map[i], B_SPAWN);
+			m->spawn_angle = m->raw_map[i][m->spawn.x];
 		}
 		i++;
 	}
