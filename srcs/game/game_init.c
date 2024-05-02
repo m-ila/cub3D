@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 16:37:39 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:43:25 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,21 @@ void	ft_down(t_data *cub, t_point *new)
 	new->y = cub->position.y - round(dy);
 }
 
+void	ft_left(t_data *cub, t_point *new)
+{
+	double	dx;
+	double	dy;
+	double	tmp_angle;
+
+	tmp_angle = cub->angle + 5;
+	if (tmp_angle > 360)
+		tmp_angle -=360;
+	dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle));
+	dy = INCR_STEP * -sin(ft_deg_to_rad(tmp_angle));
+	new->x = cub->position.x + round(dx);
+	new->y = cub->position.y + round(dy);
+}
+
 /*
 For easier future debug (wall collision and angles)
 I allowed myself to put a define here
@@ -175,7 +190,7 @@ void move_player(t_data *cub, int keycode)
 	else if (keycode == DOWN)
 		ft_down(cub, &new);
 	else if (keycode == LEFT)
-		new.x -= INCR_STEP;
+		ft_left(cub, &new);
 	else if (keycode == RIGHT)
 		new.x += INCR_STEP;
 	if (cub->map->raw_map[new.y / 65][new.x / 65] != '1') 
