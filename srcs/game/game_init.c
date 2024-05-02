@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 17:13:45 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 17:48:01 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,16 +203,8 @@ int	ft_button_input(t_data *cub)
 	ft_close_fd(&(cub->tmp_fd));
 	exit(EXIT_SUCCESS);
 }
-/*
-int	ft_handle_clic(int button, int x, int y, void *param)
-{
-	t_data	*cub;
 
-	cub = param;
-	if (button == CLIC)
-	
-}
-*/
+
 
 void ft_game(t_data *cub)
 {
@@ -224,7 +216,6 @@ void ft_game(t_data *cub)
 	render_map(cub);
 	mlx_key_hook(cub->win_ptr, key_hook, cub);
 	mlx_hook(cub->win_ptr, 17, 0, ft_button_input, cub);
-	mlx_hook(cub->win_ptr, 4, 0, key_hook, cub);
-	mlx_hook(cub->win_ptr, 5, 0, key_hook, cub);
+	mlx_mouse_hook(cub->win_ptr, ft_handle_clic, cub);
 	mlx_loop(cub->mlx_ptr);
 }

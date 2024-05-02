@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   def_mlx.h                                          :+:      :+:    :+:   */
+/*   game_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/06 14:37:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 17:48:25 by mbruyant         ###   ########.fr       */
+/*   Created: 2024/05/02 17:42:26 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/05/02 17:48:54 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEF_MLX_H
-# define DEF_MLX_H
+#include "../../inc/cub3d.h"
 
-# define UP 119
-# define DOWN 115
-# define LEFT 97
-# define RIGHT 100
-# define ESC 65307
-# define CLIC 1
-# define R_CLIC 3
-# define LEFT_ARROW 65361
-# define RIGHT_ARROW 65363
-
-#endif
+int	ft_handle_clic(int button, int x, int y, void *param)
+{
+	(void)x;
+	(void)y;
+	if (button == CLIC)
+		key_hook(CLIC, param);
+	if (button == R_CLIC)
+		key_hook(R_CLIC, param);
+	return (0);
+}
