@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 12:44:42 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:06:56 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void draw_player(t_data *cub, t_point pos, int color)
 		}
 		i++;
 	}
-	ft_draw_angle(cub);
 }
 
 void render_map(t_data *cub)
@@ -115,7 +114,10 @@ void render_map(t_data *cub)
 			else
 				put_map_cell_to_window(cub, x, y, C_WHITE); // draw ground
 			if (x == cub->map->spawn.x && y == cub->map->spawn.y)
+			{
 				draw_player(cub, cub->position, C_RED); // draw player
+				ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
+			}
 			x++;
 		}
 		while (x < (int)cub->map->x_size_max)
@@ -156,38 +158,37 @@ void	ft_find_angle(t_data *cub, int keycode)
 }
 */
 
-void	ft_draw_angle(t_data *cub)
+void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 {
 	double	dx;
 	double	dy;
 
-	printf("angle : %f\n", cub->angle);
-	dx = cos(ft_deg_to_rad(cub->angle));
-	dy = sin(ft_deg_to_rad(cub->angle));
-	for (int i = 0; i < 15; i++)
+	printf("angle : %f\n", angle);
+	dx = cos(ft_deg_to_rad(angle));
+	dy = sin(ft_deg_to_rad(angle));
+	for (int i = 4; i < 15; i++)
 	{
 		printf("printed pixel\n");
-		int x = cub->position.x + round(i * dx);
-		int	y = cub->position.y + round(i * dy);
-		mlx_pixel_put(cub->mlx_ptr, cub->win_ptr, x, y, C_YELLOW);
+		int x = pos->x + round(i * dx);
+		int	y = pos->y + round(i * dy);
+		mlx_pixel_put(cub->mlx_ptr, cub->win_ptr, x, y, color);
 	}
 }
 
 void update_player_position(t_data *cub, t_point old, t_point new)
 {
 	draw_player(cub, old, C_WHITE); // Draw old position with ground color
+	ft_draw_angle(cub, &old, cub->angle, C_WHITE);
 	draw_player(cub, new, C_RED); // Draw new position with red color for player
+	ft_draw_angle(cub, &new, cub->angle, C_RED);
 }
 
 void	ft_handle_angle(t_data *cub, int keycode)
 {
-	double	prev_angle;
-
-	prev_angle = cub->angle;
 	if (keycode == LEFT_ARROW)
-		cub->angle += INCR_DEG;
-	if (keycode == RIGHT_ARROW)
 		cub->angle -= INCR_DEG;
+	if (keycode == RIGHT_ARROW)
+		cub->angle += INCR_DEG;
 	if (cub->angle < 0)
 		cub->angle += 360;
 	else if (cub->angle > 360)
@@ -225,7 +226,12 @@ int key_hook(int keycode, void *param)
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 		move_player(cub, keycode);
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
+	{
+		float	old_angle = cub->angle;
 		ft_handle_angle(cub, keycode);
+		ft_draw_angle(cub, &cub->position, old_angle, C_WHITE);
+		ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
+	}
 	else if (keycode == ESC)
 	{
 		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);

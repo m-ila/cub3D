@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 12:38:03 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:53:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
 bool	ft_add_line_to_arr(char ***arr, char **line);
 /* ft_game.c */
-void ft_game(t_data *cub);
-void	ft_draw_angle(t_data *cub);
+void	ft_game(t_data *cub);
+void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 
 #endif
