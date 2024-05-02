@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 12:53:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:17:30 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define C_WHITE 0xF5F5F5
 # define C_GREY 0xAAAAAA
 # define INCR_DEG 10.0
+# define INCR_STEP 5
 
 typedef enum path_txt
 {
@@ -121,7 +122,13 @@ void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
 bool	ft_add_line_to_arr(char ***arr, char **line);
-/* ft_game.c */
+/* srcs/game/game_angle_math.c */
+double	ft_deg_to_rad(double deg);
+/* srcs/game/game_angle.c */
+void	ft_handle_angle(t_data *cub, int keycode);
+void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
+void	ft_get_starting_angle(t_data *cub);
+/* srcs/game/game_init.c */
 void	ft_game(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 

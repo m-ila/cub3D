@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/02 13:06:56 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/02 13:18:59 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,52 +129,6 @@ void render_map(t_data *cub)
 	}
 }
 
-void	ft_get_starting_angle(t_data *cub)
-{
-	if (cub->map->spawn_angle == 'N')
-		cub->angle = 90;
-	if (cub->map->spawn_angle == 'S')
-		cub->angle = 270;
-	if (cub->map->spawn_angle == 'E')
-		cub->angle = 0;
-	if (cub->map->spawn_angle == 'W')
-		cub->angle = 180;
-}
-
-double	ft_deg_to_rad(double deg)
-{
-	return ((deg * PI) / 180.0);
-}
-
-/*
-void	ft_full_circle_angle(t_data *cub)
-{
-	
-}
-
-void	ft_find_angle(t_data *cub, int keycode)
-{
-
-}
-*/
-
-void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
-{
-	double	dx;
-	double	dy;
-
-	printf("angle : %f\n", angle);
-	dx = cos(ft_deg_to_rad(angle));
-	dy = sin(ft_deg_to_rad(angle));
-	for (int i = 4; i < 15; i++)
-	{
-		printf("printed pixel\n");
-		int x = pos->x + round(i * dx);
-		int	y = pos->y + round(i * dy);
-		mlx_pixel_put(cub->mlx_ptr, cub->win_ptr, x, y, color);
-	}
-}
-
 void update_player_position(t_data *cub, t_point old, t_point new)
 {
 	draw_player(cub, old, C_WHITE); // Draw old position with ground color
@@ -183,19 +137,10 @@ void update_player_position(t_data *cub, t_point old, t_point new)
 	ft_draw_angle(cub, &new, cub->angle, C_RED);
 }
 
-void	ft_handle_angle(t_data *cub, int keycode)
-{
-	if (keycode == LEFT_ARROW)
-		cub->angle -= INCR_DEG;
-	if (keycode == RIGHT_ARROW)
-		cub->angle += INCR_DEG;
-	if (cub->angle < 0)
-		cub->angle += 360;
-	else if (cub->angle > 360)
-		cub->angle -= 360;
-	printf("angle changed to : %f\n", cub->angle);
-}
-
+/*
+For easier future debug (wall collision and angle)
+I allowed myself to put a define here
+*/
 void move_player(t_data *cub, int keycode)
 {
 	t_point	old;
@@ -204,13 +149,13 @@ void move_player(t_data *cub, int keycode)
 	old = cub->position;
 	new = old;
 	if (keycode == UP)
-		new.y -= 5;
+		new.y -= INCR_STEP;
 	else if (keycode == DOWN)
-		new.y += 5;
+		new.y += INCR_STEP;
 	else if (keycode == LEFT)
-		new.x -= 5;
+		new.x -= INCR_STEP;
 	else if (keycode == RIGHT)
-		new.x += 5;
+		new.x += INCR_STEP;
 	if (cub->map->raw_map[new.y / 65][new.x / 65] != '1') 
 	{
 		update_player_position(cub, old, new);
