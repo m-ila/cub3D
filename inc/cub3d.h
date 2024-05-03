@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 20:14:37 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:48:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@
 # define C_GREY 0xAAAAAA
 # define INCR_DEG 10.0
 # define INCR_STEP 5
+# define TILE_SIZE 65
 
 typedef enum path_txt
 {
