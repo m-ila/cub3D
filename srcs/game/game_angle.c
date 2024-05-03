@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 13:16:04 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:47:58 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 	while (i < 14)
 	{
 		x = pos->x + round(i * dx);
-		y = pos->y + round(i * dy);
+		y = pos->y - round(i * dy);
 		mlx_pixel_put(cub->mlx_ptr, cub->win_ptr, x, y, color);
 		i++;
 	}
@@ -50,9 +50,9 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 void	ft_handle_angle(t_data *cub, int keycode)
 {
 	if (keycode == LEFT_ARROW || keycode == CLIC)
-		cub->angle -= INCR_DEG;
-	if (keycode == RIGHT_ARROW || keycode == R_CLIC)
 		cub->angle += INCR_DEG;
+	if (keycode == RIGHT_ARROW || keycode == R_CLIC)
+		cub->angle -= INCR_DEG;
 	if (cub->angle < 0)
 		cub->angle += 360;
 	else if (cub->angle > 360)

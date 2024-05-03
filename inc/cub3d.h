@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 11:48:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:09:17 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 /* math.h */
 # include <math.h>
+# include <float.h>
 # include "point.h"
 # include "def_mlx.h"
 # include "../libft/libft.h"
@@ -144,5 +145,8 @@ void	ft_right(t_data *cub, t_point *new);
 void	ft_find_point_end_ray(t_data *cub);
 void	ft_find_end_point(t_data *cub, t_point *end);
 double	ft_len_ray(t_data *cub, t_point *end);
+/* srcs/games/game_ray_math.c */
+double	ft_check_horizontal(t_data *cub);
+
 
 #endif

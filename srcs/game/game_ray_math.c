@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 14:35:46 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/03 15:11:53 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ double	ft_horizontal_intersection(t_data *cub)
 	t_point_d	step;
 	double		buffer;
 
-	if (cub->angle == 0 || cub->angle == 180)
+	if (cub->angle == 0 || cub->angle == 180 || cub->angle == 360)
 		return (1000000.0);
 	step.y = TILE_SIZE;
 	step.x = TILE_SIZE / tan(cub->angle);
@@ -210,19 +210,21 @@ void	ft_draw_angle_pos(t_data *cub, t_point *pos, double len, int color)
 
 void	ft_find_point_end_ray(t_data *cub)
 {
-	double	hor;
-	double	vert;
+	double	hor = ft_check_horizontal(cub);
+//	double	vert;
 //	t_point end;
 
 //	end = cub->position;
 //	ft_find_end_point(cub, &end);
-	hor = ft_horizontal_intersection(cub);
-	vert = ft_vertical_intersection(cub);
-	printf("Angle : %f\nhor : %f\nvert : %f\n\n", cub->angle, hor, vert);
-	if (hor < vert)
-		ft_draw_angle_pos(cub, &cub->position, hor, C_RED);
-	else
-		ft_draw_angle_pos(cub, &cub->position, vert, C_RED);
+//	hor = ft_horizontal_intersection(cub);
+//	vert = ft_vertical_intersection(cub);
+//	printf("Angle : %f\nhor : %f\nvert : %f\n\n", cub->angle, hor, vert);
+//	if (hor < vert)
+//		ft_draw_angle_pos(cub, &cub->position, hor, C_RED);
+//	else
+//		ft_draw_angle_pos(cub, &cub->position, vert, C_RED);
+	if (hor)
+		return ;
 }
 
 double	ft_len_ray(t_data *cub, t_point *end)
