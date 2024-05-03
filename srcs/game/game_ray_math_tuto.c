@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 15:43:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:01:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ https://www.permadi.com/tutorial/raycast/rayc7.html
 
 /*
 if (angle > 0 && angle < 180), ray is facing up
+parenthese avec -1 ?????
 */
 int	ft_find_first_y(t_point from, double angle)
 {
 	if (angle > 0 && angle < 180)
-		return (floor(from.y / TILE_SIZE) * TILE_SIZE - 1);
+		return ((floor(from.y / TILE_SIZE) * TILE_SIZE) - 1);
 	return (floor(from.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE);
 }
 
