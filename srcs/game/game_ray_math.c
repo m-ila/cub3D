@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/05 13:41:06 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:47:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_segment	ft_segment(t_data *cub, double angle)
 	seg.until = end;
 	seg.slope_len = ft_len_ray(seg.from, seg.until);
 	seg.angle = angle;
-	//ft_draw_angle_seg(cub, seg, color);
 	return (seg);
 }
 
