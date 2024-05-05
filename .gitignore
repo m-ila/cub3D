@@ -1,5 +1,6 @@
 .vscode/
 cub3d
+srcs/game/tmp_trash.c
 
 # Prerequisites
 *.d

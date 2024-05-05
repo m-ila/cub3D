@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/03 14:19:16 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:26:26 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	init_window(t_data *cub)
 		exit(EXIT_FAILURE);
 	}
 }
-
+/*
 void print_border(t_data *cub, int x, int y, int color)
 {
     int i = 0;
@@ -90,6 +90,7 @@ void print_border(t_data *cub, int x, int y, int color)
         i++;
     }
 }
+*/
 
 void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
 {
@@ -106,7 +107,7 @@ void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
 			y * TILE_SIZE + j, color);
 			j++;
 		}
-		print_border(cub, x, y, C_BLACK);
+		//print_border(cub, x, y, C_BLACK);
 		i++;
 	}
 }
@@ -157,7 +158,7 @@ void render_map(t_data *cub)
 			if (x == cub->map->spawn.x && y == cub->map->spawn.y)
 			{
 				draw_player(cub, cub->position, C_RED); // draw player
-				ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
+				//ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
 			}
 			x++;
 		}
@@ -201,25 +202,21 @@ void move_player(t_data *cub, int keycode)
 	{
 		update_player_position(cub, old, new);
 		cub->position = new;
-		ft_find_point_end_ray(cub);
+		ft_seg_refresh(cub);
 	}
 }
 
 int key_hook(int keycode, void *param)
 {
 	t_data	*cub;
-	float	old_angle;
 	
 	cub = (t_data *)param;
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 		move_player(cub, keycode);
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
 	{
-		old_angle = cub->angle;
 		ft_handle_angle(cub, keycode);
-		ft_draw_angle(cub, &cub->position, old_angle, C_WHITE);
-		ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
-		ft_find_point_end_ray(cub);
+		ft_seg_refresh(cub);
 	}
 	else if (keycode == ESC)
 	{
@@ -247,8 +244,6 @@ int	ft_button_input(t_data *cub)
 	exit(EXIT_SUCCESS);
 }
 
-
-
 void ft_game(t_data *cub)
 {
 	init_mlx(cub);
@@ -256,6 +251,7 @@ void ft_game(t_data *cub)
 	cub->position.x = cub->map->spawn.x * TILE_SIZE + 32;
 	cub->position.y = cub->map->spawn.y * TILE_SIZE + 32;
 	ft_get_starting_angle(cub);
+	cub->seg = ft_segment(cub, cub->angle);
 	render_map(cub);
 	mlx_key_hook(cub->win_ptr, key_hook, cub);
 	mlx_hook(cub->win_ptr, 17, 0, ft_button_input, cub);

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 12:34:44 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/05 12:40:52 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,15 @@ typedef struct s_map
 	char	spawn_angle;
 	t_point	spawn;
 }	t_map;
+
+typedef struct s_segment
+{
+	t_point	from;
+	t_point	until;
+	double	angle;
+	double	slope_y_direction;
+	double	slope_x_direction;
+	double	slope_len;
+}	t_segment;
 
 #endif

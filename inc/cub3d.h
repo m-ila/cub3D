@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 15:09:17 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:21:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ typedef struct s_data
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
+	t_segment	seg;
 }	t_data;
-
-
 
 /* srcs/bool_is.c */
 bool	ft_is_valid_file_component(char *str);
@@ -142,11 +141,14 @@ void	ft_down(t_data *cub, t_point *new);
 void	ft_left(t_data *cub, t_point *new);
 void	ft_right(t_data *cub, t_point *new);
 /* srcs/games/game_ray_math.c */
-void	ft_find_point_end_ray(t_data *cub);
-void	ft_find_end_point(t_data *cub, t_point *end);
-double	ft_len_ray(t_data *cub, t_point *end);
+t_segment	ft_segment(t_data *cub, double angle);
+t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
+double	ft_len_ray(t_point start, t_point end);
 /* srcs/games/game_ray_math.c */
 double	ft_check_horizontal(t_data *cub);
+void	ft_seg_refresh(t_data *cub);
+/* srcs/games/game_draw.c */
+void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
 
 
 #endif
