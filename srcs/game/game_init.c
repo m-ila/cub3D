@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/05 13:50:47 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:10:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,13 +152,13 @@ void render_map(t_data *cub)
 		while (x < (int)ft_strlen(cub->map->raw_map[y]))
 		{
 			if (cub->map->raw_map[y][x] == '1')
-				put_map_cell_to_window(cub, x, y, C_GREY); //draw wall 
+				put_map_cell_to_window(cub, x, y, C_GREY);
 			else
-				put_map_cell_to_window(cub, x, y, C_WHITE); // draw ground
+				put_map_cell_to_window(cub, x, y, C_WHITE);
 			if (x == cub->map->spawn.x && y == cub->map->spawn.y)
 			{
-				draw_player(cub, cub->position, C_RED); // draw player
-				//ft_draw_angle(cub, &cub->position, cub->angle, C_RED);
+				draw_player(cub, cub->position, C_RED);
+				ft_draw_angle_seg(cub, cub->seg, C_RED);
 			}
 			x++;
 		}
@@ -252,7 +252,6 @@ void ft_game(t_data *cub)
 	cub->position.y = cub->map->spawn.y * TILE_SIZE + 32;
 	ft_get_starting_angle(cub);
 	cub->seg = ft_segment(cub, cub->angle);
-	ft_draw_angle_seg(cub, cub->seg, C_RED);
 	render_map(cub);
 	mlx_key_hook(cub->win_ptr, key_hook, cub);
 	mlx_hook(cub->win_ptr, 17, 0, ft_button_input, cub);

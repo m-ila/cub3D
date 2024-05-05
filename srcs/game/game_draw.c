@@ -6,32 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:44:32 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/05 13:36:45 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/05 13:52:52 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	ft_draw_angle_pos(t_data *cub, t_point *pos, double len, int color)
-{
-	double	dx;
-	double	dy;
-	int		x;
-	int		y;
-	double		i;
-
-	dx = cos(ft_deg_to_rad(cub->angle));
-	dy = sin(ft_deg_to_rad(cub->angle));
-	i = 4.0;
-	while (i < len)
-	{
-		x = pos->x + round(i * dx);
-		y = pos->y - round(i * dy);
-		mlx_pixel_put(cub->mlx_ptr, cub->win_ptr, x, y, color);
-		i += 1.0;
-	}
-}
-
 
 void	ft_draw_square(t_data *cub, t_point square)
 {
