@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/08 16:22:36 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:24:58 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ int key_hook(int keycode, void *param)
 		ft_safe_free(&(cub->tmp_line));
 		ft_free_textures(cub);
 		ft_close_fd(&(cub->tmp_fd));
+		free(cub->seg);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
@@ -242,6 +243,7 @@ int	ft_button_input(t_data *cub)
 	ft_safe_free(&(cub->tmp_line));
 	ft_free_textures(cub);
 	ft_close_fd(&(cub->tmp_fd));
+	free(cub->seg);
 	exit(EXIT_SUCCESS);
 }
 

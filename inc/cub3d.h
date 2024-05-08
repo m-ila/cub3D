@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 16:21:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:25:33 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@
 # define C_YELLOW 0xFFD500
 # define C_WHITE 0xF5F5F5
 # define C_GREY 0xAAAAAA
-# define INCR_DEG 5.0
+# define INCR_DEG 1.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
 
