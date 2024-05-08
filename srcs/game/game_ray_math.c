@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/05 14:10:20 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 09:20:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,20 @@ t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 	return (translate);
 }
 
+/*
+BOTH are pixel position
+t_point	from
+t_point	end
+
+Is a tile position (/ TILE_SIZE), map coordinates
+t_point	tile_hit
+*/
 t_segment	ft_segment(t_data *cub, double angle)
 {
 	t_segment	seg;
 	t_point_d	end_d;
 	t_point 	end;
+	t_point		tile_hit;
 
 	end_d.x = (double) cub->position.x;
 	end_d.y = (double) cub->position.y;
@@ -58,6 +67,9 @@ t_segment	ft_segment(t_data *cub, double angle)
 	seg.until = end;
 	seg.slope_len = ft_len_ray(seg.from, seg.until);
 	seg.angle = angle;
+	tile_hit.x = seg.until.x / TILE_SIZE;
+	tile_hit.y = seg.until.y / TILE_SIZE;
+	seg.tile_hit = tile_hit;
 	return (seg);
 }
 
