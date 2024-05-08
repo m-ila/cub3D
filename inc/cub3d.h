@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/05 14:10:18 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 15:49:25 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
-	t_segment	seg;
+	t_segment	seg[60];
 }	t_data;
 
 /* srcs/bool_is.c */
