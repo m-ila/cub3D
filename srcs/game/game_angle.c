@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/03 15:47:58 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:32:46 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_get_starting_angle(t_data *cub)
 {
 	if (cub->map->spawn_angle == 'N')
-		cub->angle = 270;
-	if (cub->map->spawn_angle == 'S')
 		cub->angle = 90;
+	if (cub->map->spawn_angle == 'S')
+		cub->angle = 270;
 	if (cub->map->spawn_angle == 'E')
 		cub->angle = 0;
 	if (cub->map->spawn_angle == 'W')
