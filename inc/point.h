@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/05 12:40:52 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 08:26:37 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ typedef struct s_segment
 	t_point	from;
 	t_point	until;
 	double	angle;
-	double	slope_y_direction;
-	double	slope_x_direction;
 	double	slope_len;
 }	t_segment;
 
