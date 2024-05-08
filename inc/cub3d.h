@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 15:49:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:21:05 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
-	t_segment	seg[60];
+	t_segment	*seg;
 }	t_data;
 
 /* srcs/bool_is.c */
@@ -140,6 +140,10 @@ void	ft_up(t_data *cub, t_point *new);
 void	ft_down(t_data *cub, t_point *new);
 void	ft_left(t_data *cub, t_point *new);
 void	ft_right(t_data *cub, t_point *new);
+/* srcs/game/game_multi_rays.c */
+void	ft_malloc_rays(t_data *cub);
+void	ft_free_rays(t_data *cub);
+void	ft_print_all_rays(t_data *cub);
 /* srcs/games/game_ray_math.c */
 t_segment	ft_segment(t_data *cub, double angle);
 t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);

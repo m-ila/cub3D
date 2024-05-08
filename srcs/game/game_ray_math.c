@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 09:24:43 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:22:06 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 void	ft_seg_refresh(t_data *cub)
 {
-	t_segment	old_seg;
+	int	i;
 
-	old_seg = cub->seg;
-	ft_draw_angle_seg(cub, old_seg, C_WHITE);
-	cub->seg = ft_segment(cub, cub->angle);
-	ft_draw_angle_seg(cub, cub->seg, C_RED);
+	i = 0;
+	while (i < 61)
+	{
+		ft_draw_angle_seg(cub, cub->seg[i], C_WHITE);
+		i++;
+	}
+	ft_free_rays(cub);
+	ft_malloc_rays(cub);
+	ft_print_all_rays(cub);
 }
 
 t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
