@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 11:22:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:49:08 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define POINT_H
 
 # include "cub3d.h"
+# include <stdbool.h>
+
+typedef enum compass
+{
+	NO,
+	SO,
+	WE,
+	EA,
+	ERR
+}	t_compass;
 
 typedef struct s_point
 {
@@ -52,6 +62,8 @@ typedef struct s_segment
 	double	angle;
 	double	slope_len;
 	double	len_processed;
+	double	vertical_hit;
+	double	horizontal_hit;
 	t_compass	direction;
 }	t_segment;
 

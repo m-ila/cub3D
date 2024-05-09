@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 12:14:21 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:59:19 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,56 @@ void	ft_handle_angle(t_data *cub, int keycode)
 	else if (cub->angle > 360)
 		cub->angle -= 360;
 }
+/*
+bool	ft_has_v_side_wall(t_data *cub, t_point pt)
+{
+	if ((pt.y >= 1 && cub->map->raw_map[pt.y - 1][pt.x] == '1') || \
+	(pt.y < cub->map->y_size_max && cub->map->raw_map[pt.y + 1][pt.x] == '1'))
+			return (true);
+	return (false);
+}
+
+bool	ft_has_h_side_wall(t_data *cub, t_point pt)
+{
+	if (pt.x >= 1 && cub->map->raw_map[pt.y][pt.x - 1] == '1')
+		if (pt.x < cub->map->x_size_max && cub->map->raw_map[pt.y][pt.x + 1] == '1')
+			return (true);
+	return (false);
+}
+*/
 
 /*
 >= because at the exact "limit" angle will be a corner (not drawn ?)
 but still needs to be handled to avoir errors
 */
-t_compass	ft_get_which_wall(double angle)
+t_compass	ft_get_which_wall(t_segment *seg)
 {
-	if (angle >= 45 && angle <= 135)
-		return (NO);
-	if (angle >= 135 && angle <= 225)
-		return (WE);
-	if (angle >= 225 && angle <= 315)
+/*
+	t_point	dv;
+	double	angle;
+
+	dv.x = seg->until.x - seg->from.x;
+	dv.y = seg->until.y - seg->from.y;
+	angle = atan2(dv.y, dv.x);
+	if ((angle > -PI / 4 ) && (angle < PI / 4))
+		return (EA);
+	else if ((angle >= -PI / 4 ) && (angle < (3 * PI / 4)))
 		return (SO);
-	return (EA);
+	else if ((angle <= -PI / 4 ) && (angle > (-3 * PI / 4)))
+		return (NO);
+	return (WE);
+*/
+	if (seg->vertical_hit)
+	{
+		if (seg->angle > 0 && seg->angle < 180)
+			return (NO);
+		return (SO);
+	}
+	if (seg->horizontal_hit)
+	{
+		if (seg->angle > 90 && seg->angle < 270)
+			return (WE);
+		return (EA);
+	}
+	return (ERR);
 }

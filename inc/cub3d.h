@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 12:12:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:48:54 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,6 @@
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
-
-typedef enum compass
-{
-	NO,
-	SO,
-	WE,
-	EA,
-	ERR
-}	t_compass;
 
 typedef struct s_rgb
 {
@@ -125,11 +116,13 @@ bool	ft_parse_flood_fill(t_map *map);
 bool	ft_add_line_to_arr(char ***arr, char **line);
 /* srcs/game/game_angle_math.c */
 double	ft_deg_to_rad(double deg);
+double	ft_norm_angle(double angle);
+double	ft_abs(double val);
 /* srcs/game/game_angle.c */
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
-t_compass	ft_get_which_wall(double angle);
+t_compass	ft_get_which_wall(t_segment *seg);
 /* srcs/game/game_init.c */
 void	ft_game(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
@@ -149,8 +142,8 @@ void	ft_print_all_rays(t_data *cub);
 t_segment	ft_segment(t_data *cub, double angle);
 t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
 double	ft_len_ray(t_point start, t_point end);
-/* srcs/games/game_ray_math.c */
-double	ft_check_horizontal(t_data *cub);
+/* srcs/games/game_ray_math_tuto.c */
+double	ft_check_horizontal(t_data *cub, double angle);
 void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
