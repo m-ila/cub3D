@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_null.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 10:38:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:37:00 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	ft_init_null(t_data *cub)
 	ft_array_set_null(cub->path_texture, 5);
 	cub->tmp_line = NULL;
 	cub->mlx_ptr = NULL;
-	cub->win_ptr = NULL;
+	cub->win_2d = NULL;
+		cub->win_3d = NULL;
+
 	cub->tmp_fd = -1;
 	cub->end = false;
 	cub->angle = 0;

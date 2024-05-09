@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 19:27:48 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/08 16:24:55 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	main(int argc, char **argv, char **envp)
 			cub.map = NULL;
 		}
 		ft_safe_free(&cub.tmp_line);
+		free(cub.seg);
 	}
 	else
 		return (ft_err_ret("proper use : ./cub3d *file_path*", NULL, 1));

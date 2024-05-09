@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 17:45:23 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 20:51:48 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@
 # include <stdio.h>
 /* math.h */
 # include <math.h>
+# include <float.h>
 # include "point.h"
 # include "def_mlx.h"
 # include "../libft/libft.h"
+#include <stdint.h>  // For uint32_t
 
 /* minilibx */
 # include "../minilibx-linux/mlx.h"
@@ -50,8 +52,11 @@
 # define C_YELLOW 0xFFD500
 # define C_WHITE 0xF5F5F5
 # define C_GREY 0xAAAAAA
-# define INCR_DEG 10.0
+# define INCR_DEG 5.0
 # define INCR_STEP 5
+# define TILE_SIZE 65
+#define CEILING_COLOR 0xC0C0C0  // Light grey
+#define FLOOR_COLOR   0xC0C0C0  // Light grey
 
 typedef enum path_txt
 {
@@ -78,13 +83,14 @@ typedef struct s_data
 	t_rgb	floor_c;
 	t_rgb	ceiling_c;
 	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*win_2d;
+		void	*win_3d;
+
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
+	t_segment	*seg;
 }	t_data;
-
-
 
 /* srcs/bool_is.c */
 bool	ft_is_valid_file_component(char *str);
@@ -99,6 +105,8 @@ int		ft_err_ret(char *msg, char *name, int ret);
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
 void	ft_free_map(t_map *m);
+void	exit_cleanup(t_data *cub);
+
 /* srcs/i_color.c */
 bool	ft_color_range(char **arr);
 bool	ft_process_color(t_data *cub, char **arr);
@@ -128,10 +136,18 @@ double	ft_deg_to_rad(double deg);
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
-/* srcs/game/game_init.c */
+/* srcs/game/game.c */
 void	ft_game(t_data *cub);
+/* srcs/game/game_init.c */
+void	init_mlx(t_data *cub);
+void	init_windows(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
-int		key_hook(int keycode, void *param);
+int key_hook(int keycode, void *param);
+
+void render_2d_map(t_data *cub);
+void draw_player(t_data *cub, t_point pos, int color);
+
+void render_3d_view(t_data *cub);
 /* srcs/game/game_input.c */
 int		ft_handle_clic(int button, int x, int y, void *param);
 /* srcs/games/game_moves.c */
@@ -139,5 +155,19 @@ void	ft_up(t_data *cub, t_point *new);
 void	ft_down(t_data *cub, t_point *new);
 void	ft_left(t_data *cub, t_point *new);
 void	ft_right(t_data *cub, t_point *new);
+/* srcs/game/game_multi_rays.c */
+void	ft_malloc_rays(t_data *cub);
+void	ft_free_rays(t_data *cub);
+void	ft_print_all_rays(t_data *cub);
+/* srcs/games/game_ray_math.c */
+t_segment	ft_segment(t_data *cub, double angle);
+t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
+double	ft_len_ray(t_point start, t_point end);
+/* srcs/games/game_ray_math.c */
+double	ft_check_horizontal(t_data *cub);
+void	ft_seg_refresh(t_data *cub);
+/* srcs/games/game_draw.c */
+void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
+
 
 #endif
