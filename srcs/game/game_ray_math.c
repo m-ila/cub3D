@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 10:13:06 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:49:55 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ t_segment	ft_segment(t_data *cub, double angle)
 	tile_hit.x = seg.until.x / TILE_SIZE;
 	tile_hit.y = seg.until.y / TILE_SIZE;
 	seg.tile_hit = tile_hit;
+	seg.len_processed = seg.slope_len * \
+	cos(ft_deg_to_rad(seg.angle) - ft_deg_to_rad(cub->angle));
 	return (seg);
 }
 

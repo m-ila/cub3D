@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 09:16:55 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:28:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_segment
 	t_point	tile_hit;
 	double	angle;
 	double	slope_len;
+	double	len_processed;
 }	t_segment;
 
 #endif
