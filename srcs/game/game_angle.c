@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 17:32:46 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:14:21 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,19 @@ void	ft_handle_angle(t_data *cub, int keycode)
 		cub->angle += 360;
 	else if (cub->angle > 360)
 		cub->angle -= 360;
+}
+
+/*
+>= because at the exact "limit" angle will be a corner (not drawn ?)
+but still needs to be handled to avoir errors
+*/
+t_compass	ft_get_which_wall(double angle)
+{
+	if (angle >= 45 && angle <= 135)
+		return (NO);
+	if (angle >= 135 && angle <= 225)
+		return (WE);
+	if (angle >= 225 && angle <= 315)
+		return (SO);
+	return (EA);
 }

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 16:37:02 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:12:30 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@
 # define INCR_STEP 5
 # define TILE_SIZE 65
 
-typedef enum path_txt
+typedef enum compass
 {
 	NO,
 	SO,
 	WE,
 	EA,
 	ERR
-}	t_path_txt;
+}	t_compass;
 
 typedef struct s_rgb
 {
@@ -129,6 +129,7 @@ double	ft_deg_to_rad(double deg);
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
+t_compass	ft_get_which_wall(double angle);
 /* srcs/game/game_init.c */
 void	ft_game(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
