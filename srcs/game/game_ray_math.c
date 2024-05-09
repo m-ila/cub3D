@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 16:22:06 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/09 10:13:06 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_seg_refresh(t_data *cub)
 	int	i;
 
 	i = 0;
-	while (i < 61)
+	while (i < 91)
 	{
 		ft_draw_angle_seg(cub, cub->seg[i], C_WHITE);
 		i++;
