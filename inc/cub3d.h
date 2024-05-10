@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 16:25:24 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:34:12 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "point.h"
 # include "def_mlx.h"
 # include "../libft/libft.h"
+#include <stdint.h>  // For uint32_t
 
 /* minilibx */
 # include "../minilibx-linux/mlx.h"
@@ -81,7 +82,8 @@ typedef struct s_data
 	t_rgb	floor_c;
 	t_rgb	ceiling_c;
 	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*win_2d;
+	void	*win_3d;
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
@@ -101,6 +103,8 @@ int		ft_err_ret(char *msg, char *name, int ret);
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
 void	ft_free_map(t_map *m);
+void	exit_cleanup(t_data *cub);
+
 /* srcs/i_color.c */
 bool	ft_color_range(char **arr);
 bool	ft_process_color(t_data *cub, char **arr);
@@ -132,10 +136,18 @@ double	ft_abs(double val);
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
-/* srcs/game/game_init.c */
+/* srcs/game/game.c */
 void	ft_game(t_data *cub);
+/* srcs/game/game_init.c */
+void	init_mlx(t_data *cub);
+void	init_windows(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
-int		key_hook(int keycode, void *param);
+int key_hook(int keycode, void *param);
+
+void render_2d_map(t_data *cub);
+void draw_player(t_data *cub, t_point pos, int color);
+
+void render_3d_view(t_data *cub);
 /* srcs/game/game_input.c */
 int		ft_handle_clic(int button, int x, int y, void *param);
 /* srcs/games/game_moves.c */

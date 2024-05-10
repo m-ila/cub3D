@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 15:54:11 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:26:05 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 	{
 		x = pos->x + round(i * dx);
 		y = pos->y - round(i * dy);
-		mlx_pixel_put(cub->mlx_ptr, cub->win_ptr, x, y, color);
+		mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x, y, color);
 		i++;
 	}
 }
