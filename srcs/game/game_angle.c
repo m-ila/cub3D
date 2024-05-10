@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 14:46:03 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:48:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,44 @@ void	ft_handle_angle(t_data *cub, int keycode)
 	else if (cub->angle > 360)
 		cub->angle -= 360;
 }
-/*
-bool	ft_has_v_side_wall(t_data *cub, t_point pt)
+
+static t_compass	ft_which_wall_down(t_segment *seg)
 {
-	if ((pt.y >= 1 && cub->map->raw_map[pt.y - 1][pt.x] == '1') || \
-	(pt.y < cub->map->y_size_max && cub->map->raw_map[pt.y + 1][pt.x] == '1'))
-			return (true);
-	return (false);
+	if (seg->angle > 180 && seg->angle < 270)
+	{
+		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
+		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
+			return (WE);
+		return (SO);
+	}
+	else if (seg->angle > 270 && seg->angle < 360)
+	{
+		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
+		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
+			return (EA);
+		return (SO);
+	}
+	return (ERR);
 }
 
-bool	ft_has_h_side_wall(t_data *cub, t_point pt)
+static t_compass	ft_which_wall_up(t_segment *seg)
 {
-	if (pt.x >= 1 && cub->map->raw_map[pt.y][pt.x - 1] == '1')
-		if (pt.x < cub->map->x_size_max && cub->map->raw_map[pt.y][pt.x + 1] == '1')
-			return (true);
-	return (false);
+	if (seg->angle > 0 && seg->angle < 90)
+	{
+		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
+		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
+			return (EA);
+		return (NO);
+	}
+	else if (seg->angle > 90 && seg->angle < 180)
+	{
+		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
+		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
+			return (WE);
+		return (NO);
+	}
+	return (ERR);
 }
-*/
 
 /*
 >= because at the exact "limit" angle will be a corner (not drawn ?)
@@ -90,29 +111,9 @@ t_compass	ft_get_which_wall(t_segment *seg)
 		return (WE);
 	else if (seg->angle == 270)
 		return (SO);
-	else if (seg->angle > 0 && seg->angle < 90)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) && (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (EA);
-		return (NO);
-	}
-	else if (seg->angle > 90 && seg->angle < 180)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) && (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (WE);
-		return (NO);
-	}
-	else if (seg->angle > 180 && seg->angle < 270)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) && (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (WE);
-		return (SO);
-	}
-	else if (seg->angle > 270 && seg->angle < 360)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) && (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (EA);
-		return (SO);
-	}
+	else if (seg->angle > 0 && seg->angle < 180)
+		return (ft_which_wall_up(seg));
+	else if (seg->angle > 180 && seg->angle < 360)
+		return (ft_which_wall_down(seg));
 	return (ERR);
 }

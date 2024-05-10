@@ -1,7 +1,7 @@
-NO ./img/img_e
-SO ./img/img_e
-WE ./img/img_e
-EA ./img/img_e
+NO ./img/NORTH.xpm
+SO ./img/SOUTH.xpm
+WE ./img/WEST.xpm
+EA ./img/EAST.xpm
 
 F 255,255,255
 C 5,25,25
