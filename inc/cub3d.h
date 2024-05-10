@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 15:56:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 16:25:24 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@
 # define C_YELLOW 0xFFD500
 # define C_WHITE 0xF5F5F5
 # define C_GREY 0xAAAAAA
+# define C_BLUE 0x0000FF
+# define C_GREEN 0x00FF00
+# define C_CYAN 0x00FFFF
+# define C_MAGENTA 0xFF00FF
+# define C_ORANGE 0xFFA500
+# define C_PURPLE 0x800080
+# define C_BROWN 0xA52A2A
+# define C_PINK 0xFFC0CB
+# define C_SILVER 0xC0C0C0
+# define C_GOLD 0xFFD700
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
@@ -145,7 +155,7 @@ void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
 /* srcs/games/game_which_texture.c */
-t_compass	ft_get_which_wall(t_segment *seg);
+t_compass	ft_get_which_wall(double angle, t_point until);
 
 
 #endif
