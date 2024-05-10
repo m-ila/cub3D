@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 13:03:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:22:30 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static void	print_debug(t_data *cub, int i)
 		str = "WEST";
 	if (cub->seg[i + 44].direction == ERR)
 		str = "ERR";
-	if (i == -44)
+	if (i + 44 == 0)
 		printf("\n\nAngle RED : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
-	if (i == 0)
+	if (i + 44 == 45)
 		printf("Angle YELLOW : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
-	if (i == 45)
+	if (i + 44 == 90)
 		printf("Angle GREY : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
 }
 
@@ -62,7 +62,7 @@ void	ft_print_all_rays(t_data *cub)
 			ft_draw_angle_seg(cub, cub->seg[i], C_RED);
 		else if (i == 45)
 			ft_draw_angle_seg(cub, cub->seg[i], C_YELLOW);
-		else if (i == 89)
+		else if (i == 90)
 			ft_draw_angle_seg(cub, cub->seg[i], C_GREY);
 		i++;
 	}
