@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 15:55:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:56:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,6 @@ void	ft_print_all_rays(t_data *cub);
 t_segment	ft_segment(t_data *cub, double angle);
 t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
 double	ft_len_ray(t_point start, t_point end);
-/* srcs/games/game_ray_math_tuto.c */
-double	ft_check_horizontal(t_data *cub, double angle);
 void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);

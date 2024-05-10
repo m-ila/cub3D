@@ -6,13 +6,13 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 14:39:31 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:58:42 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static void	print_debug(t_data *cub, int i)
+void	print_debug(t_data *cub, int i)
 {
 	char	*str;
 
@@ -32,10 +32,14 @@ static void	print_debug(t_data *cub, int i)
 		printf("Angle YELLOW : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
 	if (i + 44 == 89)
 		printf("Angle GREY : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
-	if ((i + 44 == 0 || i + 44 == 45 || i + 44 == 89) && (cub->seg[i + 44].angle == 71 || cub->seg[i + 44].angle == 135 || cub->seg[i + 44].angle == 171 || cub->seg[i + 44].angle == 315 || cub->seg[i + 44].angle == 181))
+/*
+	if ((i + 44 == 0 || i + 44 == 45 || i + 44 == 89) && (cub->seg[i + 44].angle == 71 \
+	|| cub->seg[i + 44].angle == 135 || cub->seg[i + 44].angle == 171 \
+	|| cub->seg[i + 44].angle == 315 || cub->seg[i + 44].angle == 181))
 		printf("until.x = %d\nuntil.y = %d\nx %% TILE_SIZE = %d\ny %% TILE_SIZE = %d\n", \
 		cub->seg[i + 44].until.x, cub->seg[i + 44].until.y, \
 		cub->seg[i + 44].until.x % TILE_SIZE, cub->seg[i + 44].until.y % TILE_SIZE);
+*/
 }
 
 /* exit à revoir */
