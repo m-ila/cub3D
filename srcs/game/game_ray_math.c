@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 16:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 18:09:33 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	ft_seg_refresh(t_data *cub)
 	ft_print_all_rays(cub);
 }
 
+static bool	ft_check_diag_wall(t_data *cub, t_point_d *end)
+{
+	if (((int) end->x % TILE_SIZE == 0.0 || (int) end->x % TILE_SIZE == TILE_SIZE - 1) && \
+		((int) end->y % TILE_SIZE == 0.0 || (int) end->y % TILE_SIZE == TILE_SIZE - 1) && \
+		((cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x - 1) / TILE_SIZE] && \
+		cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x - 1) / TILE_SIZE] == '1') || \
+		(cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x + 1) / TILE_SIZE] && \
+		cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x + 1) / TILE_SIZE] == '1')))
+		return (true);
+	return (false);
+}
+
 t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 {
 	t_point translate;
@@ -42,6 +54,8 @@ t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
     while (cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] && \
 	cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] != '1')
 	{
+		if (ft_check_diag_wall(cub, end))
+			break ;
         end->x += dx;
 		end->y -= dy;
     }
