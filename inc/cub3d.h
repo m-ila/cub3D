@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 18:48:54 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:55:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ double	ft_abs(double val);
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
-t_compass	ft_get_which_wall(t_segment *seg);
 /* srcs/game/game_init.c */
 void	ft_game(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
@@ -147,6 +146,8 @@ double	ft_check_horizontal(t_data *cub, double angle);
 void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
+/* srcs/games/game_which_texture.c */
+t_compass	ft_get_which_wall(t_segment *seg);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 15:48:28 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 15:54:11 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,63 +57,4 @@ void	ft_handle_angle(t_data *cub, int keycode)
 		cub->angle += 360;
 	else if (cub->angle > 360)
 		cub->angle -= 360;
-}
-
-static t_compass	ft_which_wall_down(t_segment *seg)
-{
-	if (seg->angle > 180 && seg->angle < 270)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
-		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (WE);
-		return (SO);
-	}
-	else if (seg->angle > 270 && seg->angle < 360)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
-		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (EA);
-		return (SO);
-	}
-	return (ERR);
-}
-
-static t_compass	ft_which_wall_up(t_segment *seg)
-{
-	if (seg->angle > 0 && seg->angle < 90)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
-		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (EA);
-		return (NO);
-	}
-	else if (seg->angle > 90 && seg->angle < 180)
-	{
-		if ((seg->until.x % TILE_SIZE == 0 || seg->until.x % TILE_SIZE == 64) \
-		&& (seg->until.y % TILE_SIZE != 0 && seg->until.y % TILE_SIZE != 64))
-			return (WE);
-		return (NO);
-	}
-	return (ERR);
-}
-
-/*
->= because at the exact "limit" angle will be a corner (not drawn ?)
-but still needs to be handled to avoir errors
-*/
-t_compass	ft_get_which_wall(t_segment *seg)
-{
-	if (seg->angle == 0 || seg->angle == 360)
-		return (EA);
-	else if (seg->angle == 90)
-		return (NO);
-	else if (seg->angle == 180)
-		return (WE);
-	else if (seg->angle == 270)
-		return (SO);
-	else if (seg->angle > 0 && seg->angle < 180)
-		return (ft_which_wall_up(seg));
-	else if (seg->angle > 180 && seg->angle < 360)
-		return (ft_which_wall_down(seg));
-	return (ERR);
 }
