@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 16:59:19 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:49:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,32 +82,43 @@ but still needs to be handled to avoir errors
 */
 t_compass	ft_get_which_wall(t_segment *seg)
 {
-/*
-	t_point	dv;
-	double	angle;
-
-	dv.x = seg->until.x - seg->from.x;
-	dv.y = seg->until.y - seg->from.y;
-	angle = atan2(dv.y, dv.x);
-	if ((angle > -PI / 4 ) && (angle < PI / 4))
+	if (seg->angle == 0 || seg->angle == 360)
 		return (EA);
-	else if ((angle >= -PI / 4 ) && (angle < (3 * PI / 4)))
-		return (SO);
-	else if ((angle <= -PI / 4 ) && (angle > (-3 * PI / 4)))
+	else if (seg->angle == 90)
 		return (NO);
-	return (WE);
-*/
-	if (seg->vertical_hit)
+	else if (seg->angle == 180)
+		return (WE);
+	else if (seg->angle == 270)
+		return (SO);
+	else if (seg->angle > 0 && seg->angle < 90)
 	{
-		if (seg->angle > 0 && seg->angle < 180)
-			return (NO);
+		if (seg->until.x % TILE_SIZE == 0)
+			return (EA);
+		return (NO);
+	}
+	else if (seg->angle > 0 && seg->angle < 90)
+	{
+		if (seg->until.x % TILE_SIZE == 0)
+			return (EA);
+		return (NO);
+	}
+	else if (seg->angle > 90 && seg->angle < 180)
+	{
+		if (seg->until.x % TILE_SIZE == 0)
+			return (WE);
+		return (NO);
+	}
+	else if (seg->angle > 180 && seg->angle < 270)
+	{
+		if (seg->until.x % TILE_SIZE == 0)
+			return (WE);
 		return (SO);
 	}
-	if (seg->horizontal_hit)
+	else if (seg->angle > 270 && seg->angle < 360)
 	{
-		if (seg->angle > 90 && seg->angle < 270)
-			return (WE);
-		return (EA);
+		if (seg->until.x % TILE_SIZE == 0)
+			return (EA);
+		return (SO);
 	}
 	return (ERR);
 }

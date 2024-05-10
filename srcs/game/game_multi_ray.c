@@ -6,11 +6,33 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 19:02:34 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/10 13:03:25 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+static void	print_debug(t_data *cub, int i)
+{
+	char	*str;
+
+	if (cub->seg[i + 44].direction == SO)
+		str = "SOUTH";
+	if (cub->seg[i + 44].direction == NO)
+		str = "NORTH";
+	if (cub->seg[i + 44].direction == EA)
+		str = "EAST";
+	if (cub->seg[i + 44].direction == WE)
+		str = "WEST";
+	if (cub->seg[i + 44].direction == ERR)
+		str = "ERR";
+	if (i == -44)
+		printf("\n\nAngle RED : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
+	if (i == 0)
+		printf("Angle YELLOW : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
+	if (i == 45)
+		printf("Angle GREY : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
+}
 
 /* exit à revoir */
 void	ft_malloc_rays(t_data *cub)
@@ -24,10 +46,7 @@ void	ft_malloc_rays(t_data *cub)
 	while (i <= 45)
 	{
 		cub->seg[i + 44] = ft_segment(cub, ft_norm_angle(cub->angle + i));
-		if (i == -44 || i == 0 || i == 45)
-			printf("Angle : %f\nWall hit : %d\n\n", cub->seg[i + 44].angle, cub->seg[i + 44].direction);
-		if (cub->seg[i + 44].angle == 90 || cub->seg[i + 44].angle == 270)
-			printf("Angle : %f\nlen : %f\nlen_h : %f\n", cub->seg[i + 44].angle, cub->seg[i + 44].slope_len, cub->seg[i + 44].horizontal_hit);
+		print_debug(cub, i);
 		i++;
 	}
 }
