@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 14:59:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 20:16:28 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:17:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 2]);
 	else
 		color = C_BROWN;
-	if (i)
-		return (color);
 	return (color);
 }
