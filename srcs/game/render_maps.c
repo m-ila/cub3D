@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 14:56:26 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:17:31 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,17 @@ void render_2d_map(t_data *cub)
 }
 
 
-void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, double distance)
+void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, double distance, t_segment *seg)
 {
     int shade;
     int x;
     int y;
-    uint32_t wall_color;
+    //uint32_t wall_color;
 
     shade = 255 - (int)(distance * 0.5);
     if (shade < 0)
         shade = 0;
-    wall_color = (shade << 16) | (0 << 8) | shade;
+    //wall_color = (shade << 16) | (0 << 8) | shade;
     x = x_start;
     while (x < x_start + 10)
     {
@@ -112,7 +112,7 @@ void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, 
         }
         while (y <= bottom)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, wall_color);
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, ft_get_pixel(cub, seg));
             y++;
         }
         while (y < 600)
@@ -126,7 +126,7 @@ void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, 
 
 double calculate_ray_angle(double player_angle, int column)
 {
-    double fov = M_PI / 3;
+    double fov = PI / 3;
     return player_angle - fov / 2 + column * (fov / 90);
 }
 
@@ -149,7 +149,7 @@ void render_3d_view(t_data *cub)
 		top_pixel = top_pixel < 0 ? 0 : top_pixel;
 		bottom_pixel = top_pixel + wall_height;
         bottom_pixel = bottom_pixel > 600 ? 600 : bottom_pixel;
-        draw_colored_vertical_slice(cub, column * 10, top_pixel, bottom_pixel, corrected_distance);
+        draw_colored_vertical_slice(cub, column * 10, top_pixel, bottom_pixel, corrected_distance, seg);
     }
 }
 

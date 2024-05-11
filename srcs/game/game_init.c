@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/10 18:32:40 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:33:35 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void init_mlx(t_data *cub)
         ft_printf_fd(2, "Error : MLX init failded\n");
         exit(EXIT_FAILURE);
     }
+    if (!ft_open_images(cub))
+		return (exit_cleanup(cub));
 }
 
 void init_windows(t_data *cub)
