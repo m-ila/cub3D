@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 20:51:48 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/10 18:34:12 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,19 @@
 # define C_YELLOW 0xFFD500
 # define C_WHITE 0xF5F5F5
 # define C_GREY 0xAAAAAA
+# define C_BLUE 0x0000FF
+# define C_GREEN 0x00FF00
+# define C_CYAN 0x00FFFF
+# define C_MAGENTA 0xFF00FF
+# define C_ORANGE 0xFFA500
+# define C_PURPLE 0x800080
+# define C_BROWN 0xA52A2A
+# define C_PINK 0xFFC0CB
+# define C_SILVER 0xC0C0C0
+# define C_GOLD 0xFFD700
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
-#define CEILING_COLOR 0xC0C0C0  // Light grey
-#define FLOOR_COLOR   0xC0C0C0  // Light grey
-
-typedef enum path_txt
-{
-	NO,
-	SO,
-	WE,
-	EA,
-	ERR
-}	t_path_txt;
 
 typedef struct s_rgb
 {
@@ -84,8 +83,7 @@ typedef struct s_data
 	t_rgb	ceiling_c;
 	void	*mlx_ptr;
 	void	*win_2d;
-		void	*win_3d;
-
+	void	*win_3d;
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
@@ -132,6 +130,8 @@ bool	ft_parse_flood_fill(t_map *map);
 bool	ft_add_line_to_arr(char ***arr, char **line);
 /* srcs/game/game_angle_math.c */
 double	ft_deg_to_rad(double deg);
+double	ft_norm_angle(double angle);
+double	ft_abs(double val);
 /* srcs/game/game_angle.c */
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
@@ -163,11 +163,11 @@ void	ft_print_all_rays(t_data *cub);
 t_segment	ft_segment(t_data *cub, double angle);
 t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
 double	ft_len_ray(t_point start, t_point end);
-/* srcs/games/game_ray_math.c */
-double	ft_check_horizontal(t_data *cub);
 void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
+/* srcs/games/game_which_texture.c */
+t_compass	ft_get_which_wall(double angle, t_point until);
 
 
 #endif

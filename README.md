@@ -19,6 +19,12 @@
 * [cub3d tutorial medium](https://medium.com/@afatir.ahmedfatir/cub3d-tutorial-af5dd31d2fcf)
 * [map tester : error map ressources](https://github.com/DevJ2K/cub3d_map_tester.git)
 * [raycast](https://www.permadi.com/tutorial/raycast/rayc7.html)
+* [img mlx](https://github.com/keuhdall/images_example)
+
+### Discord help
+* [ray going through](https://discord.com/channels/774300457157918772/785407528971272203/810551909475680276)
+* [2](https://discord.com/channels/774300457157918772/785407528971272203/810153344433520663)
+* [3](https://discord.com/channels/774300457157918772/785407528971272203/892801483047858266)
 
 ### Perso
 * Alias git : ```git config --add alias.wip '!f() { git add -A && git commit -m "$@" && git push; }; f'```

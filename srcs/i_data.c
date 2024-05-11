@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_data.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 18:12:34 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/09 11:22:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	ft_open_file(t_data *cub, char *path_file)
 	return (true);
 }
 
-t_path_txt	ft_which_text(char *str)
+t_compass	ft_which_text(char *str)
 {
 	if (!ft_strncmp("NO", str, ft_strlen(str) + 1))
 		return (NO);

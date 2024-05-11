@@ -6,12 +6,16 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/09 21:18:37 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:22:36 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+int rgb_to_int(t_rgb color)
+{
+    return (color.r << 16) | (color.g << 8) | color.b;
+}
 
 void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
 {
@@ -103,7 +107,7 @@ void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, 
         y = 0;
         while (y < top)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, CEILING_COLOR);
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->ceiling_c));
             y++;
         }
         while (y <= bottom)
@@ -113,7 +117,7 @@ void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, 
         }
         while (y < 600)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, FLOOR_COLOR);
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->floor_c));
             y++;
         }
         x++;
@@ -142,10 +146,10 @@ void render_3d_view(t_data *cub)
         corrected_distance = distance * cos(ray_angle - player_angle);
         wall_height = (TILE_SIZE * cub->map->y_size_max * TILE_SIZE) / corrected_distance;
         top_pixel = (cub->map->y_size_max * TILE_SIZE - wall_height) / 2;
-        bottom_pixel = top_pixel + wall_height;
-        bottom_pixel = bottom_pixel > (int)(cub->map->y_size_max * TILE_SIZE) ? (int)(cub->map->y_size_max * TILE_SIZE) : bottom_pixel;
+		top_pixel = top_pixel < 0 ? 0 : top_pixel;
+		bottom_pixel = top_pixel + wall_height;
+        bottom_pixel = bottom_pixel > 600 ? 600 : bottom_pixel;
         draw_colored_vertical_slice(cub, column * 10, top_pixel, bottom_pixel, corrected_distance);
-		
     }
 }
 

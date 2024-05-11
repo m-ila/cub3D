@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_ray_math.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 16:38:32 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/10 18:29:12 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ void	ft_seg_refresh(t_data *cub)
 	ft_print_all_rays(cub);
 }
 
+static bool	ft_check_diag_wall(t_data *cub, t_point_d *end)
+{
+	if (((int) end->x % TILE_SIZE == 0.0 || (int) end->x % TILE_SIZE == TILE_SIZE - 1) && \
+		((int) end->y % TILE_SIZE == 0.0 || (int) end->y % TILE_SIZE == TILE_SIZE - 1) && \
+		((cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x - 1) / TILE_SIZE] && \
+		cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x - 1) / TILE_SIZE] == '1') || \
+		(cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x + 1) / TILE_SIZE] && \
+		cub->map->raw_map[(int) end->y / TILE_SIZE][(int) (end->x + 1) / TILE_SIZE] == '1')))
+		return (true);
+	return (false);
+}
+
 t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 {
 	t_point translate;
@@ -42,6 +54,8 @@ t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
     while (cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] && \
 	cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] != '1')
 	{
+		if (ft_check_diag_wall(cub, end))
+			break ;
         end->x += dx;
 		end->y -= dy;
     }
@@ -67,6 +81,8 @@ t_segment	ft_segment(t_data *cub, double angle)
 
 	end_d.x = (double) cub->position.x;
 	end_d.y = (double) cub->position.y;
+	seg.horizontal_hit = false;
+	seg.vertical_hit = false;
 	end = ft_find_end_point(cub, &end_d, angle);
 	seg.from = cub->position;
 	seg.until = end;
@@ -75,6 +91,13 @@ t_segment	ft_segment(t_data *cub, double angle)
 	tile_hit.x = seg.until.x / TILE_SIZE;
 	tile_hit.y = seg.until.y / TILE_SIZE;
 	seg.tile_hit = tile_hit;
+	seg.len_processed = seg.slope_len * \
+	cos(ft_deg_to_rad(seg.angle) - ft_deg_to_rad(cub->angle));
+	seg.direction = ft_get_which_wall(seg.angle, seg.until);
+	if (seg.direction == NO || seg.direction == SO)
+		seg.vertical_hit = true;
+	if (seg.direction == EA || seg.direction == WE)
+		seg.horizontal_hit = true;
 	return (seg);
 }
 

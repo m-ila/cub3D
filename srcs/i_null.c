@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 18:37:00 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/11 14:21:41 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_color_set_null(t_rgb *color)
 	color->g = -1;
 	color->b = -1;
 }
+
 
 void	ft_init_null(t_data *cub)
 {

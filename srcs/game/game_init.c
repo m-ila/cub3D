@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/09 20:52:01 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/10 18:32:40 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,22 @@ void move_player(t_data *cub, int keycode)
     t_point old;
     t_point new;
 
-    old = cub->position;
-    new = old;
-    if (keycode == UP)
-        ft_up(cub, &new);
-    else if (keycode == DOWN)
-        ft_down(cub, &new);
-    else if (keycode == LEFT)
-        ft_left(cub, &new);
-    else if (keycode == RIGHT)
-        ft_right(cub, &new);
-    if (cub->map->raw_map[new.y / TILE_SIZE][new.x / TILE_SIZE] != '1')
-    {
-        update_player_position(cub, old, new);
-        cub->position = new;
-        ft_seg_refresh(cub);
-    }
+	old = cub->position;
+	new = old;
+	if (keycode == UP)
+		ft_up(cub, &new);
+	else if (keycode == DOWN)
+		ft_down(cub, &new);
+	else if (keycode == LEFT)
+		ft_left(cub, &new);
+	else if (keycode == RIGHT)
+		ft_right(cub, &new);
+	if (cub->map->raw_map[new.y / TILE_SIZE][new.x / TILE_SIZE] != '1') 
+	{
+		update_player_position(cub, old, new);
+		cub->position = new;
+		ft_seg_refresh(cub);
+	}
 }
 
 int key_hook(int keycode, void *param)
