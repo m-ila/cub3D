@@ -9,11 +9,13 @@
 - [x] if player outside the walls ?
 - [ ] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
 - [ ] Free imgs quand fin partout
-- [ ] Angles texture
+- [ ] Angles texture (en cours)
 - [ ] Faire en sorte que quand on reste appuyé ça avance
 - [ ] Norme
 - [ ] quand on appuie sur gauche, ça va vers la gauche etc
 - [ ] tests leaks
+- [ ] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
+- [ ] parsing : régler le x_max
 
 
 ## Ressources
