@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 18:29:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:12:19 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_segment	ft_segment(t_data *cub, double angle)
 		seg.vertical_hit = true;
 	if (seg.direction == EA || seg.direction == WE)
 		seg.horizontal_hit = true;
+	seg.wall_height = (TILE_SIZE * W_WIDTH / 2) / seg.len_processed;
 	return (seg);
 }
 

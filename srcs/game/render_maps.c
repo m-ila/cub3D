@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 17:28:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:28:20 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ void render_2d_map(t_data *cub)
 }
 
 
-void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, double distance, t_segment *seg)
+void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {
     int shade;
     int x;
     int y;
     //uint32_t wall_color;
 
-    shade = 255 - (int)(distance * 0.5);
+    shade = 255 - (int)(seg->len_processed * 0.5);
     if (shade < 0)
         shade = 0;
     //wall_color = (shade << 16) | (0 << 8) | shade;
@@ -105,17 +105,17 @@ void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, 
     while (x < x_start + 10)
     {
         y = 0;
-        while (y < top)
+        while (y < seg->top_pix)
         {
             mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->ceiling_c));
             y++;
         }
-        while (y <= bottom)
+        while (y <= seg->bot_pix)
         {
             mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, ft_get_pixel(cub, seg, y));
             y++;
         }
-        while (y < 600)
+        while (y < W_HEIGHT)
         {
             mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->floor_c));
             y++;
@@ -132,24 +132,19 @@ double calculate_ray_angle(double player_angle, int column)
 
 void render_3d_view(t_data *cub)
 {
-    double wall_height, distance, corrected_distance;
-    double player_angle = cub->seg->angle;
-    double ray_angle;
-    int column, top_pixel, bottom_pixel;
+    int column;
 
-    for (column = 0; column < 90; column++)
+	column = 0;
+    while (column < 90)
     {
-        t_segment *seg = &cub->seg[column];
-        distance = seg->slope_len;
-
-        ray_angle = calculate_ray_angle(player_angle, column);
-        corrected_distance = distance * cos(ray_angle - player_angle);
-        wall_height = (TILE_SIZE * cub->map->y_size_max * TILE_SIZE) / corrected_distance;
-        top_pixel = (cub->map->y_size_max * TILE_SIZE - wall_height) / 2;
-		top_pixel = top_pixel < 0 ? 0 : top_pixel;
-		bottom_pixel = top_pixel + wall_height;
-        bottom_pixel = bottom_pixel > 600 ? 600 : bottom_pixel;
-        draw_colored_vertical_slice(cub, column * 10, top_pixel, bottom_pixel, corrected_distance, seg);
+        cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
+		if (cub->seg[column].top_pix < 0)
+			cub->seg[column].top_pix = 0;
+		cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
+		if (cub->seg[column].bot_pix > W_HEIGHT)
+			cub->seg[column].bot_pix = W_HEIGHT;
+        draw_colored_vertical_slice(cub, &cub->seg[column], column * 10);
+		column++;
     }
 }
 

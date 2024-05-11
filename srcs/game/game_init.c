@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 16:33:35 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 18:51:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void init_windows(t_data *cub)
     }
 
     // Initialize window for the 3D view
-    cub->win_3d = mlx_new_window(cub->mlx_ptr, 900, 600, "3D View"); // Assuming 900x600 for 3D view
+    cub->win_3d = mlx_new_window(cub->mlx_ptr, W_WIDTH, W_HEIGHT, "3D View"); // Assuming 900x600 for 3D view
     if (!cub->win_3d)
     {
         fprintf(stderr, "Error: Window creation failed for 3D view\n");
