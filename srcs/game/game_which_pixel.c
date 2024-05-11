@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 14:59:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 20:47:08 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:56:44 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	ft_get_y_offset(t_segment *seg, t_img_mlx *img, int i)
 {
 	int	offset;
 
-	offset = (i + ((seg->wall_height / 2) - (W_HEIGHT / 2))) * (img->height / seg->wall_height);
+	offset = (i + ((seg->wall_height / 2) - (W_HEIGHT / 2))) * \
+	(img->height / seg->wall_height);
 	if (offset < 0)
 		offset = 0;
 	if (offset >= img->height)
