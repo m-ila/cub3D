@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 17:17:31 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:28:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void draw_colored_vertical_slice(t_data *cub, int x_start, int top, int bottom, 
         }
         while (y <= bottom)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, ft_get_pixel(cub, seg));
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, ft_get_pixel(cub, seg, y));
             y++;
         }
         while (y < 600)
