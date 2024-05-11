@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 14:59:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 20:15:18 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 20:16:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,9 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 
 	pix.x = ft_get_x_offset(seg, cub->imgs[seg->direction]);
 	pix.y = ft_get_y_offset(seg, cub->imgs[seg->direction], i);
-	offset = (cub->imgs[seg->direction]->s_line * pix.y) + (pix.x * cub->imgs[seg->direction]->bpp / 8);
-/*	if (offset >= 0 && offset < cub->imgs[seg->direction]->s_line * cub->imgs[seg->direction]->height)
+	offset = (pix.y * cub->imgs[seg->direction]->width + pix.x) * \
+	(pix.y * cub->imgs[seg->direction]->bpp / 8);
+	if (offset >= 0 && offset < cub->imgs[seg->direction]->s_line * cub->imgs[seg->direction]->height)
 		color = ((unsigned char) cub->imgs[seg->direction]->adress[offset] << 16) |\
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 1] << 8) | \
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 2]);
@@ -56,7 +57,5 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 		color = C_BROWN;
 	if (i)
 		return (color);
-		*/
-	color = cub->imgs[seg->direction]->adress[offset / 4];
 	return (color);
 }
