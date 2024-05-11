@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 19:29:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:46:12 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int rgb_to_int(t_rgb color)
 {
-    return (color.r << 16) | (color.g << 8) | color.b;
+    return ((color.r << 16) | (color.g << 8) | color.b);
 }
 
 void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
@@ -89,7 +89,6 @@ void render_2d_map(t_data *cub)
 	}
 }
 
-
 void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {
     int shade;
@@ -122,12 +121,6 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
         }
         x++;
     }
-}
-
-double calculate_ray_angle(double player_angle, int column)
-{
-    double fov = PI / 3;
-    return player_angle - fov / 2 + column * (fov / 90);
 }
 
 void render_3d_view(t_data *cub)
