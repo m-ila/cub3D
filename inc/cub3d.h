@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 14:21:55 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 17:10:07 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
+# define MINI_TILE_SIZE 13
 # define W_HEIGHT 600
 # define W_WIDTH 900
 
@@ -153,7 +154,7 @@ int key_hook(int keycode, void *param);
 void render_2d_map(t_data *cub);
 void draw_player(t_data *cub, t_point pos, int color);
 
-void render_3d_view(t_data *cub);
+void render_3d(t_data *cub);
 /* srcs/game/game_input.c */
 int		ft_handle_clic(int button, int x, int y, void *param);
 /* srcs/games/game_moves.c */

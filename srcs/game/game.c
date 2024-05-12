@@ -11,9 +11,9 @@ void ft_game(t_data *cub)
     ft_malloc_rays(cub);
 
     render_2d_map(cub);
-    render_3d_view(cub);
+    render_3d(cub);
 
-    mlx_key_hook(cub->win_2d, key_hook, cub);
+    mlx_key_hook(cub->win_3d, key_hook, cub);
     mlx_mouse_hook(cub->win_2d, ft_handle_clic, cub);  // Mouse interaction for 2D view
     mlx_loop(cub->mlx_ptr);
 }

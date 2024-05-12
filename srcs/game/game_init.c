@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/12 14:23:14 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 17:10:33 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void init_windows(t_data *cub)
         exit_cleanup(cub); // Handle cleanup and exit
     }
 
-    // Initialize window for the 3D view
-    cub->win_3d = mlx_new_window(cub->mlx_ptr, W_WIDTH, W_HEIGHT, "3D View"); // Assuming 900x600 for 3D view
+    int total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE);  // Define MINIMAP_TILE_SIZE appropriately
+    cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, W_HEIGHT, "3D and Minimap View");
     if (!cub->win_3d)
     {
         fprintf(stderr, "Error: Window creation failed for 3D view\n");
@@ -102,14 +102,14 @@ int key_hook(int keycode, void *param)
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 	{	
         move_player(cub, keycode);
-        render_3d_view(cub);
+        render_3d(cub);
 
     }
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
 	{
 		ft_handle_angle(cub, keycode);
 		ft_seg_refresh(cub);
-                render_3d_view(cub);
+                render_3d(cub);
 
 	}
 	else if (keycode == ESC)
