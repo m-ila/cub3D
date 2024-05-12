@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:53:48 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 12:48:57 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 13:37:22 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static bool	ft_is_corner(t_point until)
 
 static t_compass	ft_corners(double angle, t_point from, t_point until)
 {
-	if (from.y && (until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == 0) && (angle >= 0 && angle <= 135))
-		return (SO);
-	if ((until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == 0) && (angle > 135 && angle < 360))
+	if (from.y && angle && (until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == TILE_SIZE - 1))
+		return (NO);
+	if ((until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == 0))
+	{
+		if ((angle > 0 && angle <= 135 && from.x >= until.x))
+			return (SO);
 		return (EA);
-	if ((until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == TILE_SIZE - 1) && (angle >= 0 && angle <= 135))
-		return (SO);
-	if ((until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == TILE_SIZE - 1) && (angle > 135 && angle < 360))
-		return (EA);
+	}
 	return (NO);
 }
 
