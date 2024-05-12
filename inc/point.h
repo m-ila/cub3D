@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 18:24:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:24:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ typedef struct s_segment
 	bool	vertical_hit;
 	bool	horizontal_hit;
 	t_compass	direction;
+	double		wall_height;
+	int			top_pix;
+	int			bot_pix;
 }	t_segment;
 
 #endif

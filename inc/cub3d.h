@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 18:34:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 18:50:11 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
+# define W_HEIGHT 600
+# define W_WIDTH 900
 
 typedef struct s_rgb
 {
@@ -84,6 +86,7 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_2d;
 	void	*win_3d;
+	t_img_mlx	**imgs;
 	int		tmp_fd;
 	char	*tmp_line;
 	bool	end;
@@ -138,6 +141,9 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
+/* srcs/game/game_init_img.c */
+bool	ft_free_imgs(t_data *cub, int i, bool err);
+bool	ft_open_images(t_data *cub);
 /* srcs/game/game_init.c */
 void	init_mlx(t_data *cub);
 void	init_windows(t_data *cub);
@@ -166,6 +172,8 @@ double	ft_len_ray(t_point start, t_point end);
 void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
+/* srcs/game/game_which_pixel.c */
+int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
 t_compass	ft_get_which_wall(double angle, t_point until);
 

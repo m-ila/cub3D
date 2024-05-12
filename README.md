@@ -8,6 +8,17 @@
 - [ ] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
 - [x] if player outside the walls ?
 - [ ] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
+- [ ] Free imgs quand fin partout
+- [ ] Angles texture (en cours)
+- [ ] Faire en sorte que quand on reste appuyé ça avance
+- [ ] Norme
+- [ ] quand on appuie sur gauche, ça va vers la gauche etc
+- [ ] tests leaks
+- [ ] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
+- [ ] parsing : régler le x_max
+- [ ] vérifier que le jeu ne crash pas si on lance sans env
+- [ ] enlever les wildcards dans le makefile
+- [ ] des fois on peut rentrer dans les murs (angles et en allant en arrière)
 
 
 ## Ressources
