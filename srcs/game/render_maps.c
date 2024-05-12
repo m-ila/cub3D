@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 22:46:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:05:07 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +106,17 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
         y = 0;
         while (y < seg->top_pix)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->ceiling_c));
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, rgb_to_int(cub->ceiling_c));
             y++;
         }
         while (y <= seg->bot_pix)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, ft_get_pixel(cub, seg, y));
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, ft_get_pixel(cub, seg, y));
             y++;
         }
         while (y < W_HEIGHT)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->floor_c));
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, rgb_to_int(cub->floor_c));
             y++;
         }
         x++;
@@ -127,8 +127,8 @@ void render_3d_view(t_data *cub)
 {
     int column;
 
-	column = 0;
-    while (column < 90)
+	column = 89;
+    while (column >= 0)
     {
         cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
 		if (cub->seg[column].top_pix < 0)
@@ -137,6 +137,6 @@ void render_3d_view(t_data *cub)
 		if (cub->seg[column].bot_pix > W_HEIGHT)
 			cub->seg[column].bot_pix = W_HEIGHT;
         draw_colored_vertical_slice(cub, &cub->seg[column], column * 10);
-		column++;
+		column--;
     }
 }
