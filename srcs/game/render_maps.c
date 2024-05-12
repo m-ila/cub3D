@@ -6,11 +6,8 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/12 14:11:24 by yuewang          ###   ########.fr       */
-=======
+
 /*   Updated: 2024/05/12 14:05:47 by mbruyant         ###   ########.fr       */
->>>>>>> mbruyant2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +112,8 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
         }
         while (y <= seg->bot_pix)
         {
-<<<<<<< HEAD
-=======
+
             mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, ft_get_pixel(cub, seg, y));
->>>>>>> mbruyant2
             y++;
         }
         while (y < W_HEIGHT)
@@ -134,8 +129,7 @@ void render_3d_view(t_data *cub)
 {
     int column;
 
-<<<<<<< HEAD
-=======
+
 	column = 0;
     while (column < 90)
     {
@@ -149,4 +143,3 @@ void render_3d_view(t_data *cub)
 		column++;
     }
 }
->>>>>>> mbruyant2

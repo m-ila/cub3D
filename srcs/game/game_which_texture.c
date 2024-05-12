@@ -6,10 +6,8 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:53:48 by mbruyant          #+#    #+#             */
-<<<<<<< HEAD
-=======
+
 /*   Updated: 2024/05/12 13:51:40 by mbruyant         ###   ########.fr       */
->>>>>>> mbruyant2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +19,7 @@ static bool	ft_is_corner(t_point until)
 		&& (until.y % TILE_SIZE == 0 || until.y % TILE_SIZE == TILE_SIZE - 1));
 }
 
-<<<<<<< HEAD
-=======
+
 static t_compass	ft_corners(double angle, t_point from, t_point until)
 {
 	if (from.y && angle && (until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == TILE_SIZE - 1))
@@ -43,7 +40,6 @@ static t_compass	ft_corners(double angle, t_point from, t_point until)
 }
 
 static t_compass	ft_which_wall_down(double angle, t_point from, t_point until)
->>>>>>> mbruyant2
 {
 	if (angle > 180 && angle < 270)
 	{
@@ -51,11 +47,7 @@ static t_compass	ft_which_wall_down(double angle, t_point from, t_point until)
 		&& (until.y % TILE_SIZE != 0 && until.y % TILE_SIZE != TILE_SIZE - 1))
 			return (WE);
 		if (ft_is_corner(until))
-<<<<<<< HEAD
-			return (ft_corners(angle, until));
-=======
 			return (ft_corners(angle, from, until));
->>>>>>> mbruyant2
 		return (SO);
 	}
 	else if (angle > 270 && angle < 360)
@@ -64,11 +56,9 @@ static t_compass	ft_which_wall_down(double angle, t_point from, t_point until)
 		&& (until.y % TILE_SIZE != 0 && until.y % TILE_SIZE != TILE_SIZE - 1))
 			return (EA);
 		if (ft_is_corner(until))
-<<<<<<< HEAD
-			return (ft_corners(angle, until));
-=======
+
 			return (ft_corners(angle, from, until));
->>>>>>> mbruyant2
+
 		return (SO);
 	}
 	return (ERR);
@@ -82,11 +72,7 @@ static t_compass	ft_which_wall_up(double angle, t_point from, t_point until)
 		&& (until.y % TILE_SIZE != 0 && until.y % TILE_SIZE != TILE_SIZE - 1))
 			return (EA);
 		if (ft_is_corner(until))
-<<<<<<< HEAD
-			return (ft_corners(angle, until));
-=======
 			return (ft_corners(angle, from, until));
->>>>>>> mbruyant2
 		return (NO);
 	}
 	else if (angle > 90 && angle < 180)
@@ -95,11 +81,8 @@ static t_compass	ft_which_wall_up(double angle, t_point from, t_point until)
 		&& (until.y % TILE_SIZE != 0 && until.y % TILE_SIZE != TILE_SIZE - 1))
 			return (WE);
 		if (ft_is_corner(until))
-<<<<<<< HEAD
-			return (ft_corners(angle, until));
-=======
+
 			return (ft_corners(angle, from, until));
->>>>>>> mbruyant2
 		return (NO);
 	}
 	return (ERR);
