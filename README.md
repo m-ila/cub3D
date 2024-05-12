@@ -18,6 +18,7 @@
 - [ ] parsing : régler le x_max
 - [ ] vérifier que le jeu ne crash pas si on lance sans env
 - [ ] enlever les wildcards dans le makefile
+- [ ] des fois on peut rentrer dans les murs (angles et en allant en arrière)
 
 
 ## Ressources
