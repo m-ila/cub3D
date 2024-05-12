@@ -6,7 +6,10 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/12 14:06:12 by yuewang          ###   ########.fr       */
+=======
+>>>>>>> mbruyant2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +33,8 @@ void init_mlx(t_data *cub)
         exit_cleanup(cub);
         exit(EXIT_FAILURE);
     }
+    if (!ft_open_images(cub))
+		return (exit_cleanup(cub));
 }
 
 

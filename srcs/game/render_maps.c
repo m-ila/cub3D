@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_maps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/12 14:11:24 by yuewang          ###   ########.fr       */
+=======
+/*   Updated: 2024/05/12 14:05:47 by mbruyant         ###   ########.fr       */
+>>>>>>> mbruyant2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,17 +110,20 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
         y = 0;
         while (y < seg->top_pix)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->ceiling_c));
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, rgb_to_int(cub->ceiling_c));
             y++;
         }
         while (y <= seg->bot_pix)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, ft_get_pixel(cub, seg, y));
+<<<<<<< HEAD
+=======
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, ft_get_pixel(cub, seg, y));
+>>>>>>> mbruyant2
             y++;
         }
         while (y < W_HEIGHT)
         {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, x, y, rgb_to_int(cub->floor_c));
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, rgb_to_int(cub->floor_c));
             y++;
         }
         x++;
@@ -127,18 +134,19 @@ void render_3d_view(t_data *cub)
 {
     int column;
 
-    for (column = 0; column < 90; column++)  // Assuming 90 is the number of vertical slices or rays
+<<<<<<< HEAD
+=======
+	column = 0;
+    while (column < 90)
     {
-        // Calculate pixelColumn such that the view is correctly oriented
-        int pixelColumn = (90 - 1 - column) * 10;  // This line reverses the order of rendering columns
-
         cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
-        cub->seg[column].top_pix = (cub->seg[column].top_pix < 0) ? 0 : cub->seg[column].top_pix;
-        cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
-        cub->seg[column].bot_pix = (cub->seg[column].bot_pix > W_HEIGHT) ? W_HEIGHT : cub->seg[column].bot_pix;
-
-        draw_colored_vertical_slice(cub, &cub->seg[column], pixelColumn);
+		if (cub->seg[column].top_pix < 0)
+			cub->seg[column].top_pix = 0;
+		cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
+		if (cub->seg[column].bot_pix > W_HEIGHT)
+			cub->seg[column].bot_pix = W_HEIGHT;
+        draw_colored_vertical_slice(cub, &cub->seg[column], column * 10);
+		column++;
     }
 }
-
-
+>>>>>>> mbruyant2

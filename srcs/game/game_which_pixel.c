@@ -6,7 +6,10 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 14:59:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 22:49:51 by mbruyant         ###   ########.fr       */
+<<<<<<< HEAD
+=======
+/*   Updated: 2024/05/12 14:09:30 by mbruyant         ###   ########.fr       */
+>>>>>>> mbruyant2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +25,10 @@ int	ft_get_x_offset(t_segment *seg, t_img_mlx *img)
 		offset = (seg->until.x % TILE_SIZE) * img->width / TILE_SIZE;
 	if (offset >= img->width)
 		offset = img->width - 1;
-	if (seg->direction == NO || seg->direction == EA)
+<<<<<<< HEAD
+=======
+	if (seg->direction == WE || seg->direction == SO)
+>>>>>>> mbruyant2
 		return (TILE_SIZE - offset);
 	return (offset);
 }

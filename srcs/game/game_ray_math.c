@@ -6,7 +6,10 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/11 19:12:19 by mbruyant         ###   ########.fr       */
+=======
+>>>>>>> mbruyant2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +96,7 @@ t_segment	ft_segment(t_data *cub, double angle)
 	seg.tile_hit = tile_hit;
 	seg.len_processed = seg.slope_len * \
 	cos(ft_deg_to_rad(seg.angle) - ft_deg_to_rad(cub->angle));
-	seg.direction = ft_get_which_wall(seg.angle, seg.until);
+	seg.direction = ft_get_which_wall(seg.angle, seg.from, seg.until);
 	if (seg.direction == NO || seg.direction == SO)
 		seg.vertical_hit = true;
 	if (seg.direction == EA || seg.direction == WE)
