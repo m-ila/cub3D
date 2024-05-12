@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/12 14:05:07 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:05:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ void render_3d_view(t_data *cub)
 {
     int column;
 
-	column = 89;
-    while (column >= 0)
+	column = 0;
+    while (column < 90)
     {
         cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
 		if (cub->seg[column].top_pix < 0)
@@ -137,6 +137,6 @@ void render_3d_view(t_data *cub)
 		if (cub->seg[column].bot_pix > W_HEIGHT)
 			cub->seg[column].bot_pix = W_HEIGHT;
         draw_colored_vertical_slice(cub, &cub->seg[column], column * 10);
-		column--;
+		column++;
     }
 }
