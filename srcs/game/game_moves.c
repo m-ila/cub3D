@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 12:59:47 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 13:27:22 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,34 @@ void	ft_down(t_data *cub, t_point *new)
 	new->y = cub->position.y + round(dy);
 }
 
-void ft_left(t_data *cub, t_point *new)
+void	ft_left(t_data *cub, t_point *new)
 {
-    double dx;
-    double dy;
-    double tmp_angle;
+	double	dx;
+	double	dy;
+	double	tmp_angle;
 
-    tmp_angle = cub->angle - 90;
-    if (tmp_angle < 0)
-        tmp_angle += 360;
-    dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle)); 
-    dy = INCR_STEP * sin(ft_deg_to_rad(tmp_angle));
-
-    new->x = cub->position.x + round(dx);
-    new->y = cub->position.y - round(dy);
+	tmp_angle = cub->angle - 90;
+	if (tmp_angle < 0)
+		tmp_angle += 360;
+	dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle));
+	dy = INCR_STEP * sin(ft_deg_to_rad(tmp_angle));
+	new->x = cub->position.x - round(dx);
+	new->y = cub->position.y + round(dy);
 }
 
-void ft_right(t_data *cub, t_point *new)
+void	ft_right(t_data *cub, t_point *new)
 {
-    double dx;
-    double dy;
-    double tmp_angle;
+	double	dx;
+	double	dy;
+	double	tmp_angle;
 
-    tmp_angle = cub->angle + 90;
-        tmp_angle -= 360;
-    dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle)); 
-    dy = INCR_STEP * sin(ft_deg_to_rad(tmp_angle));
-
-    new->x = cub->position.x + round(dx);
-    new->y = cub->position.y - round(dy);
+	tmp_angle = cub->angle + 90;
+	if (tmp_angle > 360)
+		tmp_angle -= 360;
+	dx = INCR_STEP * cos(ft_deg_to_rad(tmp_angle));
+	dy = INCR_STEP * sin(ft_deg_to_rad(tmp_angle));
+	new->x = cub->position.x - round(dx);
+	new->y = cub->position.y + round(dy);
 }
+
 

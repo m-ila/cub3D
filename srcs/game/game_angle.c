@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 12:56:52 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 13:28:03 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,16 @@ void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
 	}
 }
 
-void ft_handle_angle(t_data *cub, int keycode)
+void	ft_handle_angle(t_data *cub, int keycode)
 {
-    if (keycode == LEFT_ARROW || keycode == CLIC)
-    {
-        cub->angle -= INCR_DEG;
-        if (cub->angle < 0)
-            cub->angle += 360;
-    }
-    if (keycode == RIGHT_ARROW || keycode == R_CLIC)
-    {
-        cub->angle += INCR_DEG;
-        if (cub->angle >= 360)
-            cub->angle -= 360;
-    }
+	if (keycode == LEFT_ARROW || keycode == CLIC)
+		cub->angle += INCR_DEG;
+	if (keycode == RIGHT_ARROW || keycode == R_CLIC)
+		cub->angle -= INCR_DEG;
+	if (cub->angle < 0)
+		cub->angle += 360;
+	else if (cub->angle > 360)
+		cub->angle -= 360;
 }
 
 

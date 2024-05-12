@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 18:51:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 13:54:01 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void init_windows(t_data *cub)
         fprintf(stderr, "Error: Window creation failed for 3D view\n");
         exit_cleanup(cub); // Handle cleanup and exit
     }
+    // Set up window close event handling
+    mlx_hook(cub->win_2d, 17, 0L, (int (*)())exit_cleanup, cub);
+    mlx_hook(cub->win_3d, 17, 0L, (int (*)())exit_cleanup, cub);
 }
 
 void update_player_position(t_data *cub, t_point old, t_point new)

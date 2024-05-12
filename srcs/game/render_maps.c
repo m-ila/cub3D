@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_maps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 22:46:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 13:38:50 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,16 +127,18 @@ void render_3d_view(t_data *cub)
 {
     int column;
 
-	column = 0;
-    while (column < 90)
+    for (column = 0; column < 90; column++)  // Assuming 90 is the number of vertical slices or rays
     {
+        // Calculate pixelColumn such that the view is correctly oriented
+        int pixelColumn = (90 - 1 - column) * 10;  // This line reverses the order of rendering columns
+
         cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
-		if (cub->seg[column].top_pix < 0)
-			cub->seg[column].top_pix = 0;
-		cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
-		if (cub->seg[column].bot_pix > W_HEIGHT)
-			cub->seg[column].bot_pix = W_HEIGHT;
-        draw_colored_vertical_slice(cub, &cub->seg[column], column * 10);
-		column++;
+        cub->seg[column].top_pix = (cub->seg[column].top_pix < 0) ? 0 : cub->seg[column].top_pix;
+        cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
+        cub->seg[column].bot_pix = (cub->seg[column].bot_pix > W_HEIGHT) ? W_HEIGHT : cub->seg[column].bot_pix;
+
+        draw_colored_vertical_slice(cub, &cub->seg[column], pixelColumn);
     }
 }
+
+
