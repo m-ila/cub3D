@@ -95,12 +95,10 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
     int shade;
     int x;
     int y;
-    //uint32_t wall_color;
 
     shade = 255 - (int)(seg->len_processed * 0.5);
     if (shade < 0)
         shade = 0;
-    //wall_color = (shade << 16) | (0 << 8) | shade;
     x = x_start;
     while (x < x_start + 10)
     {

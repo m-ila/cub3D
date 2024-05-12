@@ -14,7 +14,7 @@
 - [ ] Norme
 - [x] quand on appuie sur gauche, ça va vers la gauche etc
 - [ ] tests leaks
-- [ ] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
+- [x] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
 - [ ] parsing : régler le x_max
 - [ ] vérifier que le jeu ne crash pas si on lance sans env
 - [ ] enlever les wildcards dans le makefile
