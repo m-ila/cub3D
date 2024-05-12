@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/12 13:54:01 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 14:06:12 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void init_mlx(t_data *cub)
         ft_safe_free(&(cub->tmp_line));
         ft_free_textures(cub);
         ft_close_fd(&(cub->tmp_fd));
-        ft_printf_fd(2, "Error : MLX init failded\n");
+        ft_printf_fd(2, "Error: MLX initialization failed\n");
+        exit_cleanup(cub);
         exit(EXIT_FAILURE);
     }
     if (!ft_open_images(cub))
-		return (exit_cleanup(cub));
+    {
+        exit_cleanup(cub);
+        exit(EXIT_FAILURE);
+    }
 }
+
 
 void init_windows(t_data *cub)
 {

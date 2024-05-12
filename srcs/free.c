@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/09 18:07:27 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 14:03:15 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_free_map(t_map *m)
 	}
 }
 
-void exit_cleanup(t_data *cub)
+int exit_cleanup(t_data *cub)
 {
     // Clean up resources and exit if window creation fails
     if (cub->win_2d)
@@ -74,5 +74,6 @@ void exit_cleanup(t_data *cub)
     ft_close_fd(&(cub->tmp_fd));
 	free(cub->seg);
     exit(EXIT_FAILURE);
+	return 0;
 }
 

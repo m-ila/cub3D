@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 18:50:11 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 14:04:35 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		ft_err_ret(char *msg, char *name, int ret);
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
 void	ft_free_map(t_map *m);
-void	exit_cleanup(t_data *cub);
+int exit_cleanup(t_data *cub);
 
 /* srcs/i_color.c */
 bool	ft_color_range(char **arr);
