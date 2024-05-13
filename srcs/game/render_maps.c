@@ -156,8 +156,8 @@ void draw_player_minimap(t_data *cub, int start_x, int start_y) {
     int player_minimap_x = start_x + (int)((float)cub->position.x / TILE_SIZE * MINI_TILE_SIZE);
     int player_minimap_y = start_y + (int)((float)cub->position.y / TILE_SIZE * MINI_TILE_SIZE);
 
-    for (int i = 0; i < 1; i++) {
-        for (int j = 0; j < 1; j++) {
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
             mlx_pixel_put(cub->mlx_ptr, cub->win_3d, player_minimap_x + i, player_minimap_y + j, 0xFF0000);  // Light red for player
         }
     }

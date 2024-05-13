@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 17:25:20 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/13 12:19:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@
 # define INCR_STEP 5
 # define TILE_SIZE 65
 # define MINI_TILE_SIZE 13
-# define W_HEIGHT 600
-# define W_WIDTH 900
+# define W_HEIGHT 800
+# define W_WIDTH 1100
 
 typedef struct s_rgb
 {
