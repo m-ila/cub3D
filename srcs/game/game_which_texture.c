@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 15:53:48 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 13:51:40 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:45:30 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,14 @@ static bool	ft_is_corner(t_point until)
 
 static t_compass	ft_corners(double angle, t_point from, t_point until)
 {
-	if (from.y && angle && (until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == TILE_SIZE - 1))
-		return (NO);
 	if ((until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == 0))
 	{
-		if (angle <= 90)
-			return (SO);
-		return (EA);
+		return (ft_get_which_wall(angle, from, (t_point){until.x + 1, until.y}));
 	}
 	if ((until.x % TILE_SIZE == 0 && until.y % TILE_SIZE == TILE_SIZE - 1))
 	{
 		if (angle >= 270 && angle <= 360)
-			return (NO);
+			return (SO);
 		return (EA);
 	}
 	return (NO);
