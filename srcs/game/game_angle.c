@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_angle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 18:26:05 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 13:28:03 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,6 @@ void	ft_handle_angle(t_data *cub, int keycode)
 	else if (cub->angle > 360)
 		cub->angle -= 360;
 }
+
+
+

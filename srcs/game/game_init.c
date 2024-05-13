@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/11 18:51:22 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/12 17:25:29 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,17 @@ void init_mlx(t_data *cub)
         ft_safe_free(&(cub->tmp_line));
         ft_free_textures(cub);
         ft_close_fd(&(cub->tmp_fd));
-        ft_printf_fd(2, "Error : MLX init failded\n");
+        ft_printf_fd(2, "Error: MLX initialization failed\n");
+        exit_cleanup(cub);
         exit(EXIT_FAILURE);
     }
     if (!ft_open_images(cub))
-		return (exit_cleanup(cub));
+    {
+        exit_cleanup(cub);
+        exit(EXIT_FAILURE);
+    }
 }
+
 
 void init_windows(t_data *cub)
 {
@@ -42,13 +47,16 @@ void init_windows(t_data *cub)
         exit_cleanup(cub); // Handle cleanup and exit
     }
 
-    // Initialize window for the 3D view
-    cub->win_3d = mlx_new_window(cub->mlx_ptr, W_WIDTH, W_HEIGHT, "3D View"); // Assuming 900x600 for 3D view
+    int total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE);  // Define MINIMAP_TILE_SIZE appropriately
+    cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, W_HEIGHT, "3D and Minimap View");
     if (!cub->win_3d)
     {
         fprintf(stderr, "Error: Window creation failed for 3D view\n");
         exit_cleanup(cub); // Handle cleanup and exit
     }
+    // Set up window close event handling
+    mlx_hook(cub->win_2d, 17, 0L, (int (*)())exit_cleanup, cub);
+    mlx_hook(cub->win_3d, 17, 0L, (int (*)())exit_cleanup, cub);
 }
 
 void update_player_position(t_data *cub, t_point old, t_point new)
@@ -94,14 +102,14 @@ int key_hook(int keycode, void *param)
 	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 	{	
         move_player(cub, keycode);
-        render_3d_view(cub);
+        render_3d(cub);
 
     }
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
 	{
 		ft_handle_angle(cub, keycode);
 		ft_seg_refresh(cub);
-                render_3d_view(cub);
+                render_3d(cub);
 
 	}
 	else if (keycode == ESC)
