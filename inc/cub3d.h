@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/13 12:19:47 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 11:51:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,9 @@ void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
 /* srcs/game/game_which_pixel.c */
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
-t_compass	ft_get_which_wall(double angle, t_point from, t_point until);
+t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point from, t_point until);
 
+double	ft_hzt_intersections(t_data *cub, t_segment *seg);
+double	ft_vrt_intersections(t_data *cub, t_segment *seg);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_ray_math.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 14:20:09 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/14 12:55:19 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,28 @@ t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 	return (translate);
 }
 
+void	ft_get_hor_vert(t_data *cub, t_segment *seg)
+{
+	double	hor;
+	double	vert;
+	char	*deb;
+
+	hor = ft_hzt_intersections(cub, seg);
+	vert = ft_vrt_intersections(cub, seg);
+	if (hor < vert)
+		seg->horizontal_hit = true;
+	else
+		seg->vertical_hit = true;
+	if (seg->angle == 135 || seg->angle == 45)
+	{
+		if (hor < vert)
+			deb = "hor";
+		else
+			deb = "vert";
+		printf("\nangle : %f\n%s\n", seg->angle, deb);
+	}
+}
+
 /*
 BOTH are pixel position
 t_point	from
@@ -93,11 +115,8 @@ t_segment	ft_segment(t_data *cub, double angle)
 	seg.tile_hit = tile_hit;
 	seg.len_processed = seg.slope_len * \
 	cos(ft_deg_to_rad(seg.angle) - ft_deg_to_rad(cub->angle));
-	seg.direction = ft_get_which_wall(seg.angle, seg.from, seg.until);
-	if (seg.direction == NO || seg.direction == SO)
-		seg.vertical_hit = true;
-	if (seg.direction == EA || seg.direction == WE)
-		seg.horizontal_hit = true;
+	ft_get_hor_vert(cub, &seg);
+	seg.direction = ft_get_which_wall(&seg ,seg.angle, seg.from, seg.until);
 	seg.wall_height = (TILE_SIZE * W_WIDTH / 2) / seg.len_processed;
 	return (seg);
 }
