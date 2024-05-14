@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 21:01:39 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 21:22:44 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,9 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 		d.y = -TILE_SIZE;
 	else
 		d.y = TILE_SIZE;
-	d.x = (d.y - 1) / tan(seg->angle);
+	d.x = -(TILE_SIZE) / tan(seg->angle);
+	if (ft_facing_up(seg->angle))
+		d.x *= -1;
 	pos = first;
 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
@@ -273,7 +275,9 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 		d.x = -TILE_SIZE;
 	else
 		d.x = TILE_SIZE;
-	d.y = TILE_SIZE * tan(seg->angle);
+	d.y = -(TILE_SIZE * tan(seg->angle));
+	if (ft_pointing_left(seg->angle))
+		d.y *= -1;
 	pos = first;
 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
