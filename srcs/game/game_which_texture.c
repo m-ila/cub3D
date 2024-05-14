@@ -13,10 +13,10 @@
 
 #include "../../inc/cub3d.h"
 
-static bool	ft_is_corner(t_point until)
+static bool	ft_is_corner(t_point_d until)
 {
-	return ((until.x % TILE_SIZE == 0 || until.x % TILE_SIZE == TILE_SIZE - 1) \
-		&& (until.y % TILE_SIZE == 0 || until.y % TILE_SIZE == TILE_SIZE - 1));
+	return (((int) until.x % TILE_SIZE == 0 ||(int) until.x % TILE_SIZE == TILE_SIZE - 1) \
+		&& ((int) until.y % TILE_SIZE == 0 || (int) until.y % TILE_SIZE == TILE_SIZE - 1));
 }
 
 
@@ -37,7 +37,7 @@ static t_compass	ft_corners(t_segment *seg)
 	return (WE);
 }
 
-static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point from, t_point until)
+static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point_d from, t_point_d until)
 {
 	if (angle > 180 && angle < 270)
 	{
@@ -58,7 +58,7 @@ static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point from, 
 	return (ERR);
 }
 
-static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point from, t_point until)
+static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point_d from, t_point_d until)
 {
 	if (angle > 0 && angle < 90)
 	{
@@ -79,7 +79,7 @@ static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point from, t_
 	return (ERR);
 }
 
-t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point from, t_point until)
+t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d from, t_point_d until)
 {
 	if (angle == 0 || angle == 360)
 		return (EA);

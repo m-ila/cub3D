@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_angle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 13:28:03 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/14 18:26:50 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_get_starting_angle(t_data *cub)
 /*
 i starts at 4 so the angle ray doesn't go over the player
 */
-void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color)
+void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color)
 {
 	double	dx;
 	double	dy;
-	int		x;
-	int		y;
+	double	x;
+	double	y;
 	int		i;
 
 	dx = cos(ft_deg_to_rad(angle));

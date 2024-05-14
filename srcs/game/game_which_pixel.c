@@ -18,9 +18,9 @@ int	ft_get_x_offset(t_segment *seg, t_img_mlx *img)
 	int	offset;
 
 	if (seg->horizontal_hit)
-		offset = (seg->until.y % TILE_SIZE) * img->width / TILE_SIZE;
+		offset = ((int) seg->until.y % TILE_SIZE) * img->width / TILE_SIZE;
 	else
-		offset = (seg->until.x % TILE_SIZE) * img->width / TILE_SIZE;
+		offset = ((int) seg->until.x % TILE_SIZE) * img->width / TILE_SIZE;
 	if (offset >= img->width)
 		offset = img->width - 1;
 
@@ -44,7 +44,7 @@ int	ft_get_y_offset(t_segment *seg, t_img_mlx *img, int i)
 
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 {
-	t_point	pix;
+	t_point_d	pix;
 	int		color;
 	int		offset;
 

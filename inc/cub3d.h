@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 17:23:01 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:44:33 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_rgb
 typedef struct s_data
 {
 	t_map	*map;
-	t_point	position;
+	t_point_d	position;
 	double	angle;
 	char	*path_texture[5];
 	t_rgb	floor_c;
@@ -138,7 +138,7 @@ double	ft_norm_angle(double angle);
 double	ft_abs(double val);
 /* srcs/game/game_angle.c */
 void	ft_handle_angle(t_data *cub, int keycode);
-void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
+void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
@@ -148,35 +148,35 @@ bool	ft_open_images(t_data *cub);
 /* srcs/game/game_init.c */
 void	init_mlx(t_data *cub);
 void	init_windows(t_data *cub);
-void	ft_draw_angle(t_data *cub, t_point *pos, double angle, int color);
+void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
 int key_hook(int keycode, void *param);
 
 void render_2d_map(t_data *cub);
-void draw_player(t_data *cub, t_point pos, int color);
+void draw_player(t_data *cub, t_point_d pos, int color);
 
 void render_3d(t_data *cub);
 /* srcs/game/game_input.c */
 int		ft_handle_clic(int button, int x, int y, void *param);
 /* srcs/games/game_moves.c */
-void	ft_up(t_data *cub, t_point *new);
-void	ft_down(t_data *cub, t_point *new);
-void	ft_left(t_data *cub, t_point *new);
-void	ft_right(t_data *cub, t_point *new);
+void	ft_up(t_data *cub, t_point_d *new);
+void	ft_down(t_data *cub, t_point_d *new);
+void	ft_left(t_data *cub, t_point_d *new);
+void	ft_right(t_data *cub, t_point_d *new);
 /* srcs/game/game_multi_rays.c */
 void	ft_malloc_rays(t_data *cub);
 void	ft_free_rays(t_data *cub);
 void	ft_print_all_rays(t_data *cub);
 /* srcs/games/game_ray_math.c */
 t_segment	ft_segment(t_data *cub, double angle);
-t_point	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
-double	ft_len_ray(t_point start, t_point end);
+t_point_d	ft_find_end_point(t_data *cub, t_point_d *end, double angle);
+double	ft_len_ray(t_point_d start, t_point_d end);
 void	ft_seg_refresh(t_data *cub);
 /* srcs/games/game_draw.c */
 void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
 /* srcs/game/game_which_pixel.c */
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
-t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point from, t_point until);
+t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d from, t_point_d until);
 
 double	ft_hzt_intersections(t_data *cub, t_segment *seg);
 double	ft_vrt_intersections(t_data *cub, t_segment *seg);

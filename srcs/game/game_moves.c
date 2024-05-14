@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_moves.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 13:27:22 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/14 18:27:38 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	ft_up(t_data *cub, t_point *new)
+void	ft_up(t_data *cub, t_point_d *new)
 {
 	double	dx;
 	double	dy;
@@ -23,7 +23,7 @@ void	ft_up(t_data *cub, t_point *new)
 	new->y = cub->position.y - round(dy);
 }
 
-void	ft_down(t_data *cub, t_point *new)
+void	ft_down(t_data *cub, t_point_d *new)
 {
 	double	dx;
 	double	dy;
@@ -34,7 +34,7 @@ void	ft_down(t_data *cub, t_point *new)
 	new->y = cub->position.y + round(dy);
 }
 
-void	ft_left(t_data *cub, t_point *new)
+void	ft_left(t_data *cub, t_point_d *new)
 {
 	double	dx;
 	double	dy;
@@ -49,7 +49,7 @@ void	ft_left(t_data *cub, t_point *new)
 	new->y = cub->position.y + round(dy);
 }
 
-void	ft_right(t_data *cub, t_point *new)
+void	ft_right(t_data *cub, t_point_d *new)
 {
 	double	dx;
 	double	dy;

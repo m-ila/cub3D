@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 19:24:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:30:51 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_map
 
 typedef struct s_segment
 {
-	t_point	from;
-	t_point	until;
+	t_point_d	from;
+	t_point_d	until;
 	t_point	tile_hit;
 	double	angle;
 	double	slope_len;

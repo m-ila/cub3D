@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 17:49:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:37:17 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ static bool	ft_check_diag_wall(t_data *cub, t_point_d *end)
 	return (false);
 }
 
-t_point ft_find_end_point(t_data *cub, t_point_d *end, double angle)
+t_point_d ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 {
-	t_point translate;
+	t_point_d translate;
     double	dx;
     double	dy;
     double	length;
@@ -98,7 +98,7 @@ t_segment	ft_segment(t_data *cub, double angle)
 {
 	t_segment	seg;
 	t_point_d	end_d;
-	t_point 	end;
+	t_point_d 	end;
 	t_point		tile_hit;
 
 	end_d.x = (double) cub->position.x;
@@ -121,7 +121,7 @@ t_segment	ft_segment(t_data *cub, double angle)
 	return (seg);
 }
 
-double	ft_len_ray(t_point start, t_point end)
+double	ft_len_ray(t_point_d start, t_point_d end)
 {
 	return (sqrt(pow(end.x - start.x, 2) + pow(end.y - start.y, 2)));
 }

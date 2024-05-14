@@ -37,7 +37,7 @@ void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
 	}
 }
 
-void draw_player(t_data *cub, t_point pos, int color)
+void draw_player(t_data *cub, t_point_d pos, int color)
 {
 	int start_x;
 	int start_y;

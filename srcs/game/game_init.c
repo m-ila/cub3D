@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/12 17:25:29 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/14 18:25:31 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void init_windows(t_data *cub)
     mlx_hook(cub->win_3d, 17, 0L, (int (*)())exit_cleanup, cub);
 }
 
-void update_player_position(t_data *cub, t_point old, t_point new)
+void update_player_position(t_data *cub, t_point_d old, t_point_d new)
 {
     draw_player(cub, old, C_WHITE); // Draw old position with ground color
     ft_draw_angle(cub, &old, cub->angle, C_WHITE);
@@ -73,8 +73,8 @@ I allowed myself to put a define here (INCR_STEP)
 */
 void move_player(t_data *cub, int keycode)
 {
-    t_point old;
-    t_point new;
+    t_point_d old;
+    t_point_d new;
 
 	old = cub->position;
 	new = old;
@@ -86,7 +86,7 @@ void move_player(t_data *cub, int keycode)
 		ft_left(cub, &new);
 	else if (keycode == RIGHT)
 		ft_right(cub, &new);
-	if (cub->map->raw_map[new.y / TILE_SIZE][new.x / TILE_SIZE] != '1') 
+	if (cub->map->raw_map[(int)new.y / TILE_SIZE][(int)new.x / TILE_SIZE] != '1') 
 	{
 		update_player_position(cub, old, new);
 		cub->position = new;

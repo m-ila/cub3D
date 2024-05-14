@@ -6,16 +6,16 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:44:32 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 18:26:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:27:12 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-void	ft_draw_square(t_data *cub, t_point square)
+void	ft_draw_square(t_data *cub, t_point_d square)
 {
-	int start_x;
-	int start_y;
+	double start_x;
+	double start_y;
 	int i;
 	int j;
 
