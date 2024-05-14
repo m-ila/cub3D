@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 18:30:51 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:39:48 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_segment
 	double		wall_height;
 	int			top_pix;
 	int			bot_pix;
+	double		len_debug;
 }	t_segment;
 
 #endif

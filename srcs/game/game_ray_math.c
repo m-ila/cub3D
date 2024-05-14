@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 19:37:17 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 20:04:37 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_seg_refresh(t_data *cub)
 	while (i < 91)
 	{
 		ft_draw_angle_seg(cub, cub->seg[i], C_WHITE);
+		ft_draw_angle_deb(cub, cub->seg[i], C_WHITE);
 		i++;
 	}
 	ft_free_rays(cub);
@@ -74,7 +75,7 @@ void	ft_get_hor_vert(t_data *cub, t_segment *seg)
 	vert = ft_vrt_intersections(cub, seg);
 	if (hor < vert)
 		seg->horizontal_hit = true;
-	else
+	if (hor >= vert)
 		seg->vertical_hit = true;
 	if (seg->angle == 135 || seg->angle == 45)
 	{
@@ -118,6 +119,10 @@ t_segment	ft_segment(t_data *cub, double angle)
 	ft_get_hor_vert(cub, &seg);
 	seg.direction = ft_get_which_wall(&seg ,seg.angle, seg.from, seg.until);
 	seg.wall_height = (TILE_SIZE * W_WIDTH / 2) / seg.len_processed;
+	if (seg.vertical_hit)
+		seg.len_debug = ft_vrt_intersections(cub, &seg);
+	if (seg.horizontal_hit)
+		seg.len_debug = ft_hzt_intersections(cub, &seg);
 	return (seg);
 }
 

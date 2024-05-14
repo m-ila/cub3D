@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/10 18:28:42 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:43:09 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,10 @@ void	ft_print_all_rays(t_data *cub)
 		else if (i == 89)
 			ft_draw_angle_seg(cub, cub->seg[i], C_GREY);
 		else
+		{
 			ft_draw_angle_seg(cub, cub->seg[i], C_CYAN);
+			ft_draw_angle_deb(cub, cub->seg[i], C_GREEN);
+		}
 		i++;
 	}
 }
