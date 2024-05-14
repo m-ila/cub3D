@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 12:37:36 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/14 18:15:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,19 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
 	seg->angle == 270 || seg->angle == 360)
 		return (DBL_MAX);
+	d.y = TILE_SIZE;
+	d.x = TILE_SIZE / tan(seg->angle);
 	buff = 0;
 	pos.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE;
+	if (seg->angle > 0 && seg->angle < 180)
+		pos.y += TILE_SIZE;
 	if (seg->angle > 180 && seg->angle < 360)
 	{
-		pos.y += TILE_SIZE;
 		buff = -TILE_SIZE;
 	}
 	pos.x = seg->from.x + (pos.y - seg->from.y) / tan(seg->angle);
-	d.y = TILE_SIZE;
 	if (seg->angle > 0 && seg->angle < 180)
 		d.y *= -1.0;
-	d.x = TILE_SIZE / tan(seg->angle);
 	if ((seg->angle > 90 && seg->angle < 270) && d.x > 0.0)
 		d.x *= -1.0;
 	else if (!(seg->angle > 90 && seg->angle < 270) && d.x < 0.0)
