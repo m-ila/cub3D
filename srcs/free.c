@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 14:03:15 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/15 20:36:55 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_safe_free(char **str)
 {
 	if (*str)
 	{
-		printf("about to free : (d)%s(f)\n", *str);
 		free(*str);
 		*str = NULL;
 		if (!(*str))
@@ -57,14 +56,44 @@ void	ft_free_map(t_map *m)
 	}
 }
 
+void	ft_free_img(t_data *cub)
+{
+	int	i;
+
+	if (!cub || !cub->imgs)
+        return ;
+	i = 0;
+	while (i < 4)
+	{
+		if (cub->imgs[i] && cub->imgs[i]->img)
+		{
+			mlx_destroy_image(cub->mlx_ptr, cub->imgs[i]->img);
+			cub->imgs[i]->img = NULL;
+		}
+		if (cub->imgs[i])
+		{
+			free(cub->imgs[i]);
+			cub->imgs[i] = NULL;
+		}
+		i++;
+	}
+	if (cub->imgs)
+		free(cub->imgs);
+	cub->imgs = NULL;
+}
+
 int exit_cleanup(t_data *cub)
 {
     // Clean up resources and exit if window creation fails
     if (cub->win_2d)
         mlx_destroy_window(cub->mlx_ptr, cub->win_2d);
     if (cub->win_3d)
-        mlx_destroy_window(cub->mlx_ptr, cub->win_3d);
-    if (cub->mlx_ptr) {
+	{	
+		mlx_destroy_window(cub->mlx_ptr, cub->win_3d);
+	}
+ 	ft_free_img(cub);  
+	if (cub->mlx_ptr)
+	{
         mlx_destroy_display(cub->mlx_ptr);
         free(cub->mlx_ptr);
     }

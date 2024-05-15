@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:43:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 16:55:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:07:36 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,23 @@ bool	ft_free_imgs(t_data *cub, int i, bool err)
 		i = 3;
 	while (i >= 0)
 	{
-		if (cub->imgs[i]->img)
+		if (cub->imgs[i] && cub->imgs[i]->img)
+		{
 			mlx_destroy_image(cub->mlx_ptr, cub->imgs[i]->img);
-		if (cub->imgs[i]->adress)
+			cub->imgs[i]->img = NULL;
+		}
+		if (cub->imgs[i] && cub->imgs[i]->adress)
 			ft_safe_free(&cub->imgs[i]->adress);
 		if (cub->imgs[i])
+		{
 			free(cub->imgs[i]);
+			cub->imgs[i] = NULL;
+		}
 		i--;
 	}
 	if (cub->imgs)
 		free(cub->imgs);
+	cub->imgs = NULL;
 	if (err)
 		return (ft_err_ret("failed to gen imgs", NULL, false));
 	return (true);

@@ -37,49 +37,49 @@ static t_compass	ft_corners(t_segment *seg)
 	return (WE);
 }
 
-static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point_d from, t_point_d until)
+static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point_d until)
 {
 	if (angle > 180 && angle < 270)
 	{
-		if (seg->horizontal_hit)
-			return (WE);
 		if (ft_is_corner(until))
 			return (ft_corners(seg));
+		if (seg->horizontal_hit)
+			return (WE);
 		return (SO);
 	}
 	else if (angle > 270 && angle < 360)
 	{
-		if (seg->horizontal_hit)
-			return (EA);
 		if (ft_is_corner(until))
 			return (ft_corners(seg));
+		if (seg->horizontal_hit)
+			return (EA);
 		return (SO);
 	}
 	return (ERR);
 }
 
-static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point_d from, t_point_d until)
+static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point_d until)
 {
 	if (angle > 0 && angle < 90)
 	{
-		if (seg->horizontal_hit)
-			return (EA);
 		if (ft_is_corner(until))
 			return (ft_corners(seg));
+		if (seg->horizontal_hit)
+			return (EA);
 		return (NO);
 	}
 	else if (angle > 90 && angle < 180)
 	{
-		if (seg->horizontal_hit)
-			return (WE);
 		if (ft_is_corner(until))
 			return (ft_corners(seg));
+		if (seg->horizontal_hit)
+			return (WE);
 		return (NO);
 	}
 	return (ERR);
 }
 
-t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d from, t_point_d until)
+t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until)
 {
 	if (angle == 0 || angle == 360)
 		return (EA);
@@ -90,8 +90,8 @@ t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d from, t_poin
 	else if (angle == 270)
 		return (SO);
 	else if (angle > 0 && angle < 180)
-		return (ft_which_wall_up(seg, angle, from, until));
+		return (ft_which_wall_up(seg, angle, until));
 	else if (angle > 180 && angle < 360)
-		return (ft_which_wall_down(seg, angle, from, until));
+		return (ft_which_wall_down(seg, angle, until));
 	return (ERR);
 }

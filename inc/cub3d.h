@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 11:36:15 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:29:30 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@
 # define MINI_TILE_SIZE 13
 # define W_HEIGHT 800
 # define W_WIDTH 1100
+# define COLUMN_W 10
 
 typedef struct s_rgb
 {
@@ -107,8 +108,8 @@ int		ft_err_ret(char *msg, char *name, int ret);
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
 void	ft_free_map(t_map *m);
-int exit_cleanup(t_data *cub);
-
+int		exit_cleanup(t_data *cub);
+void	ft_free_img(t_data *cub);
 /* srcs/i_color.c */
 bool	ft_color_range(char **arr);
 bool	ft_process_color(t_data *cub, char **arr);
@@ -176,7 +177,7 @@ void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
 /* srcs/game/game_which_pixel.c */
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
-t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d from, t_point_d until);
+t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until);
 
 double	ft_hzt_intersections(t_data *cub, t_segment *seg);
 double	ft_vrt_intersections(t_data *cub, t_segment *seg);

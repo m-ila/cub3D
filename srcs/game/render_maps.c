@@ -100,7 +100,7 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
     if (shade < 0)
         shade = 0;
     x = x_start;
-    while (x < x_start + 10)
+    while (x < x_start + COLUMN_W)
     {
         y = 0;
         while (y < seg->top_pix)
@@ -123,18 +123,20 @@ void draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
     }
 }
 
-void render_3d_view(t_data *cub) {
-    int column = 0;
-    while (column < 90) {
+void render_3d_view(t_data *cub)
+{
+    int column;
+
+    column = 0;
+    while (column < 90)
+    {
         cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
-        if (cub->seg[column].top_pix < 0) {
+        if (cub->seg[column].top_pix < 0)
             cub->seg[column].top_pix = 0;
-        }
         cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
-        if (cub->seg[column].bot_pix > W_HEIGHT) {
+        if (cub->seg[column].bot_pix > W_HEIGHT)
             cub->seg[column].bot_pix = W_HEIGHT;
-        }
-        draw_colored_vertical_slice(cub, &cub->seg[column], column * 10);
+        draw_colored_vertical_slice(cub, &cub->seg[column], column * COLUMN_W);
         column++;
     }
 }
@@ -152,25 +154,31 @@ void draw_minimap_tile(t_data *cub, int x, int y, int start_x, int start_y)
     }
 }
 
-void draw_player_minimap(t_data *cub, int start_x, int start_y) {
-    int player_minimap_x = start_x + (int)((float)cub->position.x / TILE_SIZE * MINI_TILE_SIZE);
-    int player_minimap_y = start_y + (int)((float)cub->position.y / TILE_SIZE * MINI_TILE_SIZE);
+void draw_player_minimap(t_data *cub, int start_x, int start_y)
+{
+    int player_minimap_x;
+    int player_minimap_y;
 
+    player_minimap_x = start_x + (int)((float)cub->position.x / TILE_SIZE * MINI_TILE_SIZE);
+    player_minimap_y = start_y + (int)((float)cub->position.y / TILE_SIZE * MINI_TILE_SIZE);
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < 2; j++) {
-            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, player_minimap_x + i, player_minimap_y + j, 0xFF0000);  // Light red for player
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, player_minimap_x + i, player_minimap_y + j, C_RED);
         }
     }
 }
 
-void render_minimap(t_data *cub) {
+void render_minimap(t_data *cub)
+{
     int x = 0, y = 0;
     int minimap_start_x = 901;  // Start at the left of the window
     int minimap_start_y = W_HEIGHT - (cub->map->y_size_max * MINI_TILE_SIZE);  // Position at the bottom of the window
 
-    while (y < (int)cub->map->y_size_max) {
+    while (y < (int)cub->map->y_size_max)
+    {
         x = 0;
-        while (x < (int)cub->map->x_size_max) {
+        while (x < (int)cub->map->x_size_max)
+        {
             draw_minimap_tile(cub, x, y, minimap_start_x, minimap_start_y);
             x++;
         }
@@ -184,6 +192,3 @@ void render_3d(t_data *cub)
     render_3d_view(cub);
     render_minimap(cub);
 }
-
-
-
