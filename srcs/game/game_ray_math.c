@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 16:45:24 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 18:27:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,9 @@ void	ft_get_hor_vert(t_data *cub, t_segment *seg)
 
 	hor = ft_hzt_intersections(cub, seg);
 	vert = ft_vrt_intersections(cub, seg);
-	if (hor < vert)
+	if (hor > vert)
 		seg->horizontal_hit = true;
-	if (hor >= vert)
+	if (hor <= vert)
 		seg->vertical_hit = true;
 	if (seg->angle == 135 || seg->angle == 45)
 	{
