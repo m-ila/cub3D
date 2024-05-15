@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 20:04:37 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:14:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ t_point_d ft_find_end_point(t_data *cub, t_point_d *end, double angle)
     }
 	translate.x = (int) end->x;
 	translate.y = (int) end->y;
+	if (angle == 45 || angle == 135)
+	{
+		printf("find end point debug\ntranslate.x = %f\ntanslate.y = %f\n", translate.x, translate.y);
+		printf("translate.x / TILE = %d\ntanslate.y / TILE = %d\n", (int) (translate.x / TILE_SIZE), (int) (translate.y / TILE_SIZE));
+		printf("from.x = %f\nfrom.y = %f\n", cub->seg->from.x, cub->seg->from.y);
+		printf("from.x / TILE = %d\nfrom.y / TILE = %d\n", (int) (cub->seg->from.x / TILE_SIZE), (int) (cub->seg->from.y / TILE_SIZE));
+	}
 	return (translate);
 }
 
@@ -98,7 +105,7 @@ t_point	tile_hit
 t_segment	ft_segment(t_data *cub, double angle)
 {
 	t_segment	seg;
-	t_point_d	end_d;
+	static t_point_d	end_d;
 	t_point_d 	end;
 	t_point		tile_hit;
 
@@ -106,8 +113,8 @@ t_segment	ft_segment(t_data *cub, double angle)
 	end_d.y = (double) cub->position.y;
 	seg.horizontal_hit = false;
 	seg.vertical_hit = false;
-	end = ft_find_end_point(cub, &end_d, angle);
 	seg.from = cub->position;
+	end = ft_find_end_point(cub, &end_d, angle);
 	seg.until = end;
 	seg.slope_len = ft_len_ray(seg.from, seg.until);
 	seg.angle = angle;

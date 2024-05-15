@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 21:22:44 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:38:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,105 +151,46 @@ bool	ft_pointing_left(double angle)
 	return (angle > 90 && angle < 270);
 }
 
-// double	ft_hzt_intersections(t_data *cub, t_segment *seg)
-// {
-// 	t_point_d	d;
-// 	t_point_d	pos;
-// 	bool		buff;
-
-// 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
-// 	seg->angle == 270 || seg->angle == 360)
-// 		return (DBL_MAX);
-// 	d.y = TILE_SIZE;
-// 	d.x = TILE_SIZE / tan(seg->angle);
-// 	buff = 0;
-// 	pos.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE;
-// 	if (!ft_facing_up(seg->angle))
-// 	{
-// 		pos.y += TILE_SIZE;
-// 		buff = -TILE_SIZE;
-// 	}
-// 	pos.x = seg->from.x + (pos.y - seg->from.y) / tan(seg->angle);
-// 	if (ft_facing_up(seg->angle))
-// 		d.y *= -1.0;
-// 	if (ft_pointing_left(seg->angle) && d.x > 0.0)
-// 		d.x *= -1.0;
-// 	else if (!ft_pointing_left(seg->angle) && d.x < 0.0)
-// 		d.x *= -1.0;
-// 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
-// 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
-// 	{
-// 		if (cub->map->raw_map[(int)(pos.y + buff) / TILE_SIZE][(int)pos.x / TILE_SIZE] == '1')
-// 			return (ft_len_ray(seg->from, pos));
-// 		pos.x += d.x;
-// 		pos.y += d.y;
-// 	}
-// 	return (DBL_MAX);
-// }
-
-// double	ft_vrt_intersections(t_data *cub, t_segment *seg)
-// {
-// 	t_point_d	d;
-// 	t_point_d	pos;
-// 	bool		buff;
-
-// 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
-// 	seg->angle == 270 || seg->angle == 360)
-// 		return (DBL_MAX);
-// 	buff = 0;
-// 	pos.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE;
-// 	if (!ft_pointing_left(seg->angle))
-// 	{
-// 		buff = -TILE_SIZE;
-// 		pos.x += TILE_SIZE;
-// 	}
-// 	pos.y = seg->from.y + (pos.x - seg->from.x) * tan(seg->angle);
-// 	mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int)pos.x, (int)pos.y, C_PURPLE);
-// 	d.x = TILE_SIZE;
-// 	if (ft_pointing_left(seg->angle))
-// 		d.x *= -1.0;
-// 	d.y = TILE_SIZE * tan(seg->angle);
-// 	if (ft_facing_up(seg->angle) && d.y > 0.0)
-// 		d.y *= -1.0;
-// 	else if (!ft_facing_up(seg->angle) && d.y < 0.0)
-// 		d.y *= -1.0;
-// 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
-// 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
-// 	{
-// 		if (cub->map->raw_map[(int)((pos.y) / TILE_SIZE)][(int)((pos.x + buff) / TILE_SIZE)] == '1')
-// 			return (ft_len_ray(seg->from, pos));
-// 		pos.x += d.x;
-// 		pos.y += d.y;
-// 	}
-// 	return (DBL_MAX);
-// }
-
 double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 {
 	t_point_d	d;
 	t_point_d	pos;
-	t_point_d	first;
+	double		buff;
 
 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
 	seg->angle == 270 || seg->angle == 360)
 		return (DBL_MAX);
+	d.y = TILE_SIZE;
+	d.x = TILE_SIZE / tan(seg->angle);
+	buff = 0;
+	pos.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE;
+	if (!ft_facing_up(seg->angle))
+	{
+		pos.y += TILE_SIZE;
+		buff = -TILE_SIZE;
+	}
+	pos.x = seg->from.x + (pos.y - seg->from.y) / tan(seg->angle);
 	if (ft_facing_up(seg->angle))
-		first.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE - 0.0001;
-	else
-		first.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-	first.x = seg->from.x + (seg->from.y - first.y) / tan(seg->angle);
-	if (ft_facing_up(seg->angle))
-		d.y = -TILE_SIZE;
-	else
-		d.y = TILE_SIZE;
-	d.x = -(TILE_SIZE) / tan(seg->angle);
-	if (ft_facing_up(seg->angle))
-		d.x *= -1;
-	pos = first;
+		d.y *= -1.0;
+	if (ft_pointing_left(seg->angle) && d.x > 0.0)
+		d.x *= -1.0;
+	else if (!ft_pointing_left(seg->angle) && d.x < 0.0)
+		d.x *= -1.0;
 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
 	{
-		if (cub->map->raw_map[(int)(pos.y) / TILE_SIZE][(int)pos.x / TILE_SIZE] == '1')
+		if (seg->angle == 45 || seg->angle == 135 || seg->angle == 225 || seg->angle == 315)
+		{
+			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int) pos.x, (int) pos.y, C_ORANGE);
+			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int) (pos.x + 1) , (int) pos.y, C_ORANGE);
+			printf("\ndebug hzt\n\nangle : %f\nbuff : %f\n", seg->angle, buff);
+			printf("x : %f\ny : %f\n", pos.x, pos.y);
+			printf("until_x : %f\nuntil_y : %f\n", seg->until.x, seg->until.y);
+			printf("x / TILE : %d\ny / TILE : %d\n", (int) pos.x / TILE_SIZE , (int) pos.y / TILE_SIZE);
+			printf("x %% TILE : %d\ny %% TILE : %d\n", (int) pos.x % TILE_SIZE , (int) pos.y % TILE_SIZE);
+			//printf("(x %% TILE) * TILE : %d\n(y %% TILE) * TILE : %d\n", ((int) pos.x % TILE_SIZE) * TILE_SIZE , ((int) pos.y % TILE_SIZE) * TILE_SIZE);
+		}
+		if (cub->map->raw_map[(int)(pos.y + buff) / TILE_SIZE][(int)pos.x / TILE_SIZE] == '1')
 			return (ft_len_ray(seg->from, pos));
 		pos.x += d.x;
 		pos.y += d.y;
@@ -261,28 +202,43 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 {
 	t_point_d	d;
 	t_point_d	pos;
-	t_point_d	first;
+	double		buff;
 
 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
 	seg->angle == 270 || seg->angle == 360)
 		return (DBL_MAX);
+	buff = 0;
+	pos.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE;
+	if (!ft_pointing_left(seg->angle))
+	{
+		buff = -TILE_SIZE;
+		pos.x += TILE_SIZE;
+	}
+	pos.y = seg->from.y + (pos.x - seg->from.x) * tan(seg->angle);
+	mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int)pos.x, (int)pos.y, C_PURPLE);
+	d.x = TILE_SIZE;
 	if (ft_pointing_left(seg->angle))
-		first.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE - 0.00001;
-	else
-		first.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
-	first.y = seg->from.y + (seg->from.x - first.x) * tan(seg->angle);
-	if (ft_pointing_left(seg->angle))
-		d.x = -TILE_SIZE;
-	else
-		d.x = TILE_SIZE;
-	d.y = -(TILE_SIZE * tan(seg->angle));
-	if (ft_pointing_left(seg->angle))
-		d.y *= -1;
-	pos = first;
+		d.x *= -1.0;
+	d.y = TILE_SIZE * tan(seg->angle);
+	if (ft_facing_up(seg->angle) && d.y > 0.0)
+		d.y *= -1.0;
+	else if (!ft_facing_up(seg->angle) && d.y < 0.0)
+		d.y *= -1.0;
 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
 	{
-		if (cub->map->raw_map[(int)((pos.y) / TILE_SIZE)][(int)((pos.x) / TILE_SIZE)] == '1')
+		if (seg->angle == 45 || seg->angle == 135 || seg->angle == 225 || seg->angle == 315)
+		{
+			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int) pos.x, (int) pos.y, C_ORANGE);
+			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int) (pos.x + 1) , (int) pos.y, C_ORANGE);
+			printf("\ndebug vrt\n\nangle : %f\nbuff : %f\n", seg->angle, buff);
+			printf("x : %f\ny : %f\n", pos.x, pos.y);
+			printf("until_x : %f\nuntil_y : %f\n", seg->until.x, seg->until.y);
+			printf("x / TILE : %d\ny / TILE : %d\n", (int) pos.x / TILE_SIZE , (int) pos.y / TILE_SIZE);
+			printf("x %% TILE : %d\ny %% TILE : %d\n", (int) pos.x % TILE_SIZE , (int) pos.y % TILE_SIZE);
+			//printf("(x %% TILE) * TILE : %d\n(y %% TILE) * TILE : %d\n", ((int) pos.x % TILE_SIZE) * TILE_SIZE , ((int) pos.y % TILE_SIZE) * TILE_SIZE);
+		}
+		if (cub->map->raw_map[(int)((pos.y) / TILE_SIZE)][(int)((pos.x + buff) / TILE_SIZE)] == '1')
 			return (ft_len_ray(seg->from, pos));
 		pos.x += d.x;
 		pos.y += d.y;
@@ -290,5 +246,85 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 	return (DBL_MAX);
 }
 
+// double	ft_hzt_intersections(t_data *cub, t_segment *seg)
+// {
+// 	t_point_d	d;
+// 	t_point_d	pos;
+// 	t_point_d	first;
 
+// 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
+// 	seg->angle == 270 || seg->angle == 360)
+// 		return (DBL_MAX);
+// 	if (ft_facing_up(seg->angle))
+// 		first.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE - 0.0001;
+// 	else
+// 		first.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+// 	first.x = seg->from.x + (seg->from.y - first.y) / tan(seg->angle);
+// 	if (ft_facing_up(seg->angle))
+// 		d.y = -TILE_SIZE;
+// 	else
+// 		d.y = TILE_SIZE;
+// 	d.x = -(TILE_SIZE) / tan(seg->angle);
+// 	if (ft_facing_up(seg->angle))
+// 		d.x *= -1;
+// 	pos = first;
+// 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
+// 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
+// 	{
+// 		if (cub->map->raw_map[(int)(pos.y) / TILE_SIZE][(int)pos.x / TILE_SIZE] == '1')
+// 			return (ft_len_ray(seg->from, pos));
+// 		pos.x += d.x;
+// 		pos.y += d.y;
+// 	}
+// 	return (DBL_MAX);
+// }
 
+// double	ft_vrt_intersections(t_data *cub, t_segment *seg)
+// {
+// 	t_point_d	d;
+// 	t_point_d	pos;
+// 	t_point_d	first;
+
+// 	if (seg->angle == 0 || seg->angle == 90 || seg->angle == 180 || \
+// 	seg->angle == 270 || seg->angle == 360)
+// 		return (DBL_MAX);
+// 	if (ft_pointing_left(seg->angle))
+// 		first.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE - 0.00001;
+// 	else
+// 		first.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE + TILE_SIZE;
+// 	first.y = seg->from.y + (seg->from.x - first.x) * tan(seg->angle);
+// 	if (ft_pointing_left(seg->angle))
+// 		d.x = -TILE_SIZE;
+// 	else
+// 		d.x = TILE_SIZE;
+// 	d.y = -(TILE_SIZE * tan(seg->angle));
+// 	if (ft_pointing_left(seg->angle))
+// 		d.y *= -1;
+// 	pos = first;
+// 	while ((int)(pos.y) / TILE_SIZE > 0 && (int)(pos.x) / TILE_SIZE > 0 && \
+// 	(int)(pos.y) / TILE_SIZE < (int) cub->map->y_size_max && (int)(pos.x) / TILE_SIZE < (int) cub->map->x_size_max)
+// 	{
+// 		if (cub->map->raw_map[(int)((pos.y) / TILE_SIZE)][(int)((pos.x) / TILE_SIZE)] == '1')
+// 			return (ft_len_ray(seg->from, pos));
+// 		pos.x += d.x;
+// 		pos.y += d.y;
+// 	}
+// 	return (DBL_MAX);
+// }
+
+// void	ft_get_hor_vert(t_data *cub, t_segment *seg)
+// {
+//     double angle_threshold = 10.0; // Seuil pour déterminer si c'est horizontal ou vertical
+
+//     double angle = seg->angle;
+//     while (angle < 0)
+//         angle += 360;
+//     angle = fmod(angle, 360);
+
+//     if (angle < angle_threshold || angle > (180.0 - angle_threshold)) {
+//         seg->horizontal_hit = true;
+//     } else if ((angle > (90.0 - angle_threshold) && angle < (90.0 + angle_threshold)) ||
+//                (angle > (270.0 - angle_threshold) && angle < (270.0 + angle_threshold))) {
+//         seg->vertical_hit = true;
+//     }
+// }
