@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:29:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:46:59 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,16 @@ double	ft_abs(double val);
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
+/* srcs/game/game_coord_hor.c */
+double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle);
+double	ft_get_x_hrz(t_point_d from, t_point_d pos, double angle);
+double	ft_get_y_hrz(t_point_d from, double angle);
+double	ft_get_dx_hrz(double angle);
+/* srcs/game/game_coord_ver.c */
+double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle);
+double	ft_get_y_vrt(t_point_d from, t_point_d pos, double angle);
+double	ft_get_x_vrt(t_point_d pos, double angle);
+double	ft_get_dy_vrt(double angle);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
 /* srcs/game/game_init_img.c */
