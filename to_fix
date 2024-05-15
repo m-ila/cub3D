@@ -1,0 +1,90 @@
+==37612== 32 bytes in 1 blocks are still reachable in loss record 1 of 5
+==37612==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x1170C6: ft_calloc (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x112DCF: ft_open_images (game_init_img.c:41)
+==37612==    by 0x11283F: init_mlx (game_init.c:28)
+==37612==    by 0x1117DC: ft_game (game.c:6)
+==37612==    by 0x10F926: main (main.c:26)
+==37612== 
+==37612== 32 bytes in 4 blocks are definitely lost in loss record 2 of 5
+==37612==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x1170C6: ft_calloc (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x112E41: ft_open_images (game_init_img.c:51)
+==37612==    by 0x11283F: init_mlx (game_init.c:28)
+==37612==    by 0x1117DC: ft_game (game.c:6)
+==37612==    by 0x10F926: main (main.c:26)
+==37612== 
+==37612== 160 bytes in 4 blocks are still reachable in loss record 3 of 5
+==37612==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x1170C6: ft_calloc (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x112DFB: ft_open_images (game_init_img.c:46)
+==37612==    by 0x11283F: init_mlx (game_init.c:28)
+==37612==    by 0x1117DC: ft_game (game.c:6)
+==37612==    by 0x10F926: main (main.c:26)
+==37612== 
+==37612== 352 bytes in 4 blocks are still reachable in loss record 4 of 5
+==37612==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x11662B: mlx_int_new_xshm_image (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x116952: mlx_new_image (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x115A87: mlx_int_parse_xpm (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x115EB4: mlx_xpm_file_to_image (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x112E1F: ft_open_images (game_init_img.c:47)
+==37612==    by 0x11283F: init_mlx (game_init.c:28)
+==37612==    by 0x1117DC: ft_game (game.c:6)
+==37612==    by 0x10F926: main (main.c:26)
+==37612== 
+==37612== 544 bytes in 4 blocks are still reachable in loss record 5 of 5
+==37612==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x49B10C3: XShmCreateImage (in /usr/lib/x86_64-linux-gnu/libXext.so.6.4.0)
+==37612==    by 0x116656: mlx_int_new_xshm_image (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x116952: mlx_new_image (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x115A87: mlx_int_parse_xpm (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x115EB4: mlx_xpm_file_to_image (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x112E1F: ft_open_images (game_init_img.c:47)
+==37612==    by 0x11283F: init_mlx (game_init.c:28)
+==37612==    by 0x1117DC: ft_game (game.c:6)
+==37612==    by 0x10F926: main (main.c:26)
+==37612== 
+==37612== LEAK SUMMARY:
+==37612==    definitely lost: 32 bytes in 4 blocks
+==37612==    indirectly lost: 0 bytes in 0 blocks
+==37612==      possibly lost: 0 bytes in 0 blocks
+==37612==    still reachable: 1,088 bytes in 13 blocks
+==37612==         suppressed: 0 bytes in 0 blocks
+==37612== 
+==37612== ERROR SUMMARY: 25 errors from 3 contexts (suppressed: 2 from 1)
+==37612== 
+==37612== 6 errors in context 1 of 3:
+==37612== Invalid read of size 1
+==37612==    at 0x1147E4: draw_minimap_tile (render_maps.c:148)
+==37612==    by 0x114937: render_minimap (render_maps.c:182)
+==37612==    by 0x111839: ft_game (game.c:14)
+==37612==    by 0x10F926: main (main.c:26)
+==37612==  Address 0x4d3aee3 is 0 bytes after a block of size 19 alloc'd
+==37612==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x11758E: ft_strdup (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x11153C: ft_add_line_to_arr (str_manip.c:28)
+==37612==    by 0x11048C: ft_process_phase (i_data.c:81)
+==37612==    by 0x11048C: ft_process_phase (i_data.c:64)
+==37612==    by 0x110753: ft_process_file (i_data.c:138)
+==37612==    by 0x110968: ft_init_struct (i_data.c:187)
+==37612==    by 0x10F916: main (main.c:24)
+==37612== 
+==37612== 
+==37612== 18 errors in context 2 of 3:
+==37612== Invalid read of size 1
+==37612==    at 0x1147E4: draw_minimap_tile (render_maps.c:148)
+==37612==    by 0x114937: render_minimap (render_maps.c:182)
+==37612==    by 0x112BFB: key_hook (game_init.c:112)
+==37612==    by 0x112EE4: ft_handle_clic (game_input.c:22)
+==37612==    by 0x115045: mlx_loop (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x10F926: main (main.c:26)
+==37612==  Address 0x4d3aee3 is 0 bytes after a block of size 19 alloc'd
+==37612==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==37612==    by 0x11758E: ft_strdup (in /home/marianne/42/cub3D/cub3d)
+==37612==    by 0x11153C: ft_add_line_to_arr (str_manip.c:28)
+==37612==    by 0x11048C: ft_process_phase (i_data.c:81)
+==37612==    by 0x11048C: ft_process_phase (i_data.c:64)
+==37612==    by 0x110753: ft_process_file (i_data.c:138)
+==37612==    by 0x110968: ft_init_struct (i_data.c:187)
+==37612==    by 0x10F916: main (main.c:24)

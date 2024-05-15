@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 18:12:34 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/12 14:37:45 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ bool	ft_open_file(t_data *cub, char *path_file)
 	return (true);
 }
 
-t_path_txt	ft_which_text(char *str)
+t_compass	ft_which_text(char *str)
 {
 	if (!ft_strncmp("NO", str, ft_strlen(str) + 1))
 		return (NO);
@@ -86,46 +86,66 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	return (true);
 }
 
-/*
-LEAK : gnl lorsque temoin == false (????)
-laissé message de debug en attendant
-*/
-bool	ft_process_file(t_data *cub)
+char **read_all_lines(int fd, int *line_count)
 {
-	bool	temoin;
-	int		phase;
-	char	*cpy;
+    char **lines = NULL;
+    char *line;
+    *line_count = 0;
 
-	temoin = true;
-	phase = 1;
-	cpy = NULL;
-	while (temoin)
+    while ((line = get_next_line(fd)) != NULL) {
+        lines = realloc(lines, sizeof(char *) * (*line_count + 1));
+        if (lines == NULL) {
+            fprintf(stderr, "Memory allocation failed\n");
+            exit(EXIT_FAILURE);
+        }
+        lines[*line_count] = line;
+        (*line_count)++;
+    }
+    return lines;
+}
+
+bool check_line(t_data *cub, char **line, int *phase)
+{
+    if (*line && ft_strendswith(*line, "\n") && ft_strlen(*line) > 1)
 	{
-		printf("\nNEWLINE\n");
-		ft_safe_free(&(cub->tmp_line));
-		cub->tmp_line = get_next_line(cub->tmp_fd);
-		if (cub->tmp_line && ft_strendswith(cub->tmp_line, "\n") && ft_strlen(cub->tmp_line) > 1)
-		{
-			cpy = ft_strdup(cub->tmp_line);
-			free(cub->tmp_line);
-			cub->tmp_line = ft_str_epur(cpy, '\n');
-			free(cpy);
-		}
-		printf("line = (d1)%s(f1)\n", cub->tmp_line);
-		if (!cub->tmp_line)
-			return (ft_safe_free(&(cub->tmp_line)), printf("1 : !cub->tmp_line\n"), true);
-		if (ft_start_map_condition(cub->tmp_line))
-			phase = 2;
-		if (phase == 2 && ft_has_only_after(cub->tmp_line, 0, ft_bool_endline))
-			return (ft_safe_free(&(cub->tmp_line)), printf("3 : end map\n\n"), true);
-		temoin = ft_process_phase(cub, phase, &cub->tmp_line);
-		printf("\nline = (d)%s(f)\n", cub->tmp_line);
-		ft_safe_free(&(cub->tmp_line));
-		if (temoin == false)
-			return (ft_safe_free(&(cub->tmp_line)), printf("2 : !temoin\n"), false);
-		free(cub->tmp_line);
-	}
-	return (ft_safe_free(&(cub->tmp_line)), true);
+        char *cpy = ft_strdup(*line);
+        free(*line);
+        *line = ft_str_epur(cpy, '\n');
+        free(cpy);
+    }
+    if (!(*line))
+		return false;
+    if (ft_start_map_condition(*line))
+        *phase = 2;
+    if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
+        return false;
+    return ft_process_phase(cub, *phase, line);
+}
+
+bool ft_process_file(t_data *cub)
+{
+    char **all_lines;
+    
+	int (line_count) = 0;
+    bool (temoin) = true;
+    int (phase) = 1;
+    int (i) = 0;
+    int (j) = 0;
+	all_lines = read_all_lines(cub->tmp_fd, &line_count);
+    while (temoin && i < line_count)
+	{
+        printf("\nNEWLINE\n");
+        temoin = check_line(cub, &all_lines[i], &phase);
+        printf("\nline = (d)%s(f)\n", all_lines[i]);
+        i++;
+    }
+    while (j < line_count) 
+	{
+        ft_safe_free(&all_lines[j]);
+		j++;
+    }
+    free(all_lines);
+    return (temoin);
 }
 
 bool	ft_final_check(t_data *cub)

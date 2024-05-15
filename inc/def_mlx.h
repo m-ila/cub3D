@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:37:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/02 17:48:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/11 16:52:27 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,15 @@
 # define R_CLIC 3
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
+typedef struct s_img_mlx
+{
+	void	*img;
+	int		width;
+	int		height;
+	char	*adress;
+	int		bpp;
+	int		s_line;
+	int		endian;
+}	t_img_mlx;
 
 #endif
