@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:46:59 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:49:31 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,11 @@ double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle);
 double	ft_get_y_vrt(t_point_d from, t_point_d pos, double angle);
 double	ft_get_x_vrt(t_point_d pos, double angle);
 double	ft_get_dy_vrt(double angle);
+/* srcs/game/game_hor_or_vert.c */
+bool	ft_facing_up(double angle);
+bool	ft_pointing_left(double angle);
+double	ft_hzt_intersections(t_data *cub, t_segment *seg);
+double	ft_vrt_intersections(t_data *cub, t_segment *seg);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
 /* srcs/game/game_init_img.c */
@@ -189,8 +194,6 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
 t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until);
 
-double	ft_hzt_intersections(t_data *cub, t_segment *seg);
-double	ft_vrt_intersections(t_data *cub, t_segment *seg);
 void	ft_draw_angle_deb(t_data *cub, t_segment seg, int color);
 void	ft_get_hor_vert(t_data *cub, t_segment *seg);
 

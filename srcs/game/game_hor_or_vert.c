@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:41:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 20:48:15 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,49 +20,6 @@ bool	ft_facing_up(double angle)
 bool	ft_pointing_left(double angle)
 {
 	return (angle > 90 && angle < 270);
-}
-
-double	ft_get_dy_vrt(double angle)
-{
-	if (angle <= 90)
-		return (TILE_SIZE * tan(ft_deg_to_rad(angle)));
-	else if (angle > 90 && angle < 180)
-		return (TILE_SIZE * tan(ft_deg_to_rad(180.0 - angle)));
-	else if (angle < 270)
-		return (TILE_SIZE * tan(ft_deg_to_rad(angle - 180.0)));
-	return (TILE_SIZE * tan(ft_deg_to_rad(360.0 - angle)));
-}
-
-double	ft_get_x_vrt(t_point_d pos, double angle)
-{
-	if (!ft_pointing_left(angle))
-		return ((floor(pos.x / TILE_SIZE) * TILE_SIZE) + TILE_SIZE);
-	return ((floor(pos.x / TILE_SIZE) * TILE_SIZE) - 0.00001);
-}
-
-double	ft_get_y_vrt(t_point_d from, t_point_d pos, double angle)
-{
-	if (angle < 90.0)
-		return (from.y - ((pos.x - from.x) * tan(ft_deg_to_rad(angle))));
-	else if (angle < 180.0)
-		return (from.y - ((from.x - pos.x) * tan(ft_deg_to_rad(180.0 - angle))));
-	else if (angle < 270.0)
-		return  (from.y + ((from.x - pos.x) * tan(ft_deg_to_rad(angle - 180.0))));
-	return (from.y + ((pos.x - from.x) * tan(ft_deg_to_rad(360.0 - angle))));
-}
-
-double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle)
-{
-	if (!ft_pointing_left(angle))
-		return (pos.x + d.x);
-	return (pos.x - d.x);
-}
-
-double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle)
-{
-	if (ft_facing_up(angle))
-		return (pos.y - d.y);
-	return (pos.y + d.y);
 }
 
 double	ft_vrt_intersections(t_data *cub, t_segment *seg)
@@ -90,35 +47,6 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 		map.y = (int) floor(pos.y / TILE_SIZE);
 	}
 	return (ft_len_ray(seg->from, pos));
-}
-
-double	ft_get_dx_hrz(double angle)
-{
-	if (angle <= 90.0)
-		return (TILE_SIZE * tan(ft_deg_to_rad(90.0 - angle)));
-	else if (angle > 90 && angle < 180)
-		return (TILE_SIZE * tan(ft_deg_to_rad(angle - 90.0)));
-	else if (angle < 270)
-		return (TILE_SIZE * tan(ft_deg_to_rad(270 - angle)));
-	return (TILE_SIZE * tan(ft_deg_to_rad(angle - 270)));
-}
-
-double	ft_get_y_hrz(t_point_d from, double angle)
-{
-	if (ft_facing_up(angle))
-		return ((floor(from.y / TILE_SIZE) * TILE_SIZE) - 0.00001);
-	return ((floor(from.y / TILE_SIZE) * TILE_SIZE) + TILE_SIZE);
-}
-
-double	ft_get_x_hrz(t_point_d from, t_point_d pos, double angle)
-{
-	if (angle < 90.0)
-		return (from.x + ((from.y - pos.y) * tan(ft_deg_to_rad(90.0 - angle))));
-	else if (angle < 180.0)
-		return (from.x - ((from.y - pos.y) * tan(ft_deg_to_rad(angle - 90.0))));
-	else if (angle < 270.0)
-		return (from.x - ((pos.y - from.y) * tan(ft_deg_to_rad(270.0 - angle))));
-	return (from.x + ((pos.y - from.y) * tan(ft_deg_to_rad(angle - 270.0))));
 }
 
 double	ft_hzt_intersections(t_data *cub, t_segment *seg)
