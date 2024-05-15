@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 14:14:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 17:18:41 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,15 +163,18 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	d.y = TILE_SIZE;
 	d.x = TILE_SIZE / tan(ft_deg_to_rad(seg->angle));
 	buff = 0;
-	pos.y = seg->from.y;
-	if (!ft_facing_up(seg->angle))
+	pos.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE;
+	if (ft_facing_up(seg->angle))
 	{
 		pos.y += TILE_SIZE;
-		buff = -TILE_SIZE;
+		buff = -1;
 	}
-	pos.x = seg->from.x;
-	if (ft_facing_up(seg->angle))
+	pos.x = seg->from.x + (pos.y - seg->from.y) / tan(ft_deg_to_rad(seg->angle));
+	if (!ft_facing_up(seg->angle))
+	{
 		d.y *= -1.0;
+		buff = 1;
+	}
 	if (ft_pointing_left(seg->angle) && d.x > 0.0)
 		d.x *= -1.0;
 	else if (!ft_pointing_left(seg->angle) && d.x < 0.0)
@@ -191,8 +194,12 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 			printf("x %% TILE : %d\ny %% TILE : %d\n", (int) pos.x % TILE_SIZE , (int) pos.y % TILE_SIZE);
 			//printf("(x %% TILE) * TILE : %d\n(y %% TILE) * TILE : %d\n", ((int) pos.x % TILE_SIZE) * TILE_SIZE , ((int) pos.y % TILE_SIZE) * TILE_SIZE);
 		}
-		if (cub->map->raw_map[(int)(pos.y + buff) / TILE_SIZE][(int)pos.x / TILE_SIZE] == '1')
+		if (cub->map->raw_map[(int)floor((pos.y) / TILE_SIZE)][(int) floor(pos.x - buff / TILE_SIZE)] == '1')
+		{
+			if (seg->angle == 45 || seg->angle == 135 || seg->angle == 225 || seg->angle == 315)
+				printf("angle : %f\nlen hzt : %f\n", seg->angle, ft_len_ray(seg->from, pos));
 			return (ft_len_ray(seg->from, pos));
+		}
 		pos.x += d.x;
 		pos.y += d.y;
 	}
@@ -209,18 +216,21 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 	seg->angle == 270 || seg->angle == 360)
 		return (DBL_MAX);
 	buff = 0;
-	pos.x = seg->from.x;
+	pos.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE;
+	d.x = TILE_SIZE;
+	d.y = TILE_SIZE * tan(ft_deg_to_rad(seg->angle));
 	if (!ft_pointing_left(seg->angle))
 	{
-		buff = -TILE_SIZE;
+		buff = -1;
 		pos.x += TILE_SIZE;
 	}
-	pos.y = seg->from.y;
+	pos.y = seg->from.y + (pos.x - seg->from.x) * tan(ft_deg_to_rad(seg->angle));
 	mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int)pos.x, (int)pos.y, C_PURPLE);
-	d.x = TILE_SIZE;
 	if (ft_pointing_left(seg->angle))
+	{
 		d.x *= -1.0;
-	d.y = TILE_SIZE * tan(ft_deg_to_rad(seg->angle));
+		buff = 1;
+	}
 	if (ft_facing_up(seg->angle) && d.y > 0.0)
 		d.y *= -1.0;
 	else if (!ft_facing_up(seg->angle) && d.y < 0.0)
@@ -240,8 +250,12 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 			printf("x %% TILE : %d\ny %% TILE : %d\n", (int) pos.x % TILE_SIZE , (int) pos.y % TILE_SIZE);
 			//printf("(x %% TILE) * TILE : %d\n(y %% TILE) * TILE : %d\n", ((int) pos.x % TILE_SIZE) * TILE_SIZE , ((int) pos.y % TILE_SIZE) * TILE_SIZE);
 		}
-		if (cub->map->raw_map[(int)((pos.y) / TILE_SIZE)][(int)((pos.x + buff) / TILE_SIZE)] == '1')
+		if (cub->map->raw_map[(int)floor((pos.y - buff) / TILE_SIZE)][(int)floor((pos.x) / TILE_SIZE)] == '1')
+		{
+			if (seg->angle == 45 || seg->angle == 135 || seg->angle == 225 || seg->angle == 315)
+				printf("angle : %f\nlen vtc : %f\n", seg->angle, ft_len_ray(seg->from, pos));
 			return (ft_len_ray(seg->from, pos));
+		}
 		pos.x += d.x;
 		pos.y += d.y;
 	}
