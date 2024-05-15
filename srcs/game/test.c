@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 13:38:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:14:32 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,15 +161,15 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	seg->angle == 270 || seg->angle == 360)
 		return (DBL_MAX);
 	d.y = TILE_SIZE;
-	d.x = TILE_SIZE / tan(seg->angle);
+	d.x = TILE_SIZE / tan(ft_deg_to_rad(seg->angle));
 	buff = 0;
-	pos.y = floor(seg->from.y / TILE_SIZE) * TILE_SIZE;
+	pos.y = seg->from.y;
 	if (!ft_facing_up(seg->angle))
 	{
 		pos.y += TILE_SIZE;
 		buff = -TILE_SIZE;
 	}
-	pos.x = seg->from.x + (pos.y - seg->from.y) / tan(seg->angle);
+	pos.x = seg->from.x;
 	if (ft_facing_up(seg->angle))
 		d.y *= -1.0;
 	if (ft_pointing_left(seg->angle) && d.x > 0.0)
@@ -186,6 +186,7 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 			printf("\ndebug hzt\n\nangle : %f\nbuff : %f\n", seg->angle, buff);
 			printf("x : %f\ny : %f\n", pos.x, pos.y);
 			printf("until_x : %f\nuntil_y : %f\n", seg->until.x, seg->until.y);
+			printf("until_x / TILE : %d\nuntil_y / TILE : %d\n", (int) seg->until.x / TILE_SIZE, (int) seg->until.y / TILE_SIZE);
 			printf("x / TILE : %d\ny / TILE : %d\n", (int) pos.x / TILE_SIZE , (int) pos.y / TILE_SIZE);
 			printf("x %% TILE : %d\ny %% TILE : %d\n", (int) pos.x % TILE_SIZE , (int) pos.y % TILE_SIZE);
 			//printf("(x %% TILE) * TILE : %d\n(y %% TILE) * TILE : %d\n", ((int) pos.x % TILE_SIZE) * TILE_SIZE , ((int) pos.y % TILE_SIZE) * TILE_SIZE);
@@ -208,18 +209,18 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 	seg->angle == 270 || seg->angle == 360)
 		return (DBL_MAX);
 	buff = 0;
-	pos.x = floor(seg->from.x / TILE_SIZE) * TILE_SIZE;
+	pos.x = seg->from.x;
 	if (!ft_pointing_left(seg->angle))
 	{
 		buff = -TILE_SIZE;
 		pos.x += TILE_SIZE;
 	}
-	pos.y = seg->from.y + (pos.x - seg->from.x) * tan(seg->angle);
+	pos.y = seg->from.y;
 	mlx_pixel_put(cub->mlx_ptr, cub->win_2d, (int)pos.x, (int)pos.y, C_PURPLE);
 	d.x = TILE_SIZE;
 	if (ft_pointing_left(seg->angle))
 		d.x *= -1.0;
-	d.y = TILE_SIZE * tan(seg->angle);
+	d.y = TILE_SIZE * tan(ft_deg_to_rad(seg->angle));
 	if (ft_facing_up(seg->angle) && d.y > 0.0)
 		d.y *= -1.0;
 	else if (!ft_facing_up(seg->angle) && d.y < 0.0)
@@ -234,6 +235,7 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 			printf("\ndebug vrt\n\nangle : %f\nbuff : %f\n", seg->angle, buff);
 			printf("x : %f\ny : %f\n", pos.x, pos.y);
 			printf("until_x : %f\nuntil_y : %f\n", seg->until.x, seg->until.y);
+			printf("until_x / TILE : %d\nuntil_y / TILE : %d\n", (int) seg->until.x / TILE_SIZE, (int) seg->until.y / TILE_SIZE);
 			printf("x / TILE : %d\ny / TILE : %d\n", (int) pos.x / TILE_SIZE , (int) pos.y / TILE_SIZE);
 			printf("x %% TILE : %d\ny %% TILE : %d\n", (int) pos.x % TILE_SIZE , (int) pos.y % TILE_SIZE);
 			//printf("(x %% TILE) * TILE : %d\n(y %% TILE) * TILE : %d\n", ((int) pos.x % TILE_SIZE) * TILE_SIZE , ((int) pos.y % TILE_SIZE) * TILE_SIZE);
