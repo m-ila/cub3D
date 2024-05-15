@@ -56,6 +56,6 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 1] << 8) | \
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 2]);
 	else
-		color = C_BROWN;
+		color = C_WHITE;
 	return (color);
 }
