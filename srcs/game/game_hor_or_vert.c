@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:48:15 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:20:23 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 bool	ft_facing_up(double angle)
 {
-	return (angle > 0 && angle < 180);
+	return (angle > 0.0 && angle < 180.0);
 }
 
 bool	ft_pointing_left(double angle)
 {
-	return (angle > 90 && angle < 270);
+	return (angle > 90.0 && angle < 270.0);
 }
 
 double	ft_vrt_intersections(t_data *cub, t_segment *seg)
@@ -28,7 +28,7 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 	t_point_d	pos;
 	t_point		map;
 
-	if (seg->angle == 90 || seg->angle == 270)
+	if (seg->angle == 90.0 || seg->angle == 270.0)
 		return (DBL_MAX);
 	d.x = TILE_SIZE;
 	d.y = ft_get_dy_vrt(seg->angle);
@@ -55,7 +55,7 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	t_point_d	pos;
 	t_point		map;
 
-	if (seg->angle == 0 || seg->angle == 180 || seg->angle == 360)
+	if (seg->angle == 0.0 || seg->angle == 180.0 || seg->angle == 360.0)
 		return (DBL_MAX);
 	d.y = TILE_SIZE;
 	d.x = ft_get_dx_hrz(seg->angle);

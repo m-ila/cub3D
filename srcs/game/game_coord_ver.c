@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:41:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:47:02 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:20:42 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 double	ft_get_dy_vrt(double angle)
 {
-	if (angle <= 90)
+	if (angle <= 90.0)
 		return (TILE_SIZE * tan(ft_deg_to_rad(angle)));
-	else if (angle > 90 && angle < 180)
+	else if (angle > 90.0 && angle < 180.0)
 		return (TILE_SIZE * tan(ft_deg_to_rad(180.0 - angle)));
-	else if (angle < 270)
+	else if (angle < 270.0)
 		return (TILE_SIZE * tan(ft_deg_to_rad(angle - 180.0)));
 	return (TILE_SIZE * tan(ft_deg_to_rad(360.0 - angle)));
 }

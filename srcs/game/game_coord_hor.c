@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:41:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:47:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:21:01 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ double	ft_get_dx_hrz(double angle)
 {
 	if (angle <= 90.0)
 		return (TILE_SIZE * tan(ft_deg_to_rad(90.0 - angle)));
-	else if (angle > 90 && angle < 180)
+	else if (angle > 90.0 && angle < 180.0)
 		return (TILE_SIZE * tan(ft_deg_to_rad(angle - 90.0)));
-	else if (angle < 270)
-		return (TILE_SIZE * tan(ft_deg_to_rad(270 - angle)));
-	return (TILE_SIZE * tan(ft_deg_to_rad(angle - 270)));
+	else if (angle < 270.0)
+		return (TILE_SIZE * tan(ft_deg_to_rad(270.0 - angle)));
+	return (TILE_SIZE * tan(ft_deg_to_rad(angle - 270.0)));
 }
 
 double	ft_get_y_hrz(t_point_d from, double angle)
