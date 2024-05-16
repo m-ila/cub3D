@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 18:26:50 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:54:53 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,15 @@ void	ft_handle_angle(t_data *cub, int keycode)
 		cub->angle -= 360;
 }
 
+void	ft_get_hor_vert(t_data *cub, t_segment *seg)
+{
+	double	hor;
+	double	vert;
 
-
+	hor = ft_hzt_intersections(cub, seg);
+	vert = ft_vrt_intersections(cub, seg);
+	if (hor > vert)
+		seg->horizontal_hit = true;
+	if (hor <= vert)
+		seg->vertical_hit = true;
+}

@@ -6,28 +6,24 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:45:57 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:55:53 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-bool	ft_is_within_map_bounds(t_data *cub, t_point coord)
+double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle)
 {
-	return (coord.x >= 0 && coord.y >= 0 && \
-	coord.x < (int) cub->map->x_size_max \
-	&& coord.y < (int) cub->map->y_size_max && \
-	coord.x < (int) ft_strlen(cub->map->raw_map[coord.y]));
+	if (ft_facing_up(angle))
+		return (pos.y - d.y);
+	return (pos.y + d.y);
 }
 
-bool	ft_facing_up(double angle)
+double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle)
 {
-	return (angle > 0.0 && angle < 180.0);
-}
-
-bool	ft_pointing_left(double angle)
-{
-	return (angle > 90.0 && angle < 270.0);
+	if (!ft_pointing_left(angle))
+		return (pos.x + d.x);
+	return (pos.x - d.x);
 }
 
 double	ft_vrt_intersections(t_data *cub, t_segment *seg)
@@ -47,7 +43,8 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 	while (map.y > 0 && map.x > 0 && \
 	map.y  < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
 	{
-		if (cub->map->raw_map[map.y][map.x] == '1')
+		if (ft_is_within_map_bounds(cub, map) && \
+		cub->map->raw_map[map.y][map.x] == '1')
 			return (ft_len_ray(seg->from, pos));
 		pos.x = ft_pos_x_inc(pos, d, seg->angle);
 		pos.y = ft_pos_y_inc(pos, d, seg->angle);
@@ -74,7 +71,8 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	while (map.y > 0 && map.x > 0 && \
 	map.y  < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
 	{
-		if (ft_is_within_map_bounds(cub, map) && cub->map->raw_map[map.y][map.x] == '1')
+		if (ft_is_within_map_bounds(cub, map) && \
+		cub->map->raw_map[map.y][map.x] == '1')
 			return (ft_len_ray(seg->from, pos));
 		pos.x = ft_pos_x_inc(pos, d, seg->angle);
 		pos.y = ft_pos_y_inc(pos, d, seg->angle);

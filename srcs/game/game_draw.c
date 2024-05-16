@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:44:32 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 19:47:02 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:53:41 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,22 @@ void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color)
 	}
 }
 
-void	ft_draw_angle_deb(t_data *cub, t_segment seg, int color)
-{
-	double	dx;
-	double	dy;
-	int		x;
-	int		y;
-	double		i;
+// void	ft_draw_angle_deb(t_data *cub, t_segment seg, int color)
+// {
+// 	double	dx;
+// 	double	dy;
+// 	int		x;
+// 	int		y;
+// 	double		i;
 
-	dx = cos(ft_deg_to_rad(seg.angle));
-	dy = sin(ft_deg_to_rad(seg.angle));
-	i = 4.0;
-	while (seg.len_debug != DBL_MAX && i < seg.len_debug)
-	{
-		x = seg.from.x + round(i * dx);
-		y = seg.from.y - round(i * dy);
-		mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x, y, color);
-		i += 1.0;
-	}
-}
+// 	dx = cos(ft_deg_to_rad(seg.angle));
+// 	dy = sin(ft_deg_to_rad(seg.angle));
+// 	i = 4.0;
+// 	while (seg.len_debug != DBL_MAX && i < seg.len_debug)
+// 	{
+// 		x = seg.from.x + round(i * dx);
+// 		y = seg.from.y - round(i * dy);
+// 		mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x, y, color);
+// 		i += 1.0;
+// 	}
+// }

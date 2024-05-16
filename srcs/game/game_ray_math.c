@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:49:44 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:44:50 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_seg_refresh(t_data *cub)
 	int	i;
 
 	i = 0;
-	while (i < 91)
+	while (i < W_WIDTH / 4)
 	{
 		ft_draw_angle_seg(cub, cub->seg[i], C_WHITE);
 		i++;
@@ -62,19 +62,6 @@ t_point_d ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 	translate.x = (int) end->x;
 	translate.y = (int) end->y;
 	return (translate);
-}
-
-void	ft_get_hor_vert(t_data *cub, t_segment *seg)
-{
-	double	hor;
-	double	vert;
-
-	hor = ft_hzt_intersections(cub, seg);
-	vert = ft_vrt_intersections(cub, seg);
-	if (hor > vert)
-		seg->horizontal_hit = true;
-	if (hor <= vert)
-		seg->vertical_hit = true;
 }
 
 /*

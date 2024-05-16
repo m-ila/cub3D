@@ -6,18 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:41:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:34:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:50:01 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle)
-{
-	if (ft_facing_up(angle))
-		return (pos.y - d.y);
-	return (pos.y + d.y);
-}
 
 double	ft_get_dx_hrz(double angle)
 {

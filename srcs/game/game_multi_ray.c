@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:26:33 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:42:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	print_debug(t_data *cub, int i)
 {
 	char	*str;
 
-	if (cub->seg[i + 44].direction == SO)
+	if (cub->seg[i].direction == SO)
 		str = "SOUTH";
-	if (cub->seg[i + 44].direction == NO)
+	if (cub->seg[i].direction == NO)
 		str = "NORTH";
-	if (cub->seg[i + 44].direction == EA)
+	if (cub->seg[i].direction == EA)
 		str = "EAST";
-	if (cub->seg[i + 44].direction == WE)
+	if (cub->seg[i].direction == WE)
 		str = "WEST";
-	if (cub->seg[i + 44].direction == ERR)
+	if (cub->seg[i].direction == ERR)
 		str = "ERR";
-	if (i + 44 == 0)
-		printf("\n\nAngle RED : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
-	if (i + 44 == 45)
-		printf("Angle YELLOW : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
-	if (i + 44 == 89)
-		printf("Angle GREY : %f\nWall hit : %s\n\n", cub->seg[i + 44].angle, str);
+	if (i == 0)
+		printf("\n\nAngle RED : %f\nWall hit : %s\n\n", cub->seg[i].angle, str);
+	if (i == (W_WIDTH - 1) / 8)
+		printf("Angle YELLOW : %f\nWall hit : %s\n\n", cub->seg[i].angle, str);
+	if (i == (W_WIDTH - 1) / 4)
+		printf("Angle GREY : %f\nWall hit : %s\n\n", cub->seg[i].angle, str);
 /*
 	if ((i + 44 == 0 || i + 44 == 45 || i + 44 == 89) && (cub->seg[i + 44].angle == 71 \
 	|| cub->seg[i + 44].angle == 135 || cub->seg[i + 44].angle == 171 \
@@ -45,17 +45,26 @@ void	print_debug(t_data *cub, int i)
 /* exit à revoir */
 void	ft_malloc_rays(t_data *cub)
 {
-	int	i;
+	double	start_angle;
+	double	tot;
+	double	ind;
+	double	angle_incr;
 
-	i = -44;
-	cub->seg = ft_calloc(91, sizeof(t_segment));
+	tot = W_WIDTH / 4;
+	angle_incr = FOV / tot;
+	 if (angle_incr == 0)
+	 	angle_incr = 0.5;
+	start_angle = ft_norm_angle(cub->angle - (FOV / 2));
+	ind = 0;
+	cub->seg = ft_calloc(tot + 1, sizeof(t_segment));
 	if (cub->seg == NULL)
 		exit(1);
-	while (i <= 45)
+	while (ind < tot)
 	{
-		cub->seg[i + 44] = ft_segment(cub, ft_norm_angle(cub->angle + i));
-		print_debug(cub, i);
-		i++;
+		printf("\n\ntot : %f\nind : %f\nangle incr : %f\n", tot, ind, angle_incr);
+		cub->seg[(int) ind] = ft_segment(cub, ft_norm_angle(start_angle + (ind * angle_incr)));
+		print_debug(cub, ind);
+		ind += 1.0;
 	}
 }
 
@@ -64,13 +73,13 @@ void	ft_print_all_rays(t_data *cub)
 	int	i;
 
 	i = 0;
-	while (i < 90)
+	while (i < W_WIDTH / 4)
 	{
 		if (i == 0)
 			ft_draw_angle_seg(cub, cub->seg[i], C_RED);
-		else if (i == 45)
+		else if (i == (W_WIDTH - 1) / 8)
 			ft_draw_angle_seg(cub, cub->seg[i], C_YELLOW);
-		else if (i == 89)
+		else if (i == (W_WIDTH - 1) / 4)
 			ft_draw_angle_seg(cub, cub->seg[i], C_GREY);
 		else
 		{

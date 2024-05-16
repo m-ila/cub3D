@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:34:12 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:38:35 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@
 # define INCR_STEP 5
 # define TILE_SIZE 65
 # define MINI_TILE_SIZE 13
-# define W_HEIGHT 800
-# define W_WIDTH 1100
-# define COLUMN_W 10
+# define W_HEIGHT 400
+# define W_WIDTH 720
+# define COLUMN_W 4
+# define FOV 90
 
 typedef struct s_rgb
 {
@@ -133,6 +134,10 @@ void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
 /* srcs/str_manip.c */
 bool	ft_add_line_to_arr(char ***arr, char **line);
+/* srcs/game/bool.c */
+bool	ft_is_within_map_bounds(t_data *cub, t_point coord);
+bool	ft_facing_up(double angle);
+bool	ft_pointing_left(double angle);
 /* srcs/game/game_angle_math.c */
 double	ft_deg_to_rad(double deg);
 double	ft_norm_angle(double angle);
@@ -141,21 +146,20 @@ double	ft_abs(double val);
 void	ft_handle_angle(t_data *cub, int keycode);
 void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
 void	ft_get_starting_angle(t_data *cub);
+void	ft_get_hor_vert(t_data *cub, t_segment *seg);
 /* srcs/game/game_coord_hor.c */
-double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle);
 double	ft_get_x_hrz(t_point_d from, t_point_d pos, double angle);
 double	ft_get_y_hrz(t_point_d from, double angle);
 double	ft_get_dx_hrz(double angle);
 /* srcs/game/game_coord_ver.c */
-double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle);
 double	ft_get_y_vrt(t_point_d from, t_point_d pos, double angle);
 double	ft_get_x_vrt(t_point_d pos, double angle);
 double	ft_get_dy_vrt(double angle);
 /* srcs/game/game_hor_or_vert.c */
-bool	ft_facing_up(double angle);
-bool	ft_pointing_left(double angle);
 double	ft_hzt_intersections(t_data *cub, t_segment *seg);
 double	ft_vrt_intersections(t_data *cub, t_segment *seg);
+double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle);
+double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
 /* srcs/game/game_init_img.c */
@@ -165,12 +169,12 @@ bool	ft_open_images(t_data *cub);
 void	init_mlx(t_data *cub);
 void	init_windows(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
-int key_hook(int keycode, void *param);
+int		key_hook(int keycode, void *param);
 
-void render_2d_map(t_data *cub);
-void draw_player(t_data *cub, t_point_d pos, int color);
+void	render_2d_map(t_data *cub);
+void	draw_player(t_data *cub, t_point_d pos, int color);
 
-void render_3d(t_data *cub);
+void	render_3d(t_data *cub);
 /* srcs/game/game_input.c */
 int		ft_handle_clic(int button, int x, int y, void *param);
 /* srcs/games/game_moves.c */
@@ -194,7 +198,6 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
 t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until);
 
-void	ft_draw_angle_deb(t_data *cub, t_segment seg, int color);
-void	ft_get_hor_vert(t_data *cub, t_segment *seg);
+// void	ft_draw_angle_deb(t_data *cub, t_segment seg, int color);
 
 #endif
