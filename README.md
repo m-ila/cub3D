@@ -15,7 +15,7 @@
 - [x] quand on appuie sur gauche, ça va vers la gauche etc
 - [ ] tests leaks
 - [x] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
-- [ ] parsing : régler le x_max
+- [x] parsing : régler le x_max
 - [x] vérifier que le jeu ne crash pas si on lance sans env
 - [ ] enlever les wildcards dans le makefile
 - [ ] des fois on peut rentrer dans les murs (angles et en allant en arrière)

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:41:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:50:01 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:05:05 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 double	ft_get_dx_hrz(double angle)
 {
 	if (angle <= 90.0)
-		return (TILE_SIZE * tan(ft_deg_to_rad(90.0 - angle)));
+		return (TILE_SIZE * tan(ft_deg_to_rad(ft_norm_angle(90.0 - angle))));
 	else if (angle > 90.0 && angle < 180.0)
-		return (TILE_SIZE * tan(ft_deg_to_rad(angle - 90.0)));
+		return (TILE_SIZE * tan(ft_deg_to_rad(ft_norm_angle(angle - 90.0))));
 	else if (angle < 270.0)
-		return (TILE_SIZE * tan(ft_deg_to_rad(270.0 - angle)));
-	return (TILE_SIZE * tan(ft_deg_to_rad(angle - 270.0)));
+		return (TILE_SIZE * tan(ft_deg_to_rad(ft_norm_angle(270.0 - angle))));
+	return (TILE_SIZE * tan(ft_deg_to_rad(ft_norm_angle(angle - 270.0))));
 }
 
 double	ft_get_y_hrz(t_point_d from, double angle)
@@ -33,10 +33,10 @@ double	ft_get_y_hrz(t_point_d from, double angle)
 double	ft_get_x_hrz(t_point_d from, t_point_d pos, double angle)
 {
 	if (angle < 90.0)
-		return (from.x + ((from.y - pos.y) * tan(ft_deg_to_rad(90.0 - angle))));
+		return (from.x + ((from.y - pos.y) * tan(ft_deg_to_rad(ft_norm_angle(90.0 - angle)))));
 	else if (angle < 180.0)
-		return (from.x - ((from.y - pos.y) * tan(ft_deg_to_rad(angle - 90.0))));
+		return (from.x - ((from.y - pos.y) * tan(ft_deg_to_rad(ft_norm_angle(angle - 90.0)))));
 	else if (angle < 270.0)
-		return (from.x - ((pos.y - from.y) * tan(ft_deg_to_rad(270.0 - angle))));
-	return (from.x + ((pos.y - from.y) * tan(ft_deg_to_rad(angle - 270.0))));
+		return (from.x - ((pos.y - from.y) * tan(ft_deg_to_rad(ft_norm_angle(270.0 - angle)))));
+	return (from.x + ((pos.y - from.y) * tan(ft_deg_to_rad(ft_norm_angle(angle - 270.0)))));
 }

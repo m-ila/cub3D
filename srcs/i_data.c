@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_data.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/12 14:37:45 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/16 13:30:43 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ bool check_line(t_data *cub, char **line, int *phase)
         free(cpy);
     }
     if (!(*line))
-		return false;
+		return (false);
     if (ft_start_map_condition(*line))
         *phase = 2;
     if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
-        return false;
+        return (false);
     return ft_process_phase(cub, *phase, line);
 }
 

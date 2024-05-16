@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 13:19:18 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:00:41 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_seg_refresh(t_data *cub)
 	int	i;
 
 	i = 0;
-	while (i < W_WIDTH / COLUMN_W)
+	while (i < (W_WIDTH / COLUMN_W) - 1)
 	{
 		ft_draw_angle_seg(cub, cub->seg[i], C_WHITE);
 		i++;
@@ -81,14 +81,16 @@ t_segment	ft_segment(t_data *cub, double angle)
 
 	end_d.x = (double) cub->position.x;
 	end_d.y = (double) cub->position.y;
+	seg.angle = angle;
 	seg.horizontal_hit = false;
 	seg.vertical_hit = false;
 	seg.from = cub->position;
+	seg.hrz_slope = 0.0;
+	seg.vrt_slope = 0.0;
 	ft_get_hor_vert(cub, &seg);
 	end = ft_find_end_point(cub, &end_d, angle);
 	seg.until = end;
 	//seg.slope_len = ft_len_ray(seg.from, seg.until);
-	seg.angle = angle;
 	tile_hit.x = seg.until.x / TILE_SIZE;
 	tile_hit.y = seg.until.y / TILE_SIZE;
 	seg.tile_hit = tile_hit;

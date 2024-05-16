@@ -132,7 +132,7 @@ void	render_3d_view(t_data *cub)
 	int	column;
 
 	column = 0;
-	while (column < W_WIDTH / COLUMN_W)
+	while (column < (W_WIDTH / COLUMN_W) - 1)
 	{
 		cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
 		if (cub->seg[column].top_pix < 0)
@@ -150,10 +150,10 @@ void	draw_minimap_tile(t_data *cub, int x, int y, int start_x, int start_y)
 	int pixel_x = start_x + x * MINI_TILE_SIZE;
 	int pixel_y = start_y + y * MINI_TILE_SIZE;
 	int color;
-	if (cub->map->raw_map[y][x] == '1')
-		color = 0xFFFFFF;
+	if (cub->map->raw_map[y][x] == '1' || ft_iswhitespace(cub->map->raw_map[y][x]))
+		color = C_PURPLE;
 	else
-		color = 0x000000;
+		color = C_PINK;
 	int i = 0;
 	int j;
 	while (i < MINI_TILE_SIZE)
