@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:10:35 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 19:39:48 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:19:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,18 @@ typedef struct s_segment
 {
 	t_point_d	from;
 	t_point_d	until;
-	t_point	tile_hit;
-	double	angle;
-	double	slope_len;
-	double	len_processed;
-	bool	vertical_hit;
-	bool	horizontal_hit;
+	t_point		tile_hit;
+	double		angle;
+	double		hrz_slope;
+	double		vrt_slope;
+	double		slope_len;
+	double		len_processed;
+	bool		vertical_hit;
+	bool		horizontal_hit;
 	t_compass	direction;
 	double		wall_height;
 	int			top_pix;
 	int			bot_pix;
-	double		len_debug;
 }	t_segment;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 11:58:43 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:19:18 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,18 @@ t_segment	ft_segment(t_data *cub, double angle)
 	seg.horizontal_hit = false;
 	seg.vertical_hit = false;
 	seg.from = cub->position;
+	ft_get_hor_vert(cub, &seg);
 	end = ft_find_end_point(cub, &end_d, angle);
 	seg.until = end;
-	seg.slope_len = ft_len_ray(seg.from, seg.until);
+	//seg.slope_len = ft_len_ray(seg.from, seg.until);
 	seg.angle = angle;
 	tile_hit.x = seg.until.x / TILE_SIZE;
 	tile_hit.y = seg.until.y / TILE_SIZE;
 	seg.tile_hit = tile_hit;
 	seg.len_processed = seg.slope_len * \
 	cos(ft_deg_to_rad(seg.angle) - ft_deg_to_rad(cub->angle));
-	ft_get_hor_vert(cub, &seg);
 	seg.direction = ft_get_which_wall(&seg ,seg.angle, seg.until);
 	seg.wall_height = (TILE_SIZE * W_WIDTH / 2) / seg.len_processed;
-	if (seg.vertical_hit)
-		seg.len_debug = ft_vrt_intersections(cub, &seg);
-	if (seg.horizontal_hit)
-		seg.len_debug = ft_hzt_intersections(cub, &seg);
 	return (seg);
 }
 

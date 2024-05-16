@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:54:53 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 13:26:34 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,24 @@ void	ft_handle_angle(t_data *cub, int keycode)
 		cub->angle += INCR_DEG;
 	if (keycode == RIGHT_ARROW || keycode == R_CLIC)
 		cub->angle -= INCR_DEG;
-	if (cub->angle < 0)
-		cub->angle += 360;
-	else if (cub->angle > 360)
-		cub->angle -= 360;
+	if (cub->angle < 0.0)
+		cub->angle += 360.0;
+	else if (cub->angle > 360.0)
+		cub->angle -= 360.0;
 }
 
 void	ft_get_hor_vert(t_data *cub, t_segment *seg)
 {
-	double	hor;
-	double	vert;
-
-	hor = ft_hzt_intersections(cub, seg);
-	vert = ft_vrt_intersections(cub, seg);
-	if (hor > vert)
+	seg->hrz_slope = ft_hzt_intersections(cub, seg);
+	seg->vrt_slope = ft_vrt_intersections(cub, seg);
+	if (seg->hrz_slope > seg->vrt_slope)
+	{
 		seg->horizontal_hit = true;
-	if (hor <= vert)
+		seg->slope_len = seg->vrt_slope;
+	}
+	if (seg->hrz_slope <= seg->vrt_slope)
+	{
 		seg->vertical_hit = true;
+		seg->slope_len = seg->hrz_slope;
+	}
 }
