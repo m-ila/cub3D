@@ -8,6 +8,8 @@
 - [ ] enlever les wildcards dans le makefile
 - [ ] Norme
 - [ ] tests leaks
+- [ ] pourquoi map2 ne fonctionne pas ?
+- [ ] mettre plus de map jouables
 - [x] `   1  00001` renvoie faux map
 - [x] strocc delimitersS
 - [x] strocc base from
