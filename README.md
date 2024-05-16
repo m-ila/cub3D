@@ -10,7 +10,7 @@
 - [ ] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
 - [x] Free imgs quand fin partout
 - [x] Angles texture
-- [ ] Faire en sorte que quand on reste appuyé ça avance
+- [x] Faire en sorte que quand on reste appuyé ça avance
 - [ ] Norme
 - [x] quand on appuie sur gauche, ça va vers la gauche etc
 - [ ] tests leaks
