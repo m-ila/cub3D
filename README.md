@@ -1,26 +1,27 @@
 # cub3D
 
 # to do
+- [ ] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
+- [ ] makefile : remettre Werror
+- [ ] enlever la 2d map avec les rayons de partout
+- [ ] separer les files en bonus et pas bonus
+- [ ] enlever les wildcards dans le makefile
+- [ ] Norme
+- [ ] tests leaks
 - [x] `   1  00001` renvoie faux map
 - [x] strocc delimitersS
 - [x] strocc base from
 - [x] ??? leak GNL quand color est faux ???
 - [x] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
 - [x] if player outside the walls ?
-- [ ] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
 - [x] Free imgs quand fin partout
 - [x] Angles texture
 - [x] Faire en sorte que quand on reste appuyé ça avance
-- [ ] Norme
 - [x] quand on appuie sur gauche, ça va vers la gauche etc
-- [ ] tests leaks
 - [x] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
 - [x] parsing : régler le x_max
 - [x] vérifier que le jeu ne crash pas si on lance sans env
-- [ ] enlever les wildcards dans le makefile
-- [ ] des fois on peut rentrer dans les murs (angles et en allant en arrière)
-- [ ] makefile : remettre Werror
-
+- [x] des fois on peut rentrer dans les murs (angles et en allant en arrière)
 
 ## Ressources
 * [Ray Tracing in One Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)
@@ -32,11 +33,6 @@
 * [map tester : error map ressources](https://github.com/DevJ2K/cub3d_map_tester.git)
 * [raycast](https://www.permadi.com/tutorial/raycast/rayc7.html)
 * [img mlx](https://github.com/keuhdall/images_example)
-
-### Discord help
-* [ray going through](https://discord.com/channels/774300457157918772/785407528971272203/810551909475680276)
-* [2](https://discord.com/channels/774300457157918772/785407528971272203/810153344433520663)
-* [3](https://discord.com/channels/774300457157918772/785407528971272203/892801483047858266)
 
 ### Perso
 * Alias git : ```git config --add alias.wip '!f() { git add -A && git commit -m "$@" && git push; }; f'```
