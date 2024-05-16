@@ -6,12 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:22:03 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 bool	ft_open_file(t_data *cub, char *path_file)
 {
@@ -93,7 +92,8 @@ char **read_all_lines(int fd, int *line_count)
     char *line;
     *line_count = 0;
 
-    while ((line = get_next_line(fd)) != NULL) {
+    while ((line = get_next_line(fd)) != NULL)
+	{
         lines = realloc(lines, sizeof(char *) * (*line_count + 1));
         if (lines == NULL) {
             fprintf(stderr, "Memory allocation failed\n");
@@ -123,6 +123,9 @@ bool check_line(t_data *cub, char **line, int *phase)
     return ft_process_phase(cub, *phase, line);
 }
 
+/*
+ici a un moment ca renvoie faux sans raison apparente, a voir de qui ca vient
+*/
 bool ft_process_file(t_data *cub)
 {
     char **all_lines;
@@ -135,9 +138,7 @@ bool ft_process_file(t_data *cub)
 	all_lines = read_all_lines(cub->tmp_fd, &line_count);
     while (temoin && i < line_count)
 	{
-        printf("\nNEWLINE\n");
         temoin = check_line(cub, &all_lines[i], &phase);
-        printf("\nline = (d)%s(f)\n", all_lines[i]);
         i++;
     }
     while (j < line_count) 
@@ -184,7 +185,6 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	ft_init_null(cub);
 	if (!ft_open_file(cub, path_file))
 		return (false);
-	printf("opened\nfd = %d\n", cub->tmp_fd);
 	if (!ft_process_file(cub))
 		return (ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), false);
 	printf("\nDisplay raw map\n");

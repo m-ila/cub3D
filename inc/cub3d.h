@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:14:02 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:21:51 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@
 /* math.h */
 # include <math.h>
 # include <float.h>
+/* O_DIRECTORY flag*/
+# include <bits/fcntl-linux.h>
 # include "point.h"
 # include "def_mlx.h"
 # include "../libft/libft.h"
-#include <stdint.h>  // For uint32_t
+/* uint32 */
+# include <stdint.h>
 
 /* minilibx */
 # include "../minilibx-linux/mlx.h"
