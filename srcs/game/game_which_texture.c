@@ -13,7 +13,7 @@
 
 #include "../../inc/cub3d.h"
 
-static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point_d until)
+static t_compass	ft_which_wall_down(t_segment *seg, double angle)
 {
 	if (angle > 180.0 && angle < 270.0)
 	{
@@ -30,7 +30,7 @@ static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point_d unti
 	return (ERR);
 }
 
-static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point_d until)
+static t_compass	ft_which_wall_up(t_segment *seg, double angle)
 {
 	if (angle > 0.0 && angle < 90.0)
 	{
@@ -47,7 +47,7 @@ static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point_d until)
 	return (ERR);
 }
 
-t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until)
+t_compass	ft_get_which_wall(t_segment *seg, double angle)
 {
 	if (angle == 0.0 || angle == 360.0)
 		return (EA);
@@ -58,8 +58,8 @@ t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until)
 	else if (angle == 270.0)
 		return (SO);
 	else if (angle > 0.0 && angle < 180.0)
-		return (ft_which_wall_up(seg, angle, until));
+		return (ft_which_wall_up(seg, angle));
 	else if (angle > 180.0 && angle < 360.0)
-		return (ft_which_wall_down(seg, angle, until));
+		return (ft_which_wall_down(seg, angle));
 	return (ERR);
 }

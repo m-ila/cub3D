@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   i_color.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:01:27 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/01 12:47:31 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
+
 
 /* check if everything is between 0 and 255 and is only digits */
 bool	ft_color_range(char **arr)

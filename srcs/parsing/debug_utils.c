@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   debug_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 14:00:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/04/18 15:36:41 by mbruyant         ###   ########.fr       */
+/*   Created: 2024/05/01 10:17:15 by mbruyant          #+#    #+#             */
+/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
 
-int	ft_err_ret(char *msg, char *name, int ret)
+
+void	ft_display_2d(char **arr)
 {
-	if (name == NULL)
-		ft_printf_fd(2, "Error : %s\n", msg);
-	if (name)
-		ft_printf_fd(2, "Error : %s : %s\n", name, msg);
-	return (ret);
+	int	i;
+
+	i = 0;
+	if (arr && *arr)
+	{
+		while (arr[i])
+		{
+			ft_printf_fd(1, "arr[%d] : %s\n", i, arr[i]);
+			i++;
+		}
+	}
 }

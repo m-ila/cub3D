@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 11:59:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:14:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,43 +96,43 @@ typedef struct s_data
 	t_segment	*seg;
 }	t_data;
 
-/* srcs/bool_is.c */
+/* srcs/parsing/bool_is.c */
 bool	ft_is_valid_file_component(char *str);
 bool	ft_is_text(char *str);
 bool	ft_is_color(char *str);
 int		ft_bool_endline(char c);
-/* srcs/debug_utils.c */
+/* srcs/parsing/debug_utils.c */
 void	ft_display_2d(char **arr);
-/* srcs/errors.c */
+/* srcs/parsing/errors.c */
 int		ft_err_ret(char *msg, char *name, int ret);
-/* srcs/free.c */
+/* srcs/parsing/free.c */
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
 void	ft_free_map(t_map *m);
 int		exit_cleanup(t_data *cub);
 void	ft_free_img(t_data *cub);
-/* srcs/i_color.c */
+/* srcs/parsing/i_color.c */
 bool	ft_color_range(char **arr);
 bool	ft_process_color(t_data *cub, char **arr);
-/* srcs/i_data.c */
+/* srcs/parsing/i_data.c */
 /*check if str is NO/SO/WE/EA/C/F */
 bool	ft_is_valid_file_component(char *str);
 bool	ft_open_file(t_data *cub, char *path_file);
 void	ft_close_fd(int *fd);
 bool	ft_init_struct(t_data *cub, char *path_file);
-/* srcs/i_map.c */
+/* srcs/parsing/i_map.c */
 bool	ft_start_map_condition(char *str);
 bool	ft_get_data_map(t_map *m);
-/* srcs/i_null.c */
+/* srcs/parsing/i_null.c */
 void	ft_init_null(t_data *cub);
 void	ft_array_set_null(char **arr, size_t len);
-/* srcs/p_map_find.c */
+/* srcs/parsing/p_map_find.c */
 int		ft_find_end_line(char *str);
 int		ft_find_start_line(char *str);
-/* srcs/p_map.c */
+/* srcs/parsing/p_map.c */
 void	ft_flood_fill(t_point *position, t_map *map);
 bool	ft_parse_flood_fill(t_map *map);
-/* srcs/str_manip.c */
+/* srcs/parsing/str_manip.c */
 bool	ft_add_line_to_arr(char ***arr, char **line);
 /* srcs/game/bool.c */
 bool	ft_is_within_map_bounds(t_data *cub, t_point coord);
@@ -196,7 +196,7 @@ void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color);
 /* srcs/game/game_which_pixel.c */
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i);
 /* srcs/games/game_which_texture.c */
-t_compass	ft_get_which_wall(t_segment *seg, double angle, t_point_d until);
+t_compass	ft_get_which_wall(t_segment *seg, double angle);
 
 // void	ft_draw_angle_deb(t_data *cub, t_segment seg, int color);
 

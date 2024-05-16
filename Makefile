@@ -6,7 +6,7 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/12 15:09:57 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/05/16 14:12:27 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCFLAGS  = -I inc/ -I src/libft/ -I/usr/include/readline
 MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
 SRC_DIR    = srcs/
 #wildcard to be changed to sources filenames
-SRC_FILES = $(wildcard $(SRC_DIR)*.c) $(wildcard $(SRC_DIR)game/*.c)
+SRC_FILES = $(wildcard $(SRC_DIR)parsing/*.c) $(wildcard $(SRC_DIR)game/*.c)
 # SRC_FILES  = srcs/p_map.c srcs/bool_is.c srcs/main.c srcs/errors.c srcs/i_data.c \
 # srcs/i_null.c srcs/free.c srcs/i_color.c srcs/i_map.c srcs/p_map_find.c \
 # srcs/debug_utils.c srcs/str_manip.c

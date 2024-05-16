@@ -6,11 +6,12 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 13:30:43 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
+
 
 bool	ft_open_file(t_data *cub, char *path_file)
 {

@@ -6,11 +6,12 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 12:06:02 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
+
 
 /* if no env ? */
 int	main(int argc, char **argv, char **envp)

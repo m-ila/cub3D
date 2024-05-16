@@ -6,11 +6,12 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:04:28 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:05:17 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "../../inc/cub3d.h"
+
 
 bool	ft_get_data_map(t_map *m)
 {
