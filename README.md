@@ -16,7 +16,7 @@
 - [ ] tests leaks
 - [x] faire en sorte que la minimap soit sur le même écran et faire en sorte qu'elle soit en petit
 - [ ] parsing : régler le x_max
-- [ ] vérifier que le jeu ne crash pas si on lance sans env
+- [x] vérifier que le jeu ne crash pas si on lance sans env
 - [ ] enlever les wildcards dans le makefile
 - [ ] des fois on peut rentrer dans les murs (angles et en allant en arrière)
 - [ ] makefile : remettre Werror

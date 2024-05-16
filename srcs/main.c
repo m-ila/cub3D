@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/08 16:24:55 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:06:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
-	(void)envp;
+	if (!envp || !(*envp))
+		return (ft_printf_fd(STDERR_FILENO, "Error : needs an env to run MLX\n"), 1);
 	if (argc == 2)
 	{
 		t_data	cub;
