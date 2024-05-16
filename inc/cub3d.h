@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:21:51 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:13:03 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
-# define MINI_TILE_SIZE 13
 # define W_HEIGHT 600
 # define W_WIDTH 1100
 # define COLUMN_W 2

@@ -13,7 +13,22 @@
 
 #include "../../inc/cub3d.h"
 
-int	ft_get_x_offset(t_segment *seg, t_img_mlx *img)
+int	ft_get_x_offset_inside(t_segment *seg, t_img_mlx *img)
+{
+	int	offset;
+
+	if (seg->vertical_hit)
+		offset = ((int) seg->until.y % TILE_SIZE) * img->width / TILE_SIZE;
+	else
+		offset = ((int) seg->until.x % TILE_SIZE) * img->width / TILE_SIZE;
+	if (offset >= img->width)
+		offset = img->width - 1;
+	if (seg->direction == WE || seg->direction == SO)
+		return (TILE_SIZE - offset - 1);
+	return (offset);
+}
+
+int	ft_get_x_offset_outside(t_segment *seg, t_img_mlx *img)
 {
 	int	offset;
 
@@ -28,7 +43,7 @@ int	ft_get_x_offset(t_segment *seg, t_img_mlx *img)
 	return (offset);
 }
 
-int	ft_get_y_offset(t_segment *seg, t_img_mlx *img, int i)
+int	ft_get_y_offset_inside(t_segment *seg, t_img_mlx *img, int i)
 {
 	int	offset;
 
@@ -41,20 +56,47 @@ int	ft_get_y_offset(t_segment *seg, t_img_mlx *img, int i)
 	return (offset);
 }
 
+int	ft_get_y_offset_outside(t_segment *seg, t_img_mlx *img, int i)
+{
+	int	offset;
+
+	offset = (i + ((seg->wall_height / 2) - (W_HEIGHT / 2))) * \
+	(img->height / seg->wall_height);
+	if (offset < 0)
+		offset = 0;
+	if (offset >= img->height)
+		offset = img->height - 1;
+	return (offset);
+}
+
+int	ft_get_x_offset(t_data *cub, t_segment *seg, t_img_mlx *img)
+{
+	if (cub->map->raw_map[(int) seg->from.y / TILE_SIZE][(int) seg->from.x / TILE_SIZE] == '1')
+		return (-1);
+	return (ft_get_x_offset_outside(seg, img));
+}
+
+int	ft_get_y_offset(t_data *cub, t_segment *seg, t_img_mlx *img, int i)
+{
+	if (cub->map->raw_map[(int) seg->from.y / TILE_SIZE][(int) seg->from.x / TILE_SIZE] == '1')
+		return (-1);
+	return (ft_get_y_offset_outside(seg, img, i));
+}
+
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 {
 	t_point_d	pix;
 	int		color;
 	int		offset;
 
-	pix.x = ft_get_x_offset(seg, cub->imgs[seg->direction]);
-	pix.y = ft_get_y_offset(seg, cub->imgs[seg->direction], i);
+	pix.x = ft_get_x_offset(cub, seg, cub->imgs[seg->direction]);
+	pix.y = ft_get_y_offset(cub, seg, cub->imgs[seg->direction], i);
 	offset = pix.x * (cub->imgs[seg->direction]->bpp / 8) + pix.y * cub->imgs[seg->direction]->s_line;
 	if (offset >= 0 && offset < cub->imgs[seg->direction]->s_line * cub->imgs[seg->direction]->height)
 		color = ((unsigned char) cub->imgs[seg->direction]->adress[offset] << 16) |\
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 1] << 8) | \
 	 ((unsigned char) cub->imgs[seg->direction]->adress[offset + 2]);
 	else
-		color = C_WHITE;
+		color = C_GREY;
 	return (color);
 }

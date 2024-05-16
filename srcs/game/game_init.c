@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/16 12:12:17 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:15:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void init_windows(t_data *cub)
         exit_cleanup(cub);
     }
 
-    int total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE);
-    cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, W_HEIGHT, "3D and Minimap View");
+    int total_width = W_WIDTH;
+    cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, W_HEIGHT, "3D View");
     if (!cub->win_3d)
     {
         ft_printf_fd(STDERR_FILENO, "Error: Window creation failed for 3D view\n");
@@ -80,7 +80,9 @@ void move_player(t_data *cub, int keycode)
 		ft_left(cub, &new);
 	else if (keycode == RIGHT)
 		ft_right(cub, &new);
-	if (cub->map->raw_map[(int)new.y / TILE_SIZE][(int)new.x / TILE_SIZE] != '1') 
+	if ((int)new.y / TILE_SIZE >= 0 && (int) new.y / TILE_SIZE <  (int) cub->map->y_size_max && \
+    (int)new.x / TILE_SIZE >= 0 && \
+    (int)new.x / TILE_SIZE < (int) ft_strlen(cub->map->raw_map[(int)new.y / TILE_SIZE])) 
 	{
 		update_player_position(cub, old, new);
 		cub->position = new;
