@@ -10,6 +10,8 @@
 - [ ] tests leaks
 - [ ] pourquoi map2 ne fonctionne pas ?
 - [ ] mettre plus de map jouables
+- [ ] textures sud et est pb pixel x_max y_max
+- [ ] lorsque lit ligne par ligne une fois arrivee fin de map peut avoir des lignes empty
 - [x] `   1  00001` renvoie faux map
 - [x] strocc delimitersS
 - [x] strocc base from
