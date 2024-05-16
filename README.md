@@ -8,7 +8,7 @@
 - [x] -> quand lecture du fichier par GNL est finie avant la fin, ca cree leak (expecte), retravailler GNL
 - [x] if player outside the walls ?
 - [ ] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
-- [ ] Free imgs quand fin partout
+- [x] Free imgs quand fin partout
 - [x] Angles texture
 - [ ] Faire en sorte que quand on reste appuyé ça avance
 - [ ] Norme
