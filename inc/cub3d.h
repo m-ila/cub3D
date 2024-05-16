@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 11:49:40 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:59:30 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@
 # define MINI_TILE_SIZE 13
 # define W_HEIGHT 600
 # define W_WIDTH 1100
-# define COLUMN_W 4
+# define COLUMN_W 2
 # define FOV 90
 
 typedef struct s_rgb

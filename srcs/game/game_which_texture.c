@@ -41,16 +41,16 @@ static t_compass	ft_which_wall_down(t_segment *seg, double angle, t_point_d unti
 {
 	if (angle > 180 && angle < 270)
 	{
-		if (ft_is_corner(until))
-			return (ft_corners(seg));
+		// if (ft_is_corner(until))
+		// 	return (ft_corners(seg));
 		if (seg->horizontal_hit)
 			return (WE);
 		return (SO);
 	}
 	else if (angle > 270 && angle < 360)
 	{
-		if (ft_is_corner(until))
-			return (ft_corners(seg));
+		// if (ft_is_corner(until))
+		// 	return (ft_corners(seg));
 		if (seg->horizontal_hit)
 			return (EA);
 		return (SO);
@@ -62,16 +62,16 @@ static t_compass	ft_which_wall_up(t_segment *seg, double angle, t_point_d until)
 {
 	if (angle > 0 && angle < 90)
 	{
-		if (ft_is_corner(until))
-			return (ft_corners(seg));
+		// if (ft_is_corner(until))
+		// 	return (ft_corners(seg));
 		if (seg->horizontal_hit)
 			return (EA);
 		return (NO);
 	}
 	else if (angle > 90 && angle < 180)
 	{
-		if (ft_is_corner(until))
-			return (ft_corners(seg));
+		// if (ft_is_corner(until))
+		// 	return (ft_corners(seg));
 		if (seg->horizontal_hit)
 			return (WE);
 		return (NO);

@@ -132,7 +132,7 @@ void	render_3d_view(t_data *cub)
 	int	column;
 
 	column = 0;
-	while (column < W_WIDTH / 4)
+	while (column < W_WIDTH / COLUMN_W)
 	{
 		cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
 		if (cub->seg[column].top_pix < 0)
