@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/15 20:20:25 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:12:17 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,35 +35,29 @@ void init_mlx(t_data *cub)
 
 void init_windows(t_data *cub)
 {
-    // Print size information for debugging
-    printf("x_size:%zu\n", cub->map->x_size_max);
-    printf("y_size:%zu\n", cub->map->y_size_max);
-
-    // Initialize window for the 2D map view
     cub->win_2d = mlx_new_window(cub->mlx_ptr, cub->map->x_size_max * TILE_SIZE, cub->map->y_size_max * TILE_SIZE, "2D Map View");
     if (!cub->win_2d)
     {
-        fprintf(stderr, "Error: Window creation failed for 2D map view\n");
-        exit_cleanup(cub); // Handle cleanup and exit
+        ft_printf_fd(STDERR_FILENO, "Error: Window creation failed for 2D map view\n");
+        exit_cleanup(cub);
     }
 
-    int total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE);  // Define MINIMAP_TILE_SIZE appropriately
+    int total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE);
     cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, W_HEIGHT, "3D and Minimap View");
     if (!cub->win_3d)
     {
-        fprintf(stderr, "Error: Window creation failed for 3D view\n");
-        exit_cleanup(cub); // Handle cleanup and exit
+        ft_printf_fd(STDERR_FILENO, "Error: Window creation failed for 3D view\n");
+        exit_cleanup(cub);
     }
-    // Set up window close event handling
     mlx_hook(cub->win_2d, 17, 0L, (int (*)())exit_cleanup, cub);
     mlx_hook(cub->win_3d, 17, 0L, (int (*)())exit_cleanup, cub);
 }
 
 void update_player_position(t_data *cub, t_point_d old, t_point_d new)
 {
-    draw_player(cub, old, C_WHITE); // Draw old position with ground color
+    draw_player(cub, old, C_WHITE);
     ft_draw_angle(cub, &old, cub->angle, C_WHITE);
-    draw_player(cub, new, C_RED); // Draw new position with red color for player
+    draw_player(cub, new, C_RED);
     ft_draw_angle(cub, &new, cub->angle, C_RED);
 }
 
