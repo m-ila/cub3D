@@ -6,11 +6,19 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:20:23 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:45:57 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
+
+bool	ft_is_within_map_bounds(t_data *cub, t_point coord)
+{
+	return (coord.x >= 0 && coord.y >= 0 && \
+	coord.x < (int) cub->map->x_size_max \
+	&& coord.y < (int) cub->map->y_size_max && \
+	coord.x < (int) ft_strlen(cub->map->raw_map[coord.y]));
+}
 
 bool	ft_facing_up(double angle)
 {
@@ -66,7 +74,7 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	while (map.y > 0 && map.x > 0 && \
 	map.y  < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
 	{
-		if (cub->map->raw_map[map.y][map.x] == '1')
+		if (ft_is_within_map_bounds(cub, map) && cub->map->raw_map[map.y][map.x] == '1')
 			return (ft_len_ray(seg->from, pos));
 		pos.x = ft_pos_x_inc(pos, d, seg->angle);
 		pos.y = ft_pos_y_inc(pos, d, seg->angle);

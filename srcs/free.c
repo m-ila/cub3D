@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/15 20:36:55 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:37:45 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,32 +55,22 @@ void	ft_free_map(t_map *m)
 		m = NULL;
 	}
 }
+void ft_free_img(t_data *cub) {
+    if (!cub->imgs)
+        return;
 
-void	ft_free_img(t_data *cub)
-{
-	int	i;
-
-	if (!cub || !cub->imgs)
-        return ;
-	i = 0;
-	while (i < 4)
-	{
-		if (cub->imgs[i] && cub->imgs[i]->img)
-		{
-			mlx_destroy_image(cub->mlx_ptr, cub->imgs[i]->img);
-			cub->imgs[i]->img = NULL;
-		}
-		if (cub->imgs[i])
-		{
-			free(cub->imgs[i]);
-			cub->imgs[i] = NULL;
-		}
-		i++;
-	}
-	if (cub->imgs)
-		free(cub->imgs);
-	cub->imgs = NULL;
+    for (int i = 0; i < 4; i++) {  // Assuming 4 images
+        if (cub->imgs[i]) {
+            if (cub->imgs[i]->img)
+                mlx_destroy_image(cub->mlx_ptr, cub->imgs[i]->img);
+            free(cub->imgs[i]);
+        }
+    }
+    free(cub->imgs);
+    cub->imgs = NULL;
 }
+
+
 
 int exit_cleanup(t_data *cub)
 {
