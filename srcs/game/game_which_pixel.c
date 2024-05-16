@@ -23,9 +23,8 @@ int	ft_get_x_offset(t_segment *seg, t_img_mlx *img)
 		offset = ((int) seg->until.x % TILE_SIZE) * img->width / TILE_SIZE;
 	if (offset >= img->width)
 		offset = img->width - 1;
-
 	if (seg->direction == WE || seg->direction == SO)
-		return (TILE_SIZE - offset);
+		return (TILE_SIZE - offset - 1);
 	return (offset);
 }
 
