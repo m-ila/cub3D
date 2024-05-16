@@ -132,7 +132,7 @@ void	render_3d_view(t_data *cub)
 	int	column;
 
 	column = 0;
-	while (column < 90)
+	while (column < W_WIDTH / 4)
 	{
 		cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
 		if (cub->seg[column].top_pix < 0)
@@ -198,12 +198,12 @@ void	render_minimap(t_data *cub)
 		x = 0;
 		while (x < (int)ft_strlen(cub->map->raw_map[y]))
 		{
-			draw_minimap_tile(cub, x, y, 901, W_HEIGHT - (cub->map->y_size_max * MINI_TILE_SIZE));
+			draw_minimap_tile(cub, x, y, W_WIDTH + 1, W_HEIGHT - (cub->map->y_size_max * MINI_TILE_SIZE));
 			x++;
 		}
 		y++;
 	}
-	draw_player_minimap(cub, 901, W_HEIGHT - (cub->map->y_size_max * MINI_TILE_SIZE));
+	draw_player_minimap(cub, W_WIDTH + 1, W_HEIGHT - (cub->map->y_size_max * MINI_TILE_SIZE));
 }
 
 void	render_3d(t_data *cub)
