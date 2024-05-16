@@ -6,14 +6,14 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/16 14:12:27 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/05/16 15:25:52 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Wextra -O2 -g
+CFLAGS = -Wall -Wextra -Werror -O2 -g
 INCFLAGS  = -I inc/ -I src/libft/ -I/usr/include/readline
 MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
 SRC_DIR    = srcs/

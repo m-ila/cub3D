@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 13:44:39 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:25:03 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_malloc_rays(t_data *cub)
 	ind = 0;
 	cub->seg = ft_calloc(tot + 1, sizeof(t_segment));
 	if (cub->seg == NULL)
-		exit(1);
+		exit_cleanup(cub);
 	while (ind < tot - 1)
 	{
 		cub->seg[(int) ind] = ft_segment(cub, ft_norm_angle(start_angle + (ind * angle_incr)));
