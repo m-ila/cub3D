@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:22:03 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:08:34 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	ft_phase_one(t_data *cub, char **line)
 		ft_err_ret(E_PATH, NULL, false));
 	if (ft_is_color(arr[0]) && !ft_process_color(cub, arr))
 		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), \
-		ft_err_ret("color in file not valid", NULL, false));
+		ft_free_map(cub->map), ft_err_ret("color in file not valid", NULL, false));
 	ft_free_2d_array(arr);
 	//ft_safe_free(&(cub->tmp_line));
 	return (true);
@@ -86,6 +86,14 @@ bool	ft_process_phase(t_data *cub, int phase, char **line)
 	return (true);
 }
 
+/*
+ici, faire en sorte que si la phase 2 est entree,
+checke si les lignes suivantes sont uniquement des lignes vides avec
+ft_has_only_after(*line, 0, ft_bool_endline)
+si oui, on arrete le compte de ligne la
+sinon (si dans la map il y a une ligne avec uniquement des espace/whitespaces)
+laisse passer mais ce cas de parsing est cense renvoyer faux
+*/
 char **read_all_lines(int fd, int *line_count)
 {
     char **lines = NULL;
@@ -119,7 +127,7 @@ bool check_line(t_data *cub, char **line, int *phase)
     if (ft_start_map_condition(*line))
         *phase = 2;
     if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
-        return (false);
+        return (ft_free_map(cub->map) ,ft_err_ret("map must not have empty lines", NULL, false));
     return ft_process_phase(cub, *phase, line);
 }
 
@@ -160,16 +168,16 @@ bool	ft_final_check(t_data *cub)
 	while (i < 4)
 	{
 		if (cub->path_texture[i] == NULL)
-			return (ft_err_ret("missing path texture", NULL, false));
+			return (ft_free_map(cub->map), ft_err_ret("missing path texture", NULL, false));
 		tmp_op = open(cub->path_texture[i], O_RDONLY);
 		if (tmp_op == -1)
-			return (ft_err_ret("cannot open", cub->path_texture[i], false));
+			return (ft_free_map(cub->map), ft_err_ret("cannot open", cub->path_texture[i], false));
 		ft_close_fd(&tmp_op);
 		i++;
 	}
 	if (cub->floor_c.r == -1 || cub->floor_c.g == -1 || cub->floor_c.b == -1 || \
 	cub->ceiling_c.r == -1 || cub->ceiling_c.g == -1 || cub->ceiling_c.b == -1)
-		return (ft_err_ret("color not initialized", cub->path_texture[i], false));
+		return (ft_free_map(cub->map), ft_err_ret("color not initialized", cub->path_texture[i], false));
 	return (true);
 }
 
@@ -180,8 +188,6 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 {
 	if (!cub || !path_file)
 		return (false);
-	if (ft_strlen(path_file) == 0)
-		return (ft_err_ret("enter valid path", NULL, false));
 	ft_init_null(cub);
 	if (!ft_open_file(cub, path_file))
 		return (false);
@@ -191,7 +197,7 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	if (cub->map->raw_map)
 		ft_display_2d(cub->map->raw_map);
 	if (!ft_get_data_map(cub->map))
-		return (ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_err_ret("wrong data map", NULL, false));
+		return (ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_free_map(cub->map), ft_err_ret("wrong data map", NULL, false));
 	cub->map->map_cpy = ft_copy_2d_array(cub->map->raw_map, 0, ft_2d_lines(cub->map->raw_map));
 	if (cub->map && cub->map->map_cpy)
 	{
@@ -200,7 +206,7 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		if (cub->map->map_cpy)
 			ft_display_2d(cub->map->map_cpy);
 		if (!ft_parse_flood_fill(cub->map))
-			return (ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_err_ret("wrong data map 2", NULL, false));
+			return (ft_safe_free(&(cub->tmp_line)), ft_free_textures(cub), ft_close_fd(&(cub->tmp_fd)), ft_free_map(cub->map), ft_err_ret("wrong data map 2", NULL, false));
 		printf("\nx from : %ld\nx until : %ld\n", cub->map->x_from, cub->map->x_until);
 		printf("\ny from : %ld\ny until : %ld\n", cub->map->y_from, cub->map->y_until);
 	}

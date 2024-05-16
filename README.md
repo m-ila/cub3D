@@ -12,6 +12,7 @@
 - [ ] mettre plus de map jouables
 - [ ] textures sud et est pb pixel x_max y_max
 - [ ] lorsque lit ligne par ligne une fois arrivee fin de map peut avoir des lignes empty
+- [x] leak (invalid free sur map) si char pas bon dans la map
 - [x] `   1  00001` renvoie faux map
 - [x] strocc delimitersS
 - [x] strocc base from
