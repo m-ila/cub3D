@@ -6,12 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 15:25:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:30:40 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 void	ft_safe_free(char **str)
 {
@@ -69,9 +68,7 @@ void ft_free_img(t_data *cub) {
     cub->imgs = NULL;
 }
 
-
-
-int exit_cleanup(t_data *cub)
+int	exit_cleanup(t_data *cub)
 {
     if (cub->win_2d)
         mlx_destroy_window(cub->mlx_ptr, cub->win_2d);
@@ -91,6 +88,6 @@ int exit_cleanup(t_data *cub)
     ft_close_fd(&(cub->tmp_fd));
 	free(cub->seg);
     exit(EXIT_FAILURE);
-	return 0;
+	return (0);
 }
 
