@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 10:48:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 10:54:58 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:29:58 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,13 @@ bool	ft_facing_up(double angle)
 bool	ft_pointing_left(double angle)
 {
 	return (angle > 90.0 && angle < 270.0);
+}
+
+bool	ft_player_is_in_wall(t_data *cub, t_segment *seg)
+{
+	t_point	pt;
+
+	pt.y = (int) seg->from.y / TILE_SIZE;
+	pt.x = (int)seg->from.x / TILE_SIZE;
+	return (cub->map->raw_map[pt.y][pt.x] == '1');
 }

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/14 18:27:38 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:09:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,3 @@ void	ft_right(t_data *cub, t_point_d *new)
 	new->x = cub->position.x - round(dx);
 	new->y = cub->position.y + round(dy);
 }
-
-

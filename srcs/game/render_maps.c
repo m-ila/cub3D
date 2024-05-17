@@ -6,16 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 11:48:23 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:28:34 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-int	rgb_to_int(t_rgb color)
-{
-	return ((color.r << 16) | (color.g << 8) | color.b);
-}
 
 void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
 {
@@ -87,15 +82,14 @@ void	render_2d_map(t_data *cub)
 
 void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	t_point	colors;
 
 	x = x_start;
 	colors.x = rgb_to_int(cub->ceiling_c);
 	colors.y = rgb_to_int(cub->floor_c);
-	if (cub->map->raw_map[(int) seg->from.y / TILE_SIZE]\
-	[(int) seg->from.x / TILE_SIZE] == '1')
+	if (ft_player_is_in_wall(cub, seg))
 	{
 		colors.x = C_GREY;
 		colors.y = C_GREY;
@@ -114,7 +108,7 @@ void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 	}
 }
 
-void	render_3d_view(t_data *cub)
+void	render_3d(t_data *cub)
 {
 	int	column;
 
@@ -132,9 +126,4 @@ void	render_3d_view(t_data *cub)
 		draw_colored_vertical_slice(cub, &cub->seg[column], column * COLUMN_W);
 		column++;
 	}
-}
-
-void	render_3d(t_data *cub)
-{
-	render_3d_view(cub);
 }

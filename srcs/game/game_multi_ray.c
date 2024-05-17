@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 11:45:08 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:09:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	ft_malloc_rays(t_data *cub)
 
 	tot = W_WIDTH / COLUMN_W;
 	angle_incr = FOV / tot;
-	 if (angle_incr == 0)
-	 	angle_incr = 0.5;
+	if (angle_incr == 0)
+		angle_incr = 0.5;
 	start_angle = ft_norm_angle(cub->angle - (FOV / 2));
 	ind = 0;
 	cub->seg = ft_calloc(tot + 1, sizeof(t_segment));

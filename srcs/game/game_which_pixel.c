@@ -6,8 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 14:59:53 by mbruyant          #+#    #+#             */
-
-/*   Updated: 2024/05/12 14:09:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:24:05 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +14,12 @@
 
 int	ft_get_x_offset(t_data *cub, t_segment *seg, t_img_mlx *img)
 {
-	int	offset;
+	int		offset;
+	t_point	pt;
 
-	if (cub->map->raw_map[(int) seg->from.y / TILE_SIZE]\
-	[(int) seg->from.x / TILE_SIZE] == '1')
+	pt.y = (int) seg->from.y / TILE_SIZE;
+	pt.x = (int) seg->from.x / TILE_SIZE;
+	if (cub->map->raw_map[pt.y][pt.x] == '1')
 		return (-1);
 	if (seg->horizontal_hit)
 		offset = ((int) seg->until.y % TILE_SIZE) * img->width / TILE_SIZE;
@@ -33,10 +34,12 @@ int	ft_get_x_offset(t_data *cub, t_segment *seg, t_img_mlx *img)
 
 int	ft_get_y_offset(t_data *cub, t_segment *seg, t_img_mlx *img, int i)
 {
-	int	offset;
-	
-	if (cub->map->raw_map[(int) seg->from.y / TILE_SIZE]\
-	[(int) seg->from.x / TILE_SIZE] == '1')
+	int		offset;
+	t_point	pt;
+
+	pt.y = (int) seg->from.y / TILE_SIZE;
+	pt.x = (int) seg->from.x / TILE_SIZE;
+	if (cub->map->raw_map[pt.y][pt.x] == '1')
 		return (-1);
 	offset = (i + ((seg->wall_height / 2) - (W_HEIGHT / 2))) * \
 	(img->height / seg->wall_height);
@@ -50,8 +53,8 @@ int	ft_get_y_offset(t_data *cub, t_segment *seg, t_img_mlx *img, int i)
 int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 {
 	t_point_d	pix;
-	int		color;
-	int		offset;
+	int			color;
+	int			offset;
 
 	pix.x = ft_get_x_offset(cub, seg, cub->imgs[seg->direction]);
 	pix.y = ft_get_y_offset(cub, seg, cub->imgs[seg->direction], i);
@@ -60,7 +63,7 @@ int	ft_get_pixel(t_data *cub, t_segment *seg, int i)
 	if (offset >= 0 && offset < cub->imgs[seg->direction]->s_line * \
 	cub->imgs[seg->direction]->height)
 		color = ((unsigned char) \
-		cub->imgs[seg->direction]->adress[offset] << 16) |\
+		cub->imgs[seg->direction]->adress[offset] << 16) | \
 		((unsigned char) cub->imgs[seg->direction]->adress[offset + 1] << 8) | \
 		((unsigned char) cub->imgs[seg->direction]->adress[offset + 2]);
 	else
