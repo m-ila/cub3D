@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 10:06:44 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:11:47 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,6 @@ void	render_2d_map(t_data *cub)
 	}
 }
 
-/*
-Marianne
-*/
 void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {
 	int	x;

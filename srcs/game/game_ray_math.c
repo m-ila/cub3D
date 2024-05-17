@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:05:45 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:14:30 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:21:16 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_point_d ft_find_end_point(t_data *cub, t_point_d *end, double angle)
 	length = sqrt(dx * dx + dy * dy);
     dx /= length;
     dy /= length;
-    while (cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] && \
+    while (ft_is_within_map_bounds(cub, (t_point){end->x / TILE_SIZE, end->y / TILE_SIZE}) && cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] && \
 	cub->map->raw_map[(int) end->y / TILE_SIZE][(int) end->x / TILE_SIZE] != '1')
 	{
 		if (ft_check_diag_wall(cub, end))
