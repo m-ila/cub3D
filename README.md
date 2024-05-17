@@ -6,12 +6,12 @@
 - [ ] enlever les wildcards dans le makefile
 - [ ] Norme
 - [ ] tests leaks
-- [ ] pourquoi map2 ne fonctionne pas ? -> voir commentaire above read_all_lines
 - [ ] mettre plus de map jouables
 - [ ] lorsque lit ligne par ligne une fois arrivee fin de map peut avoir des lignes empty
 - [ ] minimap : other color if end of line != wall
 
 ## done
+- [x] pourquoi map2 ne fonctionne pas ? -> voir commentaire above read_all_lines
 - [x] makefile : remettre Werror
 - [x] Dans game_multi_ray.c, fonction ft_malloc_rays(t_data *cub) protéger si malloc fail
 - [x] textures sud et est pb pixel x_max y_max
