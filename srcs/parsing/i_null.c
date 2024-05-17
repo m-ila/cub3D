@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:17:42 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:56:18 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:34:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ void	ft_color_set_null(t_rgb *color)
 	color->b = -1;
 }
 
-
-void	ft_init_null(t_data *cub)
+void	ft_init_map(t_map *ma)
 {
-	t_map	*ma;
-
-	ma = ft_calloc(1, sizeof(t_map));
 	ma->x_size_max = 0;
 	ma->y_size_max = 0;
 	ma->x_size_playable = 0;
@@ -51,6 +47,14 @@ void	ft_init_null(t_data *cub)
 	ma->spawn.y = -1;
 	ma->map_cpy = NULL;
 	ma->raw_map = NULL;
+}
+
+void	ft_init_null(t_data *cub)
+{
+	t_map	*ma;
+
+	ma = ft_calloc(1, sizeof(t_map));
+	ft_init_map(ma);
 	cub->map = ma;
 	cub->position.x = -1;
 	cub->position.y = -1;

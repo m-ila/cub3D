@@ -6,12 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:17:15 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:32:50 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 void	ft_display_2d(char **arr)
 {

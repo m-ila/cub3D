@@ -6,13 +6,13 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 18:05:37 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 16:10:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:33:09 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int		ft_find_end_line(char *str)
+int	ft_find_end_line(char *str)
 {
 	size_t	from;
 	size_t	len;
@@ -28,7 +28,7 @@ int		ft_find_end_line(char *str)
 	return (from);
 }
 
-int		ft_find_start_line(char *str)
+int	ft_find_start_line(char *str)
 {
 	return (ft_strlen_unbase(str, B_WHITESPACE, 0));
 }
