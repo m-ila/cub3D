@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 20:41:53 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:04:17 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:34:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ double	ft_get_y_vrt(t_point_d from, t_point_d pos, double angle)
 	if (angle < 90.0)
 		return (from.y - ((pos.x - from.x) * tan(ft_deg_to_rad(angle))));
 	else if (angle < 180.0)
-		return (from.y - ((from.x - pos.x) * tan(ft_deg_to_rad(ft_norm_angle(180.0 - angle)))));
+		return (from.y - ((from.x - pos.x) * \
+		tan(ft_deg_to_rad(ft_norm_angle(180.0 - angle)))));
 	else if (angle < 270.0)
-		return  (from.y + ((from.x - pos.x) * tan(ft_deg_to_rad(ft_norm_angle(angle - 180.0)))));
-	return (from.y + ((pos.x - from.x) * tan(ft_deg_to_rad(ft_norm_angle(360.0 - angle)))));
+		return  (from.y + ((from.x - pos.x) * \
+		tan(ft_deg_to_rad(ft_norm_angle(angle - 180.0)))));
+	return (from.y + ((pos.x - from.x) * \
+	tan(ft_deg_to_rad(ft_norm_angle(360.0 - angle)))));
 }

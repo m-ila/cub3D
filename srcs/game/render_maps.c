@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 10:11:47 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:48:23 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_player(t_data *cub, t_point_d pos, int color)
 		while (j < 5)
 		{
 			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, \
-							start_x + i, start_y + j, color);
+			start_x + i, start_y + j, color);
 			j++;
 		}
 		i++;
@@ -64,11 +64,11 @@ void	render_2d_map(t_data *cub)
 	int	x;
 	int	y;
 
-	y = 0;
-	while (y < (int)cub->map->y_size_max)
+	y = -1;
+	while (++y < (int)cub->map->y_size_max)
 	{
-		x = 0;
-		while (x < (int)ft_strlen(cub->map->raw_map[y]))
+		x = -1;
+		while (++x < (int)ft_strlen(cub->map->raw_map[y]))
 		{
 			if (cub->map->raw_map[y][x] == '1')
 				put_map_cell_to_window(cub, x, y, C_GREY);
@@ -79,14 +79,9 @@ void	render_2d_map(t_data *cub)
 				draw_player(cub, cub->position, C_RED);
 				ft_print_all_rays(cub);
 			}
-			x++;
 		}
-		while (x < (int)cub->map->x_size_max)
-		{
+		while (++x < (int)cub->map->x_size_max)
 			put_map_cell_to_window(cub, x, y, C_WHITE);
-			x++;
-		}
-		y++;
 	}
 }
 
@@ -126,10 +121,12 @@ void	render_3d_view(t_data *cub)
 	column = 0;
 	while (column < (W_WIDTH / COLUMN_W) - 1)
 	{
-		cub->seg[column].top_pix = (W_HEIGHT / 2) - (cub->seg[column].wall_height / 2);
+		cub->seg[column].top_pix = (W_HEIGHT / 2) - \
+		(cub->seg[column].wall_height / 2);
 		if (cub->seg[column].top_pix < 0)
 			cub->seg[column].top_pix = 0;
-		cub->seg[column].bot_pix = cub->seg[column].top_pix + cub->seg[column].wall_height;
+		cub->seg[column].bot_pix = cub->seg[column].top_pix + \
+		cub->seg[column].wall_height;
 		if (cub->seg[column].bot_pix > W_HEIGHT)
 			cub->seg[column].bot_pix = W_HEIGHT;
 		draw_colored_vertical_slice(cub, &cub->seg[column], column * COLUMN_W);

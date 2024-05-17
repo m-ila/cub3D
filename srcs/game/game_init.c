@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 10:25:14 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:48:31 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void init_mlx(t_data *cub)
         ft_safe_free(&(cub->tmp_line));
         ft_free_textures(cub);
         ft_close_fd(&(cub->tmp_fd));
-        ft_printf_fd(2, "Error: MLX initialization failed\n");
+        ft_err_ret("MLX initialization failed", NULL, false);
         exit_cleanup(cub);
         exit(EXIT_FAILURE);
     }
@@ -35,10 +35,11 @@ void init_mlx(t_data *cub)
 
 void init_windows(t_data *cub)
 {
-    cub->win_2d = mlx_new_window(cub->mlx_ptr, cub->map->x_size_max * TILE_SIZE, cub->map->y_size_max * TILE_SIZE, "2D Map View");
+    cub->win_2d = mlx_new_window(cub->mlx_ptr, cub->map->x_size_max * \
+    TILE_SIZE, cub->map->y_size_max * TILE_SIZE, "2D Map View");
     if (!cub->win_2d)
     {
-        ft_printf_fd(STDERR_FILENO, "Error: Window creation failed for 2D map view\n");
+        ft_err_ret("Window creation failed for 2D map view", NULL, false);
         exit_cleanup(cub);
     }
 
@@ -46,7 +47,7 @@ void init_windows(t_data *cub)
     cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, W_HEIGHT, "3D View");
     if (!cub->win_3d)
     {
-        ft_printf_fd(STDERR_FILENO, "Error: Window creation failed for 3D view\n");
+        ft_err_ret("Window creation failed for 3D map view", NULL, false);
         exit_cleanup(cub);
     }
     mlx_hook(cub->win_2d, 17, 0L, (int (*)())exit_cleanup, cub);
@@ -61,10 +62,6 @@ void update_player_position(t_data *cub, t_point_d old, t_point_d new)
     ft_draw_angle(cub, &new, cub->angle, C_RED);
 }
 
-/*
-For easier future debug (wall collision and angles)
-I allowed myself to put a define here (INCR_STEP)
-*/
 void move_player(t_data *cub, int keycode)
 {
     t_point_d old;
@@ -80,9 +77,10 @@ void move_player(t_data *cub, int keycode)
 		ft_left(cub, &new);
 	else if (keycode == RIGHT)
 		ft_right(cub, &new);
-	if ((int)new.y / TILE_SIZE >= 0 && (int) new.y / TILE_SIZE <  (int) cub->map->y_size_max && \
-    (int)new.x / TILE_SIZE >= 0 && \
-    (int)new.x / TILE_SIZE < (int) ft_strlen(cub->map->raw_map[(int)new.y / TILE_SIZE])) 
+	if ((int)new.y / TILE_SIZE >= 0 && (int) new.y / TILE_SIZE < \
+    (int) cub->map->y_size_max && (int)new.x / TILE_SIZE >= 0 && \
+    (int) new.x / TILE_SIZE < \
+    (int) ft_strlen(cub->map->raw_map[(int)new.y / TILE_SIZE])) 
 	{
 		update_player_position(cub, old, new);
 		cub->position = new;
@@ -95,13 +93,15 @@ int key_hook(int keycode, void *param)
 	t_data	*cub;
 	
 	cub = (t_data *)param;
-	if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
+	if (keycode == UP || keycode == DOWN || \
+    keycode == LEFT || keycode == RIGHT)
 	{	
         move_player(cub, keycode);
         render_3d(cub);
 
     }
-	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
+	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || \
+    keycode == CLIC || keycode == R_CLIC)
 	{
 		ft_handle_angle(cub, keycode);
 		ft_seg_refresh(cub);
