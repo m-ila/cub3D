@@ -1,7 +1,7 @@
-NO ./img/NORTH.xpm
-SO ./img/SOUTH.xpm
-WE ./img/WEST.xpm
-EA ./img/EAST.xpm
+NO ./img/wolftex/bluestone.xpm
+SO ./img/wolftex/colorstone.xpm
+WE ./img/wolftex/mossy.xpm
+EA ./img/wolftex/eagle.xpm
 
 F 255,255,255
 C 5,25,255

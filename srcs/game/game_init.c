@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 12:57:15 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:06:19 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,8 @@ int	key_hook(int keycode, void *param)
 		move_player(cub, keycode);
 		render_3d(cub);
 	}
-<<<<<<< HEAD
 	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
-=======
-	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || \
+	{
 		ft_handle_angle(cub, keycode);
 		ft_seg_refresh(cub);
 	}
