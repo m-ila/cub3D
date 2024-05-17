@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:44:32 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:57:01 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:13:23 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color)
 	int		y;
 	double	i;
 
+	(void) color;
 	dx = cos(ft_deg_to_rad(seg.angle));
 	dy = sin(ft_deg_to_rad(seg.angle));
 	i = 4.0;

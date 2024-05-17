@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_maps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 12:57:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:07:25 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
 		j = 0;
 		while (j < TILE_SIZE)
 		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x * TILE_SIZE + i, \
-			y * TILE_SIZE + j, color);
+			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x * TILE_SIZE + i, y * TILE_SIZE + j, color);
 			j++;
 		}
 		i++;
@@ -108,7 +107,7 @@ void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 	}
 }
 
-void	render_3d(t_data *cub)
+void	render_3d_view(t_data *cub)
 {
 	int	column;
 
@@ -126,4 +125,10 @@ void	render_3d(t_data *cub)
 		draw_colored_vertical_slice(cub, &cub->seg[column], column * COLUMN_W);
 		column++;
 	}
+}
+
+void	render_3d(t_data *cub)
+{
+	render_3d_view(cub);
+	render_minimap(cub);
 }

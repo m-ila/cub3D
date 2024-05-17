@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   def_mlx.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:37:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/11 16:52:27 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:12:21 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define R_CLIC 3
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
+
 typedef struct s_img_mlx
 {
 	void	*img;

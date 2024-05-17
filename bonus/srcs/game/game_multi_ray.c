@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_multi_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:09:28 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:00:36 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void	print_debug(t_data *cub, int i)
 		str = "WEST";
 	if (cub->seg[i].direction == ERR)
 		str = "ERR";
-	if (i == 0)
-		printf("\n\nAngle RED : %f\nWall hit : %s\n\n", cub->seg[i].angle, str);
-	if (i == (W_WIDTH - 1) / (COLUMN_W * 2))
-		printf("Angle YELLOW : %f\nWall hit : %s\n\n", cub->seg[i].angle, str);
 	if (i == (W_WIDTH - 1) / COLUMN_W)
 		printf("Angle GREY : %f\nWall hit : %s\n\n", cub->seg[i].angle, str);
 }

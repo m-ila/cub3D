@@ -3,23 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   game_seg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:44:23 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:20:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 17:00:31 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-/*
-BOTH are pixel position
-t_point	from
-t_point	end
-
-Is a tile position (/ TILE_SIZE), map coordinates
-t_point	tile_hit
-*/
 t_segment	ft_segment(t_data *cub, double angle)
 {
 	t_segment			seg;

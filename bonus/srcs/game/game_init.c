@@ -6,7 +6,7 @@
 /*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 13:06:19 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/17 17:14:28 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_windows(t_data *cub)
 		ft_err_ret("Window creation failed for 2D map view", NULL, false);
 		exit_cleanup(cub);
 	}
-	total_width = W_WIDTH;
+	total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE); 
 	cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, \
 	W_HEIGHT, "3D View");
 	if (!cub->win_3d)
@@ -66,10 +66,12 @@ int	key_hook(int keycode, void *param)
 		move_player(cub, keycode);
 		render_3d(cub);
 	}
-	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW || keycode == CLIC || keycode == R_CLIC)
+	if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW \
+		|| keycode == CLIC || keycode == R_CLIC)
 	{
 		ft_handle_angle(cub, keycode);
 		ft_seg_refresh(cub);
+		render_3d(cub);
 	}
 	else if (keycode == ESC)
 		exit_cleanup(cub);
@@ -78,6 +80,7 @@ int	key_hook(int keycode, void *param)
 
 int	ft_button_input(t_data *cub)
 {
+	mlx_destroy_window(cub->mlx_ptr, cub->win_3d);
 	mlx_destroy_window(cub->mlx_ptr, cub->win_2d);
 	mlx_destroy_display(cub->mlx_ptr);
 	free(cub->mlx_ptr);
