@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:57:27 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:02:16 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 /* math.h */
 # include <math.h>
 # include <float.h>
-/* O_DIRECTORY flag*/
 # include "point.h"
 # include "def_mlx.h"
 # include "../libft/libft.h"
