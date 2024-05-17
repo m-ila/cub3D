@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 13:03:52 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:46:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	key_hook(int keycode, void *param)
 
 int	ft_button_input(t_data *cub)
 {
+	mlx_destroy_window(cub->mlx_ptr, cub->win_3d);
 	mlx_destroy_window(cub->mlx_ptr, cub->win_2d);
 	mlx_destroy_display(cub->mlx_ptr);
 	free(cub->mlx_ptr);

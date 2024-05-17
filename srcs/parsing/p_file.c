@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:47:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:50:24 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 13:42:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,23 @@ char	**read_all_lines(int fd, int *line_count)
 	return (lines);
 }
 
-bool	check_line(t_data *cub, char **line, int *phase)
+bool	ft_has_only_empty_lines_after(char **line, int i)
+{
+	int	cursor;
+	int	len;
+
+	cursor = i;
+	len = ft_2d_has_doubles(line);
+	while (i < len)
+	{
+		if (!ft_has_only_after(line[i], 0, ft_bool_endline))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	check_line(t_data *cub, char **line, int *phase, int *i)
 {
 	char	*cpy;
 
@@ -69,10 +85,10 @@ bool	check_line(t_data *cub, char **line, int *phase)
 		return (false);
 	if (ft_start_map_condition(*line))
 		*phase = 2;
-	if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
-		return (ft_free_map(cub->map), \
-				ft_err_ret("map must not have empty lines", NULL, false));
-	return (ft_process_phase(cub, *phase, line));
+	// if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
+	// 	return (ft_free_map(cub->map), \
+	// 			ft_err_ret("map must not have empty lines", NULL, false));
+	return (ft_process_phase(cub, *phase, line, i));
 }
 
 bool	ft_process_file(t_data *cub)
@@ -90,7 +106,7 @@ bool	ft_process_file(t_data *cub)
 	lines = read_all_lines(cub->tmp_fd, &line_count);
 	while (temoin && i < line_count)
 	{
-		temoin = check_line(cub, &lines[i], &phase);
+		temoin = check_line(cub, &lines[i], &phase, &i);
 		i++;
 	}
 	ft_free_2d_array(lines);
