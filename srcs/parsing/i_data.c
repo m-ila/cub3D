@@ -6,33 +6,18 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 15:11:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:41:10 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-t_compass	ft_which_text(char *str)
+static bool	ft_embed_ret(t_data *cub, char **arr)
 {
-	if (!ft_strncmp("NO", str, ft_strlen(str) + 1))
-		return (NO);
-	if (!ft_strncmp("SO", str, ft_strlen(str) + 1))
-		return (SO);
-	if (!ft_strncmp("WE", str, ft_strlen(str) + 1))
-		return (WE);
-	if (!ft_strncmp("EA", str, ft_strlen(str) + 1))
-		return (EA);
-	return (ERR);
-}
-
-bool	ft_phase_one(t_data *cub, char **line)
-{
-	char	**arr;
-
-	arr = ft_split_base(*line, " \n");
-	if (!arr)
-		return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), \
-		ft_err_ret("split error", NULL, false));
+	if (!ft_is_text(arr[0]) && !ft_is_color(arr[0]) && \
+	!ft_has_only_after(arr[0], 0, ft_bool_endline) && ft_strlen(arr[0]) > 0)
+		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), \
+		ft_free_map(cub->map), ft_err_ret("Incorrect key", NULL, false));
 	if (ft_is_text(arr[0]) && ft_2d_lines(arr) == 2)
 	{
 		if (cub->path_texture[ft_which_text(arr[0])] == NULL)
@@ -48,6 +33,19 @@ bool	ft_phase_one(t_data *cub, char **line)
 		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), \
 		ft_free_map(cub->map), \
 					ft_err_ret("color in file not valid", NULL, false));
+	return (true);
+}
+
+bool	ft_phase_one(t_data *cub, char **line)
+{
+	char	**arr;
+
+	arr = ft_split_base(*line, " \n");
+	if (!arr)
+		return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), \
+		ft_err_ret("split error", NULL, false));
+	if (!ft_embed_ret(cub, arr))
+		return (false);
 	ft_free_2d_array(arr);
 	return (true);
 }

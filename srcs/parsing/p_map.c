@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:10:47 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/17 15:29:59 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ bool	ft_check_adjacent(t_map *map, size_t j, size_t from, int until)
 	return (true);
 }
 
-/* see readme for more instructions */
 bool	ft_parse_line_p_line(t_map *map)
 {
 	size_t	j;
@@ -90,7 +89,6 @@ bool	ft_parse_line_p_line(t_map *map)
 	return (true);
 }
 
-/* to add : strocc_delimiters */
 bool	ft_parse_flood_fill(t_map *map)
 {
 	int	j;
