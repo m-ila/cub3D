@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   i_color.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:01:27 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:14:28 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:39:20 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ bool	ft_color_range(char **arr)
 bool	ft_process_color(t_data *cub, char **arr)
 {
 	char	**parse;
-	t_rgb	color = {0, 0, 0};
+	t_rgb	color;
 
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
 	if ((ft_strlen(arr[1]) < 5) || (ft_strlen(arr[1]) > 11))
 		return (false);
 	parse = ft_split(arr[1], ',');
