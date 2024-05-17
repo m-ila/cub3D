@@ -6,7 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/17 12:55:06 by mbruyant         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/17 12:32:04 by mbruyant         ###   ########.fr       */
+>>>>>>> mandatory
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +72,6 @@
 # define INCR_DEG 5.0
 # define INCR_STEP 5
 # define TILE_SIZE 65
-# define MINI_TILE_SIZE 13
 # define W_HEIGHT 600
 # define W_WIDTH 1100
 # define COLUMN_W 2
@@ -170,6 +173,7 @@ double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle);
 double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
+int		rgb_to_int(t_rgb color);
 /* srcs/game/game_init_img.c */
 bool	ft_free_imgs(t_data *cub, int i, bool err);
 bool	ft_open_images(t_data *cub);
@@ -178,9 +182,10 @@ void	init_mlx(t_data *cub);
 void	init_windows(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
 int		key_hook(int keycode, void *param);
-
+void	move_player(t_data *cub, int keycode);
 void	render_2d_map(t_data *cub);
 void	draw_player(t_data *cub, t_point_d pos, int color);
+bool	ft_player_is_in_wall(t_data *cub, t_segment *seg);
 
 void	render_3d(t_data *cub);
 /* srcs/game/game_input.c */

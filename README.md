@@ -9,6 +9,7 @@
 - [ ] pourquoi map2 ne fonctionne pas ? -> voir commentaire above read_all_lines
 - [ ] mettre plus de map jouables
 - [ ] lorsque lit ligne par ligne une fois arrivee fin de map peut avoir des lignes empty
+- [ ] minimap : other color if end of line != wall
 
 ## done
 - [x] makefile : remettre Werror

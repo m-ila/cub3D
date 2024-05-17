@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 19:36:34 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:04:11 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:58:55 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,7 @@ void	ft_free_img(t_data *cub)
 int	exit_cleanup(t_data *cub)
 {
 	if (cub->win_2d)
-		mlx_destroy_window(cub->mlx_ptr, cub->win_2d);
-	if (cub->win_3d)
-	{	
+	{
 		mlx_destroy_window(cub->mlx_ptr, cub->win_3d);
 	}
 	ft_free_img(cub);

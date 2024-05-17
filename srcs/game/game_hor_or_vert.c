@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 16:56:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:05:11 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:55:45 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double	ft_vrt_intersections(t_data *cub, t_segment *seg)
 	map.x = (int) floor(pos.x / TILE_SIZE);
 	map.y = (int) floor(pos.y / TILE_SIZE);
 	while (map.y > 0 && map.x > 0 && \
-	map.y  < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
+	map.y < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
 	{
 		if (ft_is_within_map_bounds(cub, map) && \
 		cub->map->raw_map[map.y][map.x] == '1')
@@ -69,7 +69,7 @@ double	ft_hzt_intersections(t_data *cub, t_segment *seg)
 	map.x = (int) floor(pos.x / TILE_SIZE);
 	map.y = (int) floor(pos.y / TILE_SIZE);
 	while (map.y > 0 && map.x > 0 && \
-	map.y  < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
+	map.y < (int) cub->map->y_size_max && map.x < (int) cub->map->x_size_max)
 	{
 		if (ft_is_within_map_bounds(cub, map) && \
 		cub->map->raw_map[map.y][map.x] == '1')
