@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:47:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:28:28 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:44:20 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ bool	ft_open_file(t_data *cub, char *path_file)
 	return (true);
 }
 
-/*
-ici, faire en sorte que si la phase 2 est entree,
-checke si les lignes suivantes sont uniquement des lignes vides avec
-ft_has_only_after(*line, 0, ft_bool_endline)
-si oui, on arrete le compte de ligne la
-sinon (si dans la map il y a une ligne avec uniquement des espace/whitespaces)
-laisse passer mais ce cas de parsing est cense renvoyer faux
-*/
 char	**read_all_lines(int fd, int *line_count)
 {
 	char	**lines;
