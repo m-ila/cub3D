@@ -6,8 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-
-/*   Updated: 2024/05/12 14:05:47 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 10:06:44 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,36 +95,29 @@ Marianne
 */
 void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {
-	int	shade;
 	int	x;
 	int	y;
+	t_point	colors;
 
-	shade = 255 - (int)(seg->len_processed * 0.5);
-	if (shade < 0)
-		shade = 0;
 	x = x_start;
+	colors.x = rgb_to_int(cub->ceiling_c);
+	colors.y = rgb_to_int(cub->floor_c);
+	if (cub->map->raw_map[(int) seg->from.y / TILE_SIZE]\
+	[(int) seg->from.x / TILE_SIZE] == '1')
+	{
+		colors.x = C_GREY;
+		colors.y = C_GREY;
+	}
 	while (x < x_start + COLUMN_W)
 	{
-		y = 0;
-		while (y < seg->top_pix)
-		{
+		y = -1;
+		while (++y < seg->top_pix)
+			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, colors.x);
+		while (++y <= seg->bot_pix)
 			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, \
-							rgb_to_int(cub->ceiling_c));
-			y++;
-		}
-		while (y <= seg->bot_pix)
-		{
-
-			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, \
-							ft_get_pixel(cub, seg, y));
-			y++;
-		}
-		while (y < W_HEIGHT)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, \
-							rgb_to_int(cub->floor_c));
-			y++;
-		}
+			ft_get_pixel(cub, seg, y));
+		while (++y < W_HEIGHT)
+			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, colors.y);
 		x++;
 	}
 }
