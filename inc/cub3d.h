@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 16:13:03 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:32:04 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ double	ft_pos_y_inc(t_point_d pos, t_point_d d, double angle);
 double	ft_pos_x_inc(t_point_d pos, t_point_d d, double angle);
 /* srcs/game/game.c */
 void	ft_game(t_data *cub);
+int		rgb_to_int(t_rgb color);
 /* srcs/game/game_init_img.c */
 bool	ft_free_imgs(t_data *cub, int i, bool err);
 bool	ft_open_images(t_data *cub);
@@ -172,9 +173,10 @@ void	init_mlx(t_data *cub);
 void	init_windows(t_data *cub);
 void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color);
 int		key_hook(int keycode, void *param);
-
+void	move_player(t_data *cub, int keycode);
 void	render_2d_map(t_data *cub);
 void	draw_player(t_data *cub, t_point_d pos, int color);
+bool	ft_player_is_in_wall(t_data *cub, t_segment *seg);
 
 void	render_3d(t_data *cub);
 /* srcs/game/game_input.c */
