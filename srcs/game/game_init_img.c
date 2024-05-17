@@ -6,37 +6,38 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:43:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 11:49:40 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:58:35 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-bool ft_free_imgs(t_data *cub, int count, bool return_val)
+bool	ft_free_imgs(t_data *cub, int count, bool return_val)
 {
-	int j;
-	
+	int	j;
+
 	j = 0;
-    while (j < count)
+	while (j < count)
 	{
-        if (cub->imgs[j])
-        {
-            if (cub->imgs[j]->img)
-                mlx_destroy_image(cub->mlx_ptr, cub->imgs[j]->img);
-            free(cub->imgs[j]);
-        }
+		if (cub->imgs[j])
+		{
+			if (cub->imgs[j]->img)
+				mlx_destroy_image(cub->mlx_ptr, cub->imgs[j]->img);
+			free(cub->imgs[j]);
+		}
 		j++;
-    }
-    free(cub->imgs);
-    cub->imgs = NULL;
-    return (return_val);
+	}
+	free(cub->imgs);
+	cub->imgs = NULL;
+	return (return_val);
 }
 
 
 bool ft_open_images(t_data *cub)
 {
-    int i = 0;
+    int i;
 
+    i = 0;
     cub->imgs = ft_calloc(4, sizeof(t_img_mlx *));
     if (!cub->imgs)
         return (ft_free_imgs(cub, i, true));
