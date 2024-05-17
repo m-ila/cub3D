@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:47:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:19:13 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:28:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ bool	ft_has_only_empty_lines_after(char **line, t_point *line_count)
 
 	cursor = line_count->x;
 	len = line_count->y;
-	printf("cursor : %d\nlen %d\nline: (d)%s(f)\n\n", cursor, len, *line);
 	while (cursor < len)
 	{
 		if (!ft_has_only_after(*line, 0, ft_bool_endline))
@@ -87,9 +86,6 @@ bool	check_line(t_data *cub, char **line, int *phase, t_point *line_count)
 		return (false);
 	if (ft_start_map_condition(*line))
 		*phase = 2;
-	// if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
-	// 	return (ft_free_map(cub->map), \
-	// 			ft_err_ret("map must not have empty lines", NULL, false));
 	return (ft_process_phase(cub, *phase, line, line_count));
 }
 

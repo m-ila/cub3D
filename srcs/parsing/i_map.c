@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:04:28 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:57:00 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:42:59 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,10 @@ bool	ft_get_data_map(t_map *m)
 bool	ft_start_map_condition(char *str)
 {
 	return ((ft_only_sep_base(str, B_FIRSTLINE)) && (ft_strlen(str) > 1));
+}
+
+bool	ft_embed_norm(t_point *line_count)
+{
+	line_count->x = INT_MAX - 1;
+	return (true);
 }

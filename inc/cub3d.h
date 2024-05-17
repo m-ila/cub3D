@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:13:19 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:42:56 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,11 @@ bool		ft_is_valid_file_component(char *str);
 bool		ft_open_file(t_data *cub, char *path_file);
 void		ft_close_fd(int *fd);
 bool		ft_init_struct(t_data *cub, char *path_file);
-bool		ft_process_phase(t_data *cub, int phase, char **line, t_point *line_count);
+bool		ft_process_phase(t_data *cub, int phase, char **line, t_point *lc);
 /* srcs/parsing/i_map.c */
 bool		ft_start_map_condition(char *str);
 bool		ft_get_data_map(t_map *m);
+bool		ft_embed_norm(t_point *line_count);
 /* srcs/parsing/i_null.c */
 void		ft_init_null(t_data *cub);
 void		ft_array_set_null(char **arr, size_t len);

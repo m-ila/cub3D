@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 13:46:04 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:30:00 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	key_hook(int keycode, void *param)
 	{
 		ft_handle_angle(cub, keycode);
 		ft_seg_refresh(cub);
+		render_3d(cub);
 	}
 	else if (keycode == ESC)
 		exit_cleanup(cub);

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:11:21 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:43:01 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	ft_phase_one(t_data *cub, char **line)
 	return (true);
 }
 
-bool	ft_process_phase(t_data *cub, int phase, char **line, t_point *line_count)
+bool	ft_process_phase(t_data *cub, int phase, char **line, t_point *lc)
 {
 	if (phase == 1)
 		return (ft_phase_one(cub, line));
@@ -61,12 +61,8 @@ bool	ft_process_phase(t_data *cub, int phase, char **line, t_point *line_count)
 		if (cub->map->raw_map)
 		{
 			if (ft_has_only_after(*line, 0, ft_bool_endline) && \
-			ft_has_only_empty_lines_after(line, line_count))
-			{
-				printf("aaaaaaaaaaaa\n\n\n");
-				line_count->x = INT_MAX - 1;
-				return (true);
-			}
+			ft_has_only_empty_lines_after(line, lc))
+				return (ft_embed_norm(lc));
 			if (ft_strocc_unbase(*line, ALLOWED_BASE))
 				return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), \
 				ft_err_ret("map with unhautorized char", NULL, false));
