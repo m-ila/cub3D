@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 13:41:58 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:13:19 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../minilibx-linux/mlx_int.h"
 
-# define ALLOWED_BASE "01NSEW\t\b\v\f "
+# define ALLOWED_BASE "01NSEW\t\b\v\f \n"
 # define B_SPAWN "NSEW"
 # define B_FIRSTLINE " 01\n\t\b\v\f"
 # define B_DIGIT "0123456789"
@@ -124,7 +124,7 @@ bool		ft_is_valid_file_component(char *str);
 bool		ft_open_file(t_data *cub, char *path_file);
 void		ft_close_fd(int *fd);
 bool		ft_init_struct(t_data *cub, char *path_file);
-bool		ft_process_phase(t_data *cub, int phase, char **line, int *i);
+bool		ft_process_phase(t_data *cub, int phase, char **line, t_point *line_count);
 /* srcs/parsing/i_map.c */
 bool		ft_start_map_condition(char *str);
 bool		ft_get_data_map(t_map *m);
@@ -133,7 +133,7 @@ void		ft_init_null(t_data *cub);
 void		ft_array_set_null(char **arr, size_t len);
 /* srcs/parsing/p_file.c */
 bool		ft_process_file(t_data *cub);
-bool		ft_has_only_empty_lines_after(char **line, int i);
+bool		ft_has_only_empty_lines_after(char **line, t_point *line_count);
 /* srcs/parsing/p_map_find.c */
 int			ft_find_end_line(char *str);
 int			ft_find_start_line(char *str);

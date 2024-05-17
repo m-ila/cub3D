@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 12:47:29 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 13:42:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:19:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,25 @@ char	**read_all_lines(int fd, int *line_count)
 	return (lines);
 }
 
-bool	ft_has_only_empty_lines_after(char **line, int i)
+bool	ft_has_only_empty_lines_after(char **line, t_point *line_count)
 {
 	int	cursor;
 	int	len;
 
-	cursor = i;
-	len = ft_2d_has_doubles(line);
-	while (i < len)
+	cursor = line_count->x;
+	len = line_count->y;
+	printf("cursor : %d\nlen %d\nline: (d)%s(f)\n\n", cursor, len, *line);
+	while (cursor < len)
 	{
-		if (!ft_has_only_after(line[i], 0, ft_bool_endline))
+		if (!ft_has_only_after(*line, 0, ft_bool_endline))
 			return (false);
-		i++;
+		cursor++;
+		line++;
 	}
 	return (true);
 }
 
-bool	check_line(t_data *cub, char **line, int *phase, int *i)
+bool	check_line(t_data *cub, char **line, int *phase, t_point *line_count)
 {
 	char	*cpy;
 
@@ -88,26 +90,25 @@ bool	check_line(t_data *cub, char **line, int *phase, int *i)
 	// if (*phase == 2 && ft_has_only_after(*line, 0, ft_bool_endline))
 	// 	return (ft_free_map(cub->map), \
 	// 			ft_err_ret("map must not have empty lines", NULL, false));
-	return (ft_process_phase(cub, *phase, line, i));
+	return (ft_process_phase(cub, *phase, line, line_count));
 }
 
 bool	ft_process_file(t_data *cub)
 {
 	char	**lines;
-	int		line_count;
+	t_point	line_count;
 	bool	temoin;
 	int		phase;
-	int		i;
 
-	line_count = 0;
+	line_count.x = 0;
+	line_count.y = 0;
 	temoin = true;
 	phase = 1;
-	i = 0;
-	lines = read_all_lines(cub->tmp_fd, &line_count);
-	while (temoin && i < line_count)
+	lines = read_all_lines(cub->tmp_fd, &line_count.y);
+	while (temoin && line_count.x < line_count.y)
 	{
-		temoin = check_line(cub, &lines[i], &phase, &i);
-		i++;
+		temoin = check_line(cub, &lines[line_count.x], &phase, &line_count);
+		line_count.x++;
 	}
 	ft_free_2d_array(lines);
 	return (temoin);
