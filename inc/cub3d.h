@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 15:11:00 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:41:49 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ bool		ft_has_only_empty_lines_after(char **line, t_point *line_count);
 /* srcs/parsing/p_map_find.c */
 int			ft_find_end_line(char *str);
 int			ft_find_start_line(char *str);
+t_compass	ft_which_text(char *str);
 /* srcs/parsing/p_map.c */
 void		ft_flood_fill(t_point *position, t_map *map);
 bool		ft_parse_flood_fill(t_map *map);

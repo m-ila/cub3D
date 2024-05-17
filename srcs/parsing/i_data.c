@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 15:41:10 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:42:35 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,6 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 		return (false);
 	if (!ft_process_file(cub))
 		return (ft_emb_free(1, cub));
-	printf("\nDisplay raw map\n");
-	if (cub->map->raw_map)
-		ft_display_2d(cub->map->raw_map);
 	if (!ft_get_data_map(cub->map))
 		return (ft_emb_free(2, cub));
 	cub->map->map_cpy = ft_copy_2d_array(cub->map->raw_map, 0, \
@@ -123,9 +120,6 @@ bool	ft_init_struct(t_data *cub, char *path_file)
 	if (cub->map && cub->map->map_cpy)
 	{
 		ft_flood_fill(&cub->map->spawn, cub->map);
-		printf("\nDisplay map flood fill\n");
-		if (cub->map->map_cpy)
-			ft_display_2d(cub->map->map_cpy);
 		if (!ft_parse_flood_fill(cub->map))
 			return (ft_emb_free(3, cub));
 	}
