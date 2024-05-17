@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:42:56 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:45:28 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <math.h>
 # include <float.h>
 /* O_DIRECTORY flag*/
-# include <bits/fcntl-linux.h>
+#include <asm-generic/fcntl.h>
 # include "point.h"
 # include "def_mlx.h"
 # include "../libft/libft.h"
