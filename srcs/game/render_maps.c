@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 12:57:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:53:15 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void	render_3d(t_data *cub)
 	while (column < (W_WIDTH / COLUMN_W) - 1)
 	{
 		cub->seg[column].top_pix = (W_HEIGHT / 2) - \
-		(cub->seg[column].wall_height / 2);
+		(cub->seg[column].wall_height / 2) - 1;
 		if (cub->seg[column].top_pix < 0)
 			cub->seg[column].top_pix = 0;
 		cub->seg[column].bot_pix = cub->seg[column].top_pix + \
