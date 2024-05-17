@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 12:44:32 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 11:35:01 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 11:55:16 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_draw_square(t_data *cub, t_point_d square)
 {
-	double start_x;
-	double start_y;
-	int i;
-	int j;
+	double	start_x;
+	double	start_y;
+	int		i;
+	int		j;
 
 	start_x = square.x * TILE_SIZE;
 	start_y = square.y * TILE_SIZE;
@@ -38,7 +38,7 @@ void	ft_draw_angle_seg(t_data *cub, t_segment seg, int color)
 	double	dy;
 	int		x;
 	int		y;
-	double		i;
+	double	i;
 
 	dx = cos(ft_deg_to_rad(seg.angle));
 	dy = sin(ft_deg_to_rad(seg.angle));
