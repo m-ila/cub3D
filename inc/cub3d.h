@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 10:37:34 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/17 12:55:06 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ int		ft_bool_endline(char c);
 void	ft_display_2d(char **arr);
 /* srcs/parsing/errors.c */
 int		ft_err_ret(char *msg, char *name, int ret);
+/* srcs/parsing/emb_free.c */
+bool	ft_emb_free(int c, t_data *cub);
 /* srcs/parsing/free.c */
 void	ft_safe_free(char **str);
 void	ft_free_textures(t_data *cub);
@@ -123,12 +125,15 @@ bool	ft_is_valid_file_component(char *str);
 bool	ft_open_file(t_data *cub, char *path_file);
 void	ft_close_fd(int *fd);
 bool	ft_init_struct(t_data *cub, char *path_file);
+bool	ft_process_phase(t_data *cub, int phase, char **line);
 /* srcs/parsing/i_map.c */
 bool	ft_start_map_condition(char *str);
 bool	ft_get_data_map(t_map *m);
 /* srcs/parsing/i_null.c */
 void	ft_init_null(t_data *cub);
 void	ft_array_set_null(char **arr, size_t len);
+/* srcs/parsing/p_file.c */
+bool	ft_process_file(t_data *cub);
 /* srcs/parsing/p_map_find.c */
 int		ft_find_end_line(char *str);
 int		ft_find_start_line(char *str);
