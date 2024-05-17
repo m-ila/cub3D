@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 13:36:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 14:43:01 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:11:13 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,13 @@ bool	ft_phase_one(t_data *cub, char **line)
 		return (ft_free_map(cub->map), ft_safe_free(&(cub->tmp_line)), \
 		ft_err_ret("split error", NULL, false));
 	if (ft_is_text(arr[0]) && ft_2d_lines(arr) == 2)
-		cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+	{
+		if (cub->path_texture[ft_which_text(arr[0])] == NULL)
+			cub->path_texture[ft_which_text(arr[0])] = ft_strdup(arr[1]);
+		else
+			return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), \
+		ft_free_map(cub->map), ft_err_ret(E_NB_TXT, NULL, false));
+	}
 	if (ft_is_text(arr[0]) && ft_2d_lines(arr) != 2)
 		return (ft_free_2d_array(arr), ft_safe_free(&(cub->tmp_line)), \
 		ft_free_map(cub->map), ft_err_ret(E_PATH, NULL, false));

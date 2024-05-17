@@ -1,4 +1,5 @@
 NO ./img/NORTH.xpm
+NO ./img/SOUTH.xpm
 SO ./img/SOUTH.xpm
 WE ./img/WEST.xpm
 EA ./img/EAST.xpm

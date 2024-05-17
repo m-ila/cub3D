@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 15:02:16 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:11:00 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define B_WHTZEUN "\t\b\v\f 01"
 # define B_WALL "\t\b\v\f 1"
 # define E_PATH "usage : (ID) (VALUE) and nothing else"
+# define E_NB_TXT "must have only one texture file per field"
 # define PI 3.14159265359
 # define C_BLACK 0x000000
 # define C_RED 0xFF0000
