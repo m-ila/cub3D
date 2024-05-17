@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   str_manip.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:19:30 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:07:40 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 bool	ft_add_line_to_arr(char ***arr, char **line)
 {

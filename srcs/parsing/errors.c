@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 14:00:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:07:52 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 int	ft_err_ret(char *msg, char *name, int ret)
 {

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   debug_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 10:17:15 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:01:24 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 void	ft_display_2d(char **arr)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:08:24 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 15:27:50 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:10:47 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,11 @@ bool	ft_check_adjacent(t_map *map, size_t j, size_t from, int until)
 bool	ft_parse_line_p_line(t_map *map)
 {
 	size_t	j;
-	size_t	from;
-	int		until;
 
+	size_t (from) = 0;
+	int (until) = 0;
 	j = map->y_from;
 	map->x_from = ft_strlen(map->map_cpy[j]);
-	from = 0;
-	until = 0;
 	while (j <= map->y_until)
 	{
 		from = ft_find_start_line(map->map_cpy[j]);

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   i_color.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 23:01:27 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 14:11:49 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:14:28 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
 
 /* check if everything is between 0 and 255 and is only digits */
 bool	ft_color_range(char **arr)
@@ -35,8 +34,8 @@ bool	ft_color_range(char **arr)
 bool	ft_process_color(t_data *cub, char **arr)
 {
 	char	**parse;
-	t_rgb color = {0, 0, 0};
-	
+	t_rgb	color = {0, 0, 0};
+
 	if ((ft_strlen(arr[1]) < 5) || (ft_strlen(arr[1]) > 11))
 		return (false);
 	parse = ft_split(arr[1], ',');

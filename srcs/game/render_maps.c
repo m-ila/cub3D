@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_maps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-
-/*   Updated: 2024/05/12 14:05:47 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/17 12:32:41 by yuewang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +61,10 @@ void	draw_player(t_data *cub, t_point_d pos, int color)
 
 void	render_2d_map(t_data *cub)
 {
-	int	x;
-	int	y;
-
-	y = 0;
+	int (x) = 0;
+	int (y) = 0;
 	while (y < (int)cub->map->y_size_max)
 	{
-		x = 0;
 		while (x < (int)ft_strlen(cub->map->raw_map[y]))
 		{
 			if (cub->map->raw_map[y][x] == '1')
@@ -93,38 +89,20 @@ void	render_2d_map(t_data *cub)
 
 void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {
-	int	shade;
-	int	x;
-	int	y;
-
-	shade = 255 - (int)(seg->len_processed * 0.5);
-	if (shade < 0)
-		shade = 0;
-	x = x_start;
-	while (x < x_start + COLUMN_W)
+    int x = x_start - 1;
+	int y = -1;
+    int shade = 255 - (int)(seg->len_processed * 0.5);
+    if (shade < 0)
+        shade = 0;
+    while (++x < x_start + COLUMN_W)
 	{
-		y = 0;
-		while (y < seg->top_pix)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, \
-							rgb_to_int(cub->ceiling_c));
-			y++;
-		}
-		while (y <= seg->bot_pix)
-		{
-
-			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, \
-							ft_get_pixel(cub, seg, y));
-			y++;
-		}
-		while (y < W_HEIGHT)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, \
-							rgb_to_int(cub->floor_c));
-			y++;
-		}
-		x++;
-	}
+        while (++y < seg->top_pix)
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, rgb_to_int(cub->ceiling_c));
+        while (++y <= seg->bot_pix)
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, ft_get_pixel(cub, seg, y));
+        while (++y < W_HEIGHT)
+            mlx_pixel_put(cub->mlx_ptr, cub->win_3d, W_WIDTH - x, y, rgb_to_int(cub->floor_c));
+    }
 }
 
 void	render_3d_view(t_data *cub)
