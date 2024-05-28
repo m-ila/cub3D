@@ -6,55 +6,71 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/16 15:25:52 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/05/28 20:27:54 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME = cub3D
+MANDATORY_FILES = mandatory/srcs/game/bool.c \
+mandatory/srcs/game/game_coord_hor.c \
+mandatory/srcs/game/game_init.c \
+mandatory/srcs/game/game_multi_ray.c \
+mandatory/srcs/game/game_which_texture.c \
+mandatory/srcs/game/game_angle.c \
+mandatory/srcs/game/game_coord_ver.c \
+mandatory/srcs/game/game_init_img.c \
+mandatory/srcs/game/game_ray_math.c \
+mandatory/srcs/game/render_maps.c \
+mandatory/srcs/game/game_angle_math.c \
+mandatory/srcs/game/game_draw.c \
+mandatory/srcs/game/game_input.c \
+mandatory/srcs/game/game_seg.c \
+mandatory/srcs/game/game.c \
+mandatory/srcs/game/game_hor_or_vert.c \
+mandatory/srcs/game/game_moves.c \
+mandatory/srcs/game/game_which_pixel.c \
+mandatory/srcs/parsing/bool_is.c \
+mandatory/srcs/parsing/emb_free.c \
+mandatory/srcs/parsing/free.c \
+mandatory/srcs/parsing/i_data.c \
+mandatory/srcs/parsing/i_null.c \
+mandatory/srcs/parsing/p_file.c \
+mandatory/srcs/parsing/p_map_find.c \
+mandatory/srcs/parsing/debug_utils.c \
+mandatory/srcs/parsing/errors.c \
+mandatory/srcs/parsing/i_color.c \
+mandatory/srcs/parsing/i_map.c \
+mandatory/srcs/parsing/p_map.c \
+mandatory/srcs/parsing/main.c \
+mandatory/srcs/parsing/str_manip.c \
+mandatory/inc/cub3d.h \
+mandatory/inc/def_mlx.h \
+mandatory/inc/point.h \
+mandatory/libft
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -O2 -g
-INCFLAGS  = -I inc/ -I src/libft/ -I/usr/include/readline
-MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
-SRC_DIR    = srcs/
-#wildcard to be changed to sources filenames
-SRC_FILES = $(wildcard $(SRC_DIR)parsing/*.c) $(wildcard $(SRC_DIR)game/*.c)
-# SRC_FILES  = srcs/p_map.c srcs/bool_is.c srcs/main.c srcs/errors.c srcs/i_data.c \
-# srcs/i_null.c srcs/free.c srcs/i_color.c srcs/i_map.c srcs/p_map_find.c \
-# srcs/debug_utils.c srcs/str_manip.c
-INC = inc/
-LIBFT = libft/
-LIBFTHD = libft/libft.h
-MLX = minilibx-linux
-OBJ_DIR    = objs/
-OBJS 	   = $(SRC_FILES:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
+all: $(NAME)
 
-all: ${NAME}
-
-${NAME}: ${OBJS} ${INC} ${SRC_FILES} ${LIBFT} ${MLX}
-	${MAKE} -C minilibx-linux
-	${MAKE} -C libft/
-	${CC} ${CFLAGS} ${SRC_FILES} -o ${NAME} -I ${INC} -include ${LIBFTHD} ${MLXFLAGS} libft/libft.a
-
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c
-	@mkdir -p $(@D)
-	$(CC) $(INCFLAGS) -c $< -o $@
+${NAME}: ${MANDATORY_FILES}
+	${MAKE} -C mandatory/
+	mv mandatory/cub3D .
 
 clean :
-	${MAKE} -C minilibx-linux clean
-	${MAKE} -C libft/ clean
-	${RM} ${OBJS}
-	@echo "\033[0;31;1mClean OK\033[0m"
+	${MAKE} -C mandatory/ clean
+	${MAKE} -C bonus/ clean
 
 fclean : clean
-	${MAKE} -C libft/ fclean
-	${RM} ${NAME}
-	$(RM) -r $(OBJ_DIR)
-	@echo "\033[0;31;1mfclean OK\033[0m"
+	${MAKE} -C mandatory/ fclean
+	${MAKE} -C bonus/ fclean
+	rm -rf cub3D_bonus cub3D
 
 re : fclean all
 
-leaks: all
-	valgrind -s --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./cub3d
+bonus :
+	${MAKE} -C bonus/
+	mv bonus/cub3D_bonus .
 
-.PHONY : all fclean clean re
+leaks: all
+	valgrind -s --track-fds=yes --track-origins=yes \
+	--leak-check=full --show-leak-kinds=all ./cub3D
+
+.PHONY : all fclean clean re bonus

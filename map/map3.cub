@@ -1,10 +1,11 @@
-NO ./img/wolftex/bluestone.xpm
-SO ./img/wolftex/colorstone.xpm
-WE ./img/wolftex/mossy.xpm
-EA ./img/wolftex/eagle.xpm
+NO ./img/NORTH.xpm
+SO ./img/SOUTH.xpm
+WE ./img/WEST.xpm
+EA ./img/EAST.xpm
 
 F 255,255,255
 C 5,25,255
+
 
 111111111111111111
 111000000000111111  
@@ -13,5 +14,6 @@ C 5,25,255
 100000000000010011
 101110000000001001 
 101010000000000101
-100S00010000000101     
+10000S010000000101     
 111111111111111111
+                  
