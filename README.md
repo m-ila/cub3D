@@ -4,7 +4,7 @@
 - [ ] enlever la 2d map avec les rayons de partout
 - [ ] separer les files en bonus et pas bonus
 - [ ] enlever les wildcards dans le makefile
-- [ ] Norme
+- [x] Norme
 - [ ] tests leaks
 - [ ] mettre plus de map jouables
 - [ ] minimap : other color if end of line != wall

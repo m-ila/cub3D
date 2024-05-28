@@ -6,7 +6,7 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/17 15:07:07 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/05/28 19:01:09 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,38 @@ CFLAGS = -Wall -Wextra -Werror -O2 -g
 INCFLAGS  = -I inc/ -I src/libft/ -I/usr/include/readline
 MLXFLAGS = minilibx-linux/libmlx.a minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
 SRC_DIR    = srcs/
-#wildcard to be changed to sources filenames
-SRC_FILES = $(wildcard $(SRC_DIR)parsing/*.c) $(wildcard $(SRC_DIR)game/*.c)
-# SRC_FILES  = srcs/p_map.c srcs/bool_is.c srcs/main.c srcs/errors.c srcs/i_data.c \
-# srcs/i_null.c srcs/free.c srcs/i_color.c srcs/i_map.c srcs/p_map_find.c \
-# srcs/debug_utils.c srcs/str_manip.c
+SRC_FILES = srcs/game/bool.c \
+srcs/game/game_coord_hor.c \
+srcs/game/game_init.c \
+srcs/game/game_multi_ray.c \
+srcs/game/game_which_texture.c \
+srcs/game/game_angle.c \
+srcs/game/game_coord_ver.c \
+srcs/game/game_init_img.c \
+srcs/game/game_ray_math.c \
+srcs/game/render_maps.c \
+srcs/game/game_angle_math.c \
+srcs/game/game_draw.c \
+srcs/game/game_input.c \
+srcs/game/game_seg.c \
+srcs/game/game.c \
+srcs/game/game_hor_or_vert.c \
+srcs/game/game_moves.c \
+srcs/game/game_which_pixel.c \
+srcs/parsing/bool_is.c \
+srcs/parsing/emb_free.c \
+srcs/parsing/free.c \
+srcs/parsing/i_data.c \
+srcs/parsing/i_null.c \
+srcs/parsing/p_file.c \
+srcs/parsing/p_map_find.c \
+srcs/parsing/debug_utils.c \
+srcs/parsing/errors.c \
+srcs/parsing/i_color.c \
+srcs/parsing/i_map.c \
+srcs/parsing/p_map.c \
+srcs/parsing/main.c \
+srcs/parsing/str_manip.c
 INC = inc/
 LIBFT = libft/
 LIBFTHD = libft/libft.h
@@ -55,6 +82,6 @@ fclean : clean
 re : fclean all
 
 leaks: all
-	valgrind -s --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./cub3d
+	valgrind -s --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all ./cub3D
 
 .PHONY : all fclean clean re

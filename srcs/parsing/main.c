@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:54:11 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 12:54:32 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:58:50 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(int argc, char **argv, char **envp)
 	if (!envp || !(*envp))
 		return (ft_printf_fd(STDERR_FILENO, \
 		"Error : needs an env to run MLX\n"), 1);
-	if (!ft_strlen(argv[1]))
+	if (argc >= 2 && !ft_strlen(argv[1]))
 		return (ft_err_ret("enter valid path", NULL, 1));
 	if (argc == 2)
 	{
