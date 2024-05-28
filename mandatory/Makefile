@@ -6,7 +6,7 @@
 #    By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/06 14:38:55 by mbruyant          #+#    #+#              #
-#    Updated: 2024/05/28 20:31:55 by mbruyant         ###   ########.fr        #
+#    Updated: 2024/05/28 21:03:53 by mbruyant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ srcs/game/game_init_img.c \
 srcs/game/game_ray_math.c \
 srcs/game/render_maps.c \
 srcs/game/game_angle_math.c \
-srcs/game/game_draw.c \
 srcs/game/game_input.c \
 srcs/game/game_seg.c \
 srcs/game/game.c \

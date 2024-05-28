@@ -6,79 +6,11 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 15:53:15 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:02:48 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x * TILE_SIZE + i, \
-			y * TILE_SIZE + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_player(t_data *cub, t_point_d pos, int color)
-{
-	int	start_x;
-	int	start_y;
-	int	i;
-	int	j;
-
-	start_x = pos.x - 2;
-	start_y = pos.y - 2;
-	i = 0;
-	while (i < 5)
-	{
-		j = 0;
-		while (j < 5)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, \
-			start_x + i, start_y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	render_2d_map(t_data *cub)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < (int)cub->map->y_size_max)
-	{
-		x = -1;
-		while (++x < (int)ft_strlen(cub->map->raw_map[y]))
-		{
-			if (cub->map->raw_map[y][x] == '1')
-				put_map_cell_to_window(cub, x, y, C_GREY);
-			else
-				put_map_cell_to_window(cub, x, y, C_WHITE);
-			if (x == cub->map->spawn.x && y == cub->map->spawn.y)
-			{
-				draw_player(cub, cub->position, C_RED);
-				ft_print_all_rays(cub);
-			}
-		}
-		while (++x < (int)cub->map->x_size_max)
-			put_map_cell_to_window(cub, x, y, C_WHITE);
-	}
-}
 
 void	draw_colored_vertical_slice(t_data *cub, t_segment *seg, int x_start)
 {

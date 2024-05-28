@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_multi_ray.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 17:00:36 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/28 21:05:39 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,6 @@ void	ft_malloc_rays(t_data *cub)
 		ft_norm_angle(start_angle + (ind * angle_incr)));
 		print_debug(cub, ind);
 		ind += 1.0;
-	}
-}
-
-void	ft_print_all_rays(t_data *cub)
-{
-	int	i;
-
-	i = 0;
-	while (i < (W_WIDTH / COLUMN_W) - 1)
-	{
-		if (i == 0)
-			ft_draw_angle_seg(cub, cub->seg[i], C_RED);
-		else if (i == (W_WIDTH - 1) / (COLUMN_W * 2))
-			ft_draw_angle_seg(cub, cub->seg[i], C_YELLOW);
-		else if (i == (W_WIDTH - 2) / COLUMN_W)
-			ft_draw_angle_seg(cub, cub->seg[i], C_GREY);
-		else
-			ft_draw_angle_seg(cub, cub->seg[i], C_CYAN);
-		i++;
 	}
 }
 

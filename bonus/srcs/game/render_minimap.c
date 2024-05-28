@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 15:29:42 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/28 15:23:48 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/28 20:59:59 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,4 @@ void	render_minimap(t_data *cub)
 		tile.y++;
 	}
 	draw_player_minimap(cub, minimap_start.x, minimap_start.y);
-}
-
-void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x * TILE_SIZE + i, \
-			y * TILE_SIZE + j, color);
-			j++;
-		}
-		i++;
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 15:50:40 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 15:43:21 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/28 21:06:24 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,25 +33,6 @@ void	ft_malloc_rays(t_data *cub)
 		cub->seg[(int) ind] = ft_segment(cub, \
 		ft_norm_angle(start_angle + (ind * angle_incr)));
 		ind += 1.0;
-	}
-}
-
-void	ft_print_all_rays(t_data *cub)
-{
-	int	i;
-
-	i = 0;
-	while (i < (W_WIDTH / COLUMN_W) - 1)
-	{
-		if (i == 0)
-			ft_draw_angle_seg(cub, cub->seg[i], C_RED);
-		else if (i == (W_WIDTH - 1) / (COLUMN_W * 2))
-			ft_draw_angle_seg(cub, cub->seg[i], C_YELLOW);
-		else if (i == (W_WIDTH - 2) / COLUMN_W)
-			ft_draw_angle_seg(cub, cub->seg[i], C_GREY);
-		else
-			ft_draw_angle_seg(cub, cub->seg[i], C_CYAN);
-		i++;
 	}
 }
 

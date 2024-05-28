@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:15:49 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/16 13:43:11 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/28 20:58:02 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,6 @@ void	ft_get_starting_angle(t_data *cub)
 		cub->angle = 0;
 	if (cub->map->spawn_angle == 'W')
 		cub->angle = 180;
-}
-
-/*
-i starts at 4 so the angle ray doesn't go over the player
-*/
-void	ft_draw_angle(t_data *cub, t_point_d *pos, double angle, int color)
-{
-	double	dx;
-	double	dy;
-	double	x;
-	double	y;
-	int		i;
-
-	dx = cos(ft_deg_to_rad(angle));
-	dy = sin(ft_deg_to_rad(angle));
-	i = 4;
-	while (i < 14)
-	{
-		x = pos->x + round(i * dx);
-		y = pos->y - round(i * dy);
-		mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x, y, color);
-		i++;
-	}
 }
 
 void	ft_handle_angle(t_data *cub, int keycode)

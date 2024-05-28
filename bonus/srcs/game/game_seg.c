@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_seg.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 11:44:23 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 17:00:31 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/28 21:05:56 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,6 @@ t_segment	ft_segment(t_data *cub, double angle)
 
 void	ft_seg_refresh(t_data *cub)
 {
-	int	i;
-
-	i = 0;
-	while (i < (W_WIDTH / COLUMN_W) - 1)
-	{
-		ft_draw_angle_seg(cub, cub->seg[i], C_WHITE);
-		i++;
-	}
 	ft_free_rays(cub);
 	ft_malloc_rays(cub);
-	ft_print_all_rays(cub);
 }

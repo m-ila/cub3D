@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 17:42:26 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 17:15:06 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/28 21:07:54 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	update_player_position(t_data *cub, t_point_d old, t_point_d new)
-{
-	draw_player(cub, old, C_WHITE);
-	ft_draw_angle(cub, &old, cub->angle, C_WHITE);
-	draw_player(cub, new, C_RED);
-	ft_draw_angle(cub, &new, cub->angle, C_RED);
-}
 
 int	is_position_valid(t_data *cub, t_point_d new)
 {
@@ -65,7 +57,6 @@ void	move_player(t_data *cub, int keycode)
 		ft_right(cub, &new);
 	if (is_position_valid(cub, new))
 	{
-		update_player_position(cub, old, new);
 		cub->position = new;
 		ft_seg_refresh(cub);
 	}
@@ -92,7 +83,6 @@ void	move_player2(t_data *cub, int keycode)
 	(int) ft_strlen(cub->map->raw_map[(int)new.y / TILE_SIZE]) && \
 	cub->map->raw_map[(int)new.y / TILE_SIZE][(int)new.x / TILE_SIZE] != '1')
 	{
-		update_player_position(cub, old, new);
 		cub->position = new;
 		ft_seg_refresh(cub);
 	}
