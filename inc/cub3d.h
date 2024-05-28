@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/17 19:07:52 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:14:40 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@
 # include <bits/fcntl-linux.h>
 # include "point.h"
 # include "def_mlx.h"
-# include "../../libft/libft.h"
+# include "../libft/libft.h"
 /* uint32 */
 # include <stdint.h>
 
 /* minilibx */
-# include "../../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include "../../minilibx-linux/mlx.h"
-# include "../../minilibx-linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 # define ALLOWED_BASE "01NSEW\t\b\v\f "
 # define B_SPAWN "NSEW"
