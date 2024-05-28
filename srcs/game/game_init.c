@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 15:35:39 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 17:14:28 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:22:38 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_windows(t_data *cub)
 		ft_err_ret("Window creation failed for 2D map view", NULL, false);
 		exit_cleanup(cub);
 	}
-	total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE); 
+	total_width = W_WIDTH + (cub->map->x_size_max * MINI_TILE_SIZE);
 	cub->win_3d = mlx_new_window(cub->mlx_ptr, total_width, \
 	W_HEIGHT, "3D View");
 	if (!cub->win_3d)

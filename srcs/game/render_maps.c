@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   render_maps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yuewang <yuewang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 20:47:51 by yuewang           #+#    #+#             */
-/*   Updated: 2024/05/17 17:07:25 by yuewang          ###   ########.fr       */
+/*   Updated: 2024/05/28 15:23:31 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-void	put_map_cell_to_window(t_data *cub, int x, int y, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < TILE_SIZE)
-	{
-		j = 0;
-		while (j < TILE_SIZE)
-		{
-			mlx_pixel_put(cub->mlx_ptr, cub->win_2d, x * TILE_SIZE + i, y * TILE_SIZE + j, color);
-			j++;
-		}
-		i++;
-	}
-}
 
 void	draw_player(t_data *cub, t_point_d pos, int color)
 {

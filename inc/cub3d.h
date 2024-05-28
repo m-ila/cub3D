@@ -6,7 +6,7 @@
 /*   By: mbruyant <mbruyant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 14:07:33 by mbruyant          #+#    #+#             */
-/*   Updated: 2024/05/28 15:14:40 by mbruyant         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:26:46 by mbruyant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ bool		ft_player_is_in_wall(t_data *cub, t_segment *seg);
 
 void		render_3d(t_data *cub);
 void		render_minimap(t_data *cub);
+void		put_map_cell_to_window(t_data *cub, int x, int y, int color);
 
 /* srcs/game/game_input.c */
 int			ft_handle_clic(int button, int x, int y, void *param);
